@@ -4,11 +4,11 @@
   publish = "."
   command = ""
 
-# Redirects for Single Page Applications (if needed)
+# 404 fallback
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200
+  status = 404
 
 # Headers for security and performance
 [[headers]]
