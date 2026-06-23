@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Grandmoor - Get in touch for warehousing and logistics inquiries in Mississauga.">
+  <title>Contact - Grandmoor Warehousing & Logistics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- HEADER & NAVIGATION -->
+  <header>
+    <div class="nav-container">
+      <a href="/" class="logo"><img src="images/stag.svg" alt="Grandmoor Logo"></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav id="mobileMenu" class="mobile-menu">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="offerings.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <nav id="desktopNav">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="offerings.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <img src="images/hero-banner.jpg" alt="Contact Us" class="hero-image">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Get in Touch</h1>
+      <p>Tell us about your warehousing or logistics needs — we'll respond promptly with next steps.</p>
+    </div>
+  </section>
+
+  <!-- INTRO SECTION -->
+  <section class="intro-section">
+    <div class="container">
+      <h2>Whether you're evaluating warehouse partners, need a quote for ongoing 3PL support, or have a question about our facility and capacity, the Grandmoor team is ready to help.</h2>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- CONTACT DETAILS -->
+        <div class="contact-info">
+          <h2>Contact Information</h2>
+
+          <div class="contact-info-block">
+            <h3>Address</h3>
+            <p>[STREET ADDRESS]<br>Mississauga, Ontario, Canada [POSTAL CODE]</p>
+          </div>
+
+          <div class="contact-info-block">
+            <h3>Phone</h3>
+            <p><a href="tel:[PHONE]">[PHONE NUMBER]</a></p>
+          </div>
+
+          <div class="contact-info-block">
+            <h3>Email</h3>
+            <p><a href="mailto:info@grandmoor.ca">info@grandmoor.ca</a></p>
+          </div>
+
+          <div class="contact-info-block">
+            <h3>Business Hours</h3>
+            <p>[DAYS] · [HOURS]</p>
+          </div>
+        </div>
+
+        <!-- CONTACT FORM -->
+        <div class="contact-form">
+          <h2>Request a Quote</h2>
+
+          <form name="contact" method="POST" netlify netlify-honeypot="bot-field">
+            <!-- Honeypot field (anti-spam) -->
+            <div style="display: none;">
+              <input type="text" name="bot-field" />
+            </div>
+
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="company">Company Name *</label>
+              <input type="text" id="company" name="company" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" required>
+            </div>
+
+            <div class="form-group">
+              <label for="service">What are you looking for? *</label>
+              <select id="service" name="service" required>
+                <option value="">Select a service</option>
+                <option value="3pl-warehousing">3PL Warehousing</option>
+                <option value="contract-warehousing">Contract Warehousing</option>
+                <option value="order-fulfillment">Order Fulfillment</option>
+                <option value="cross-docking">Cross-Docking</option>
+                <option value="final-mile">Final Mile Delivery</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="volume">Estimated monthly volume or storage needs *</label>
+              <input type="text" id="volume" name="volume" placeholder="e.g., 5,000 pallets, 2,000 sq ft" required>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea id="message" name="message" required></textarea>
+            </div>
+
+            <button type="submit" class="cta-button" style="background-color: var(--navy-dark); color: var(--white); width: 100%; margin-top: var(--spacing-md);">Send Inquiry</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAP SECTION -->
+  <section class="contact-section">
+    <div class="container">
+      <h2 class="text-center">Find Our Facility</h2>
+      <p class="text-center mb-3">Conveniently located in Mississauga with direct access to Highways 401, 403, 407, and the QEW — and close to Toronto Pearson International Airport — making pickup, delivery, and site visits straightforward for clients across the GTA and beyond.</p>
+
+      <div class="map-placeholder">
+        <div>
+          <p style="font-size: 18px;">📍 Google Maps Location</p>
+          <p style="font-size: 14px; margin-top: var(--spacing-sm);">Embed Google Maps here once facility address is confirmed</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION - Burgundy -->
+  <section class="cta-section burgundy">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to connect?</h2>
+        <p>Our team will review your inquiry and respond within 1-2 business days.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER CONTAINER - Loaded dynamically from footer.html -->
+  <div id="footer-container"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

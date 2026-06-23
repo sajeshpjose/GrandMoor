@@ -1,0 +1,36 @@
+# Operating System Files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE & Editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.vs/
+
+# Dependencies (if using Node.js in future)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build outputs
+dist/
+build/
+*.log
+
+# Environment variables (never commit secrets!)
+.env
+.env.local
+.env.*.local
+
+# Netlify specific
+.netlify/
+functions/
+
+# OS specific
+.AppleDouble
+.LSOverride
