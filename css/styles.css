@@ -1531,7 +1531,7 @@ textarea {
   font-weight: 300;
   color: var(--white);
   margin-bottom: var(--spacing-lg);
-  line-height: 1;
+  line-height: 1.4;
 }
 
 .pillars-tags {
@@ -1652,6 +1652,10 @@ textarea {
 .services-section {
   background-color: var(--cream);
   padding: var(--spacing-3xl) var(--spacing-lg);
+}
+
+.services-section + .services-section {
+  padding-top: 0;
 }
 
 .services-section .container {
