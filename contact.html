@@ -159,12 +159,6 @@
 
   <script src="js/main.js"></script>
   <script>
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      setTimeout(() => {
-        showToast('Thank you! Your inquiry has been received. We\'ll respond within 1-2 business days.', 'success');
-      }, 100);
-    });
-
     function showToast(message, type = 'success') {
       const toast = document.getElementById('toast');
       const toastMessage = document.getElementById('toastMessage');
@@ -176,6 +170,17 @@
         toast.classList.remove('show');
       }, 4000);
     }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const contactForm = document.getElementById('contactForm');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+          setTimeout(() => {
+            showToast('Thank you! Your inquiry has been received. We\'ll respond within 1-2 business days.', 'success');
+          }, 100);
+        });
+      }
+    });
   </script>
 </body>
 </html>
