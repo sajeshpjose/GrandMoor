@@ -11,31 +11,8 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- HEADER & NAVIGATION -->
-  <header>
-    <div class="nav-container">
-      <a href="/" class="logo"><img src="images/stag.svg" alt="Grandmoor Logo"></a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-      <nav id="mobileMenu" class="mobile-menu">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="offerings.html">Services</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-      <nav id="desktopNav">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="offerings.html">Services</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+  <!-- HEADER CONTAINER - Loaded dynamically from header.html -->
+  <div id="header-container"></div>
 
   <!-- HERO SECTION -->
   <section class="hero">
@@ -161,12 +138,13 @@
     </div>
   </section>
 
-  <!-- CTA SECTION - Burgundy -->
+  <!-- CTA SECTION - Burgundy with Button -->
   <section class="cta-section burgundy">
     <div class="container">
       <div class="cta-content">
-        <h2>Ready to connect?</h2>
-        <p>Our team will review your inquiry and respond within 1-2 business days.</p>
+        <h2>Ready to get started?</h2>
+        <p>Let's discuss which services are right for your business.</p>
+        <a href="contact.html" class="cta-button">GET A QUOTE</a>
       </div>
     </div>
   </section>

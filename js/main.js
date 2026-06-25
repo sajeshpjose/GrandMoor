@@ -2,6 +2,24 @@
 // GRANDMOOR WEBSITE - MAIN JAVASCRIPT
 // ============================================
 
+// Load Header Component
+function loadHeader() {
+  const headerContainer = document.getElementById('header-container');
+  if (headerContainer) {
+    fetch('/header.html')
+      .then(response => {
+        if (!response.ok) throw new Error('Header not found');
+        return response.text();
+      })
+      .then(html => {
+        headerContainer.innerHTML = html;
+        // Initialize menu toggle after header is loaded
+        initializeMenuToggle();
+      })
+      .catch(error => console.error('Error loading header:', error));
+  }
+}
+
 // Load Footer Component
 function loadFooter() {
   const footerContainer = document.getElementById('footer-container');
@@ -18,10 +36,8 @@ function loadFooter() {
   }
 }
 
-// Mobile Menu Toggle
-document.addEventListener('DOMContentLoaded', function() {
-  // Load footer component
-  loadFooter();
+// Initialize Menu Toggle
+function initializeMenuToggle() {
   const menuToggle = document.getElementById('menuToggle');
   const mobileMenu = document.getElementById('mobileMenu');
 
@@ -39,17 +55,22 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileMenu.classList.remove('active');
       });
     });
-  }
 
-  // Close mobile menu when clicking outside
-  document.addEventListener('click', function(event) {
-    if (menuToggle && mobileMenu) {
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
       if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
         menuToggle.classList.remove('active');
         mobileMenu.classList.remove('active');
       }
-    }
-  });
+    });
+  }
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+  // Load header and footer components
+  loadHeader();
+  loadFooter();
 
   // Form handling (for Netlify Forms)
   const contactForm = document.querySelector('form[name="contact"]');
