@@ -1248,6 +1248,8 @@ section {
   .cta-content p {
     font-size: 18px;
     max-width: 686px;
+    margin: 24px auto;
+
   }
 }
 
