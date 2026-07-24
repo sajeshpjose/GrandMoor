@@ -9,6 +9,238 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .qualifying-section {
+      background-color: var(--white);
+      padding: var(--spacing-4xl) var(--spacing-lg);
+    }
+
+    .qualifying-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .qualifying-intro {
+      text-align: center;
+      margin-bottom: var(--spacing-4xl);
+    }
+
+    .qualifying-intro h2 {
+      font-family: var(--font-serif);
+      font-size: 36px;
+      font-weight: 300;
+      margin-bottom: var(--spacing-md);
+      color: var(--navy-dark);
+    }
+
+    .qualifying-intro p {
+      font-size: 18px;
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .qualify-form {
+      background-color: var(--white);
+    }
+
+    .form-section {
+      border: none;
+      padding: 0;
+      margin-bottom: var(--spacing-4xl);
+      padding-bottom: var(--spacing-4xl);
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .form-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .form-section-header {
+      display: flex;
+      align-items: baseline;
+      margin-bottom: var(--spacing-2xl);
+      gap: var(--spacing-lg);
+    }
+
+    .section-number {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 300;
+      color: var(--orange-accent);
+      min-width: 40px;
+    }
+
+    .form-section legend {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 300;
+      color: var(--navy-dark);
+      padding: 0;
+      margin: 0;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--spacing-2xl);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 500;
+      font-size: 15px;
+      margin-bottom: var(--spacing-md);
+      color: var(--navy-dark);
+      line-height: 1.4;
+    }
+
+    .form-group.required label::after {
+      content: " *";
+      color: #d32f2f;
+    }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"],
+    .form-group input[type="number"],
+    .form-group select,
+    .form-group textarea {
+      padding: var(--spacing-md);
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      color: var(--navy-dark);
+      background-color: var(--white);
+      transition: border-color 0.2s ease;
+    }
+
+    .form-group select {
+      min-height: 48px;
+    }
+
+    .form-group input[type="text"]:focus,
+    .form-group input[type="email"]:focus,
+    .form-group input[type="tel"]:focus,
+    .form-group input[type="number"]:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--navy-dark);
+      box-shadow: 0 0 0 3px rgba(22, 35, 43, 0.1);
+    }
+
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+      font-family: var(--font-sans);
+      font-weight: 300;
+    }
+
+    .form-group select {
+      cursor: pointer;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-2xl);
+    }
+
+    .radio-group,
+    .checkbox-group {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: var(--spacing-lg) var(--spacing-2xl);
+      margin-top: var(--spacing-sm);
+    }
+
+    .radio-label,
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 300;
+      gap: var(--spacing-md);
+      padding: var(--spacing-sm) var(--spacing-md) var(--spacing-sm) 0;
+      white-space: nowrap;
+    }
+
+    .radio-label input[type="radio"],
+    .checkbox-label input[type="checkbox"] {
+      margin: 0;
+      cursor: pointer;
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      accent-color: var(--navy-dark);
+    }
+
+    .radio-label span,
+    .checkbox-label span {
+      color: var(--navy-dark);
+      font-size: 15px;
+    }
+
+    .form-hint {
+      font-size: 14px;
+      color: #999;
+      margin-top: var(--spacing-sm);
+      font-weight: 300;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: var(--spacing-md) var(--spacing-2xl);
+      background-color: var(--navy-dark);
+      color: var(--white);
+      border: none;
+      border-radius: 4px;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: var(--spacing-2xl);
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0a1520;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(22, 35, 43, 0.2);
+    }
+
+    @media (max-width: 768px) {
+      .qualifying-section {
+        padding: var(--spacing-2xl) var(--spacing-lg);
+      }
+
+      .qualifying-intro h2 {
+        font-size: 28px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .form-section {
+        margin-bottom: var(--spacing-2xl);
+        padding-bottom: var(--spacing-2xl);
+      }
+
+      .form-section-header {
+        margin-bottom: var(--spacing-lg);
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- HEADER CONTAINER - Loaded dynamically from header.html -->
@@ -20,287 +252,262 @@
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1>Find Your Perfect 3PL Solution</h1>
-      <p>Help us understand your warehousing needs so we can provide an accurate quote and recommendation.</p>
+      <p>Help us understand your warehousing needs so we can provide an accurate quote.</p>
     </div>
   </section>
 
   <!-- QUALIFYING FORM SECTION -->
   <section class="qualifying-section">
-    <div class="container">
-      <div class="qualifying-wrapper">
-        <div class="qualifying-intro">
-          <h2>Customer Qualifying Questionnaire</h2>
-          <p>This questionnaire helps us understand your storage, fulfillment, and logistics needs so we can design the right solution for your business. Most questions take 5-10 minutes to complete.</p>
+    <div class="qualifying-wrapper">
+      <div class="qualifying-intro">
+        <h2>Customer Qualification</h2>
+        <p>This questionnaire helps us understand your storage, fulfillment, and logistics needs. It takes 5-10 minutes to complete.</p>
+      </div>
+
+      <form name="qualify" method="POST" netlify netlify-honeypot="bot-field" id="qualifyForm" class="qualify-form">
+        <!-- Honeypot field (anti-spam) -->
+        <div style="display: none;">
+          <input type="text" name="bot-field" />
         </div>
 
-        <form name="qualify" method="POST" netlify netlify-honeypot="bot-field" id="qualifyForm" class="qualify-form">
-          <!-- Honeypot field (anti-spam) -->
-          <div style="display: none;">
-            <input type="text" name="bot-field" />
+        <!-- SECTION 1: STORAGE VOLUME & PROFILE -->
+        <fieldset class="form-section">
+          <div class="form-section-header">
+            <span class="section-number">1</span>
+            <legend>Storage Volume & Profile</legend>
           </div>
 
-          <!-- SECTION 1: STORAGE VOLUME & PROFILE -->
-          <fieldset class="form-section">
-            <legend>1. Storage Volume & Profile</legend>
-
-            <div class="form-group">
-              <label for="avg-pallets">How many pallets do you expect to store on average? *</label>
-              <input type="number" id="avg-pallets" name="avg-pallets" placeholder="e.g., 500" required>
+          <div class="form-grid">
+            <div class="form-group required">
+              <label for="avg-pallets">Average pallet storage volume</label>
+              <select id="avg-pallets" name="avg-pallets" required>
+                <option value="">Select volume range</option>
+                <option value="1-10">1-10 pallets</option>
+                <option value="10-50">10-50 pallets</option>
+                <option value="50-100">50-100 pallets</option>
+                <option value="100-200">100-200 pallets</option>
+                <option value="200-500">200-500 pallets</option>
+                <option value="500-1000">500-1,000 pallets</option>
+                <option value="1000-1500">1,000-1,500 pallets</option>
+                <option value="1500-2000">1,500-2,000 pallets</option>
+                <option value="2000+">2,000+ pallets</option>
+              </select>
             </div>
 
-            <div class="form-group">
-              <label>Pallet type *</label>
-              <div class="radio-group">
-                <label class="radio-label">
-                  <input type="radio" name="pallet-type" value="standard" required>
-                  <span>Standard pallets (40"x48", &lt;52" tall)</span>
+            <div class="form-group required">
+              <label>Pallet type</label>
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="pallet-type" value="standard">
+                  <span>Standard pallets (40"x48", <52" tall)</span>
                 </label>
-                <label class="radio-label">
-                  <input type="radio" name="pallet-type" value="oversized" required>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="pallet-type" value="oversized">
                   <span>Oversized/non-standard</span>
                 </label>
-                <label class="radio-label">
-                  <input type="radio" name="pallet-type" value="mixed" required>
-                  <span>Mixed (both standard and oversized)</span>
-                </label>
               </div>
             </div>
 
-            <div class="form-group">
-              <label>Expected dwell time *</label>
-              <div class="radio-group">
-                <label class="radio-label">
-                  <input type="radio" name="dwell-time" value="fast-turnover" required>
-                  <span>Fast turnover (days to weeks)</span>
-                </label>
-                <label class="radio-label">
-                  <input type="radio" name="dwell-time" value="medium" required>
-                  <span>Medium (weeks to months)</span>
-                </label>
-                <label class="radio-label">
-                  <input type="radio" name="dwell-time" value="long-term" required>
-                  <span>Long-term storage (months)</span>
-                </label>
-              </div>
+            <div class="form-group required">
+              <label for="dwell-time">Expected dwell time</label>
+              <select id="dwell-time" name="dwell-time" required>
+                <option value="">Select dwell time</option>
+                <option value="fast-turnover">Fast turnover (days to weeks)</option>
+                <option value="medium">Medium (weeks to months)</option>
+                <option value="long-term">Long-term storage (months+)</option>
+              </select>
             </div>
 
-            <div class="form-group">
-              <label>Is volume steady year-round or seasonal? *</label>
-              <div class="radio-group">
-                <label class="radio-label">
-                  <input type="radio" name="volume-pattern" value="steady" required>
+            <div class="form-group required">
+              <label>Volume pattern</label>
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="volume-pattern" value="steady">
                   <span>Steady year-round</span>
                 </label>
-                <label class="radio-label">
-                  <input type="radio" name="volume-pattern" value="seasonal" required>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="volume-pattern" value="seasonal">
                   <span>Seasonal</span>
                 </label>
               </div>
+              <p class="form-hint">Check all that apply</p>
             </div>
 
             <div class="form-group" id="seasonal-peaks-group" style="display: none;">
-              <label for="seasonal-peaks">When are your peak months?</label>
+              <label for="seasonal-peaks">Peak months</label>
               <input type="text" id="seasonal-peaks" name="seasonal-peaks" placeholder="e.g., July-September, November-December">
             </div>
-          </fieldset>
+          </div>
+        </fieldset>
 
-          <!-- SECTION 2: PRODUCT CHARACTERISTICS -->
-          <fieldset class="form-section">
-            <legend>2. Product Characteristics</legend>
+        <!-- SECTION 2: PRODUCT CHARACTERISTICS -->
+        <fieldset class="form-section">
+          <div class="form-section-header">
+            <span class="section-number">2</span>
+            <legend>Product Characteristics</legend>
+          </div>
 
-            <div class="form-group">
-              <label for="product-type">What are you storing? (product type, SKU count) *</label>
-              <textarea id="product-type" name="product-type" placeholder="e.g., Consumer electronics, 150 SKUs" required></textarea>
+          <div class="form-row">
+            <div class="form-group required">
+              <label for="product-type">Product type</label>
+              <input type="text" id="product-type" name="product-type" placeholder="e.g., Consumer electronics" required>
             </div>
 
-            <div class="form-group">
-              <label>How should the product be traced? *</label>
-              <div class="checkbox-group">
-                <label class="checkbox-label">
-                  <input type="checkbox" name="traceability" value="lot-number">
-                  <span>Lot #</span>
-                </label>
-                <label class="checkbox-label">
-                  <input type="checkbox" name="traceability" value="serial-number">
-                  <span>Serial #</span>
-                </label>
-                <label class="checkbox-label">
-                  <input type="checkbox" name="traceability" value="expiry-date">
-                  <span>Expiry Date (FIFO/FEFO)</span>
-                </label>
-              </div>
+            <div class="form-group required">
+              <label for="sku-count">Approximate SKU count</label>
+              <input type="text" id="sku-count" name="sku-count" placeholder="e.g., 150" required>
             </div>
+          </div>
 
-            <div class="form-group">
-              <label>Any heavy cartons (over 40 lbs)? *</label>
-              <div class="radio-group">
-                <label class="radio-label">
-                  <input type="radio" name="heavy-cartons" value="yes" required>
-                  <span>Yes</span>
-                </label>
-                <label class="radio-label">
-                  <input type="radio" name="heavy-cartons" value="no" required>
-                  <span>No</span>
-                </label>
-              </div>
+          <div class="form-group required">
+            <label for="traceability">Traceability requirements</label>
+            <select id="traceability" name="traceability" required>
+              <option value="">Select requirements</option>
+              <option value="lot-number">Lot #</option>
+              <option value="serial-number">Serial #</option>
+              <option value="expiry-date">Expiry Date (FIFO/FEFO)</option>
+              <option value="multiple">Multiple (Lot, Serial, Expiry)</option>
+            </select>
+          </div>
+
+          <div class="form-group required">
+            <label>Heavy cartons (>40 lbs)</label>
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="heavy-cartons" value="yes" required>
+                <span>Yes</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="heavy-cartons" value="no" required>
+                <span>No</span>
+              </label>
             </div>
+          </div>
 
-            <div class="form-group">
-              <label>Special handling requirements *</label>
-              <div class="checkbox-group">
-                <label class="checkbox-label">
-                  <input type="checkbox" name="special-handling" value="hazardous">
-                  <span>Hazardous materials</span>
-                </label>
-                <label class="checkbox-label">
-                  <input type="checkbox" name="special-handling" value="temperature-sensitive">
-                  <span>Temperature-sensitive</span>
-                </label>
-                <label class="checkbox-label">
-                  <input type="checkbox" name="special-handling" value="fragile">
-                  <span>Fragile</span>
-                </label>
-                <label class="checkbox-label">
-                  <input type="checkbox" name="special-handling" value="high-value">
-                  <span>High-value</span>
-                </label>
-                <label class="checkbox-label">
-                  <input type="checkbox" name="special-handling" value="none">
-                  <span>None</span>
-                </label>
-              </div>
+          <div class="form-group required">
+            <label>Special handling required</label>
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="special-handling" value="hazardous">
+                <span>Hazardous materials</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="special-handling" value="temperature-sensitive">
+                <span>Temperature-sensitive</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="special-handling" value="fragile">
+                <span>Fragile</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="special-handling" value="high-value">
+                <span>High-value</span>
+              </label>
             </div>
-          </fieldset>
+            <p class="form-hint">Check all that apply</p>
+          </div>
+        </fieldset>
 
-          <!-- SECTION 3: INBOUND / RECEIVING -->
-          <fieldset class="form-section">
-            <legend>3. Inbound / Receiving</legend>
+        <!-- SECTION 3: INBOUND / RECEIVING -->
+        <fieldset class="form-section">
+          <div class="form-section-header">
+            <span class="section-number">3</span>
+            <legend>Inbound & Receiving</legend>
+          </div>
 
-            <div class="form-group">
-              <label>How will product arrive? *</label>
-              <div class="radio-group">
-                <label class="radio-label">
-                  <input type="radio" name="inbound-type" value="floor-loaded" required>
-                  <span>Floor-loaded containers</span>
-                </label>
-                <label class="radio-label">
-                  <input type="radio" name="inbound-type" value="palletized" required>
-                  <span>Already palletized</span>
-                </label>
-                <label class="radio-label">
-                  <input type="radio" name="inbound-type" value="mixed" required>
-                  <span>Mixed (both)</span>
-                </label>
-              </div>
+          <div class="form-grid">
+            <div class="form-group required">
+              <label for="inbound-type">Product arrival method</label>
+              <select id="inbound-type" name="inbound-type" required>
+                <option value="">Select method</option>
+                <option value="floor-loaded">Floor-loaded containers</option>
+                <option value="palletized">Already palletized</option>
+                <option value="mixed">Mixed (both)</option>
+              </select>
             </div>
 
             <div class="form-group" id="container-size-group" style="display: none;">
-              <label>Container size? *</label>
-              <div class="radio-group">
-                <label class="radio-label">
-                  <input type="radio" name="container-size" value="20ft">
-                  <span>20' containers</span>
-                </label>
-                <label class="radio-label">
-                  <input type="radio" name="container-size" value="40ft">
-                  <span>40' containers</span>
-                </label>
-                <label class="radio-label">
-                  <input type="radio" name="container-size" value="both">
-                  <span>Both 20' and 40'</span>
-                </label>
-              </div>
+              <label for="container-size">Container size</label>
+              <select id="container-size" name="container-size">
+                <option value="">Select</option>
+                <option value="20ft">20' containers</option>
+                <option value="40ft">40' containers</option>
+                <option value="both">Both 20' and 40'</option>
+              </select>
             </div>
 
             <div class="form-group" id="containers-per-month-group" style="display: none;">
-              <label for="containers-per-month">Containers per month? *</label>
+              <label for="containers-per-month">Containers per month</label>
               <input type="number" id="containers-per-month" name="containers-per-month" placeholder="e.g., 10">
             </div>
 
             <div class="form-group" id="cartons-per-container-group" style="display: none;">
-              <label for="cartons-per-container">Approximately how many cartons and SKUs per container?</label>
+              <label for="cartons-per-container">Cartons & SKUs per container</label>
               <input type="text" id="cartons-per-container" name="cartons-per-container" placeholder="e.g., 800 cartons, 15 SKUs">
             </div>
-          </fieldset>
+          </div>
+        </fieldset>
 
-          <!-- SECTION 4: OUTBOUND / FULFILLMENT -->
-          <fieldset class="form-section">
-            <legend>4. Outbound / Fulfillment</legend>
+        <!-- SECTION 4: OUTBOUND / FULFILLMENT -->
+        <fieldset class="form-section">
+          <div class="form-section-header">
+            <span class="section-number">4</span>
+            <legend>Outbound & Fulfillment</legend>
+          </div>
 
-            <div class="form-group">
-              <label>How do you ship out? *</label>
-              <div class="radio-group">
-                <label class="radio-label">
-                  <input type="radio" name="outbound-type" value="full-pallets" required>
-                  <span>Full pallets</span>
-                </label>
-                <label class="radio-label">
-                  <input type="radio" name="outbound-type" value="cartons-cases" required>
-                  <span>Cartons/cases</span>
-                </label>
-                <label class="radio-label">
-                  <input type="radio" name="outbound-type" value="individual-items" required>
-                  <span>Individual items</span>
-                </label>
-                <label class="radio-label">
-                  <input type="radio" name="outbound-type" value="mixed" required>
-                  <span>Mixed (all of the above)</span>
-                </label>
-              </div>
+          <div class="form-grid">
+            <div class="form-group required">
+              <label for="outbound-type">Shipping format</label>
+              <select id="outbound-type" name="outbound-type" required>
+                <option value="">Select format</option>
+                <option value="full-pallets">Full pallets</option>
+                <option value="cartons-cases">Cartons/cases</option>
+                <option value="individual-items">Individual items</option>
+                <option value="mixed">Mixed (all of the above)</option>
+              </select>
             </div>
 
-            <div class="form-group">
-              <label for="order-volume">Expected order volume *</label>
-              <input type="text" id="order-volume" name="order-volume" placeholder="e.g., 50 orders/day or 300/week" required>
+            <div class="form-group required">
+              <label for="order-volume">Expected order volume</label>
+              <input type="text" id="order-volume" name="order-volume" placeholder="e.g., 50 orders/day" required>
             </div>
 
-            <div class="form-group">
-              <label>Customer type *</label>
-              <div class="radio-group">
-                <label class="radio-label">
-                  <input type="radio" name="customer-type" value="b2b" required>
-                  <span>B2B (bulk pallet-out to retailers)</span>
-                </label>
-                <label class="radio-label">
-                  <input type="radio" name="customer-type" value="b2c" required>
-                  <span>B2C/Direct to Customer (single-item picks)</span>
-                </label>
-                <label class="radio-label">
-                  <input type="radio" name="customer-type" value="mixed" required>
-                  <span>Mixed (both)</span>
-                </label>
-              </div>
+            <div class="form-group required">
+              <label for="customer-type">Customer type</label>
+              <select id="customer-type" name="customer-type" required>
+                <option value="">Select type</option>
+                <option value="b2b">B2B (bulk pallet shipments)</option>
+                <option value="b2c">B2C (direct to consumer)</option>
+                <option value="mixed">Mixed (both)</option>
+              </select>
             </div>
 
-            <div class="form-group">
-              <label>Special fulfillment needs *</label>
+            <div class="form-group required">
+              <label>Fulfillment services needed</label>
               <div class="checkbox-group">
                 <label class="checkbox-label">
-                  <input type="checkbox" name="fulfillment-needs" value="amazon-fba">
+                  <input type="checkbox" name="fulfillment-services" value="amazon-fba">
                   <span>Amazon FBA prep</span>
                 </label>
                 <label class="checkbox-label">
-                  <input type="checkbox" name="fulfillment-needs" value="retail-compliance">
+                  <input type="checkbox" name="fulfillment-services" value="retail-compliance">
                   <span>Retail compliance labeling</span>
                 </label>
                 <label class="checkbox-label">
-                  <input type="checkbox" name="fulfillment-needs" value="marketplace">
+                  <input type="checkbox" name="fulfillment-services" value="marketplace">
                   <span>Marketplace fulfillment</span>
                 </label>
-                <label class="checkbox-label">
-                  <input type="checkbox" name="fulfillment-needs" value="none">
-                  <span>None</span>
-                </label>
               </div>
+              <p class="form-hint">Check all that apply</p>
             </div>
 
-            <div class="form-group">
+            <div class="form-group required">
               <label for="avg-units-per-order">Average units/lines per order</label>
-              <input type="text" id="avg-units-per-order" name="avg-units-per-order" placeholder="e.g., 3 units or 5 line items">
+              <input type="text" id="avg-units-per-order" name="avg-units-per-order" placeholder="e.g., 3 units or 5 line items" required>
             </div>
 
-            <div class="form-group">
-              <label>Do you need urgent/rush order handling? *</label>
+            <div class="form-group required">
+              <label>Urgent/rush order handling needed</label>
               <div class="radio-group">
                 <label class="radio-label">
                   <input type="radio" name="rush-handling" value="yes" required>
@@ -312,79 +519,66 @@
                 </label>
               </div>
             </div>
-          </fieldset>
+          </div>
+        </fieldset>
 
-          <!-- SECTION 5: VALUE-ADDED SERVICES -->
-          <fieldset class="form-section">
-            <legend>5. Value-Added Services</legend>
+        <!-- SECTION 5: VALUE-ADDED SERVICES -->
+        <fieldset class="form-section">
+          <div class="form-section-header">
+            <span class="section-number">5</span>
+            <legend>Value-Added Services</legend>
+          </div>
 
-            <div class="form-group">
-              <label>What value-added services do you need?</label>
-              <div class="checkbox-group">
-                <label class="checkbox-label">
-                  <input type="checkbox" name="value-added-services" value="pallet-labels">
-                  <span>Pallet labels</span>
-                </label>
-                <label class="checkbox-label">
-                  <input type="checkbox" name="value-added-services" value="fnsku-labels">
-                  <span>FNSKU/case labels</span>
-                </label>
-                <label class="checkbox-label">
-                  <input type="checkbox" name="value-added-services" value="shrink-wrap">
-                  <span>Shrink wrap, corner boards, repalletization</span>
-                </label>
-                <label class="checkbox-label">
-                  <input type="checkbox" name="value-added-services" value="co-packing">
-                  <span>Co-packing, poly bagging, bubble bagging</span>
-                </label>
-                <label class="checkbox-label">
-                  <input type="checkbox" name="value-added-services" value="kitting">
-                  <span>Kitting/bundling</span>
-                </label>
-                <label class="checkbox-label">
-                  <input type="checkbox" name="value-added-services" value="quality-inspection">
-                  <span>Quality inspection, scanning, photo documentation</span>
-                </label>
-                <label class="checkbox-label">
-                  <input type="checkbox" name="value-added-services" value="none">
-                  <span>None</span>
-                </label>
-              </div>
+          <div class="form-group">
+            <label>Services needed</label>
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="value-added-services" value="pallet-labels">
+                <span>Pallet & case labeling</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="value-added-services" value="shrink-wrap">
+                <span>Shrink wrap, corner boards, repalletization</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="value-added-services" value="co-packing">
+                <span>Co-packing, poly bagging, bundling</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="value-added-services" value="kitting">
+                <span>Kitting & assembly</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="value-added-services" value="quality-inspection">
+                <span>Quality inspection & documentation</span>
+              </label>
             </div>
+            <p class="form-hint">Check all that apply</p>
+          </div>
 
-            <div class="form-group">
-              <label>What type of pallets would you require?</label>
-              <div class="checkbox-group">
-                <label class="checkbox-label">
-                  <input type="checkbox" name="pallet-requirements" value="chep">
-                  <span>CHEP</span>
-                </label>
-                <label class="checkbox-label">
-                  <input type="checkbox" name="pallet-requirements" value="peco">
-                  <span>PECO</span>
-                </label>
-                <label class="checkbox-label">
-                  <input type="checkbox" name="pallet-requirements" value="grade-a">
-                  <span>Grade A</span>
-                </label>
-                <label class="checkbox-label">
-                  <input type="checkbox" name="pallet-requirements" value="grade-b">
-                  <span>Grade B</span>
-                </label>
-                <label class="checkbox-label">
-                  <input type="checkbox" name="pallet-requirements" value="ht-pallet">
-                  <span>HT Pallet</span>
-                </label>
-              </div>
-            </div>
-          </fieldset>
+          <div class="form-group">
+            <label for="pallet-requirements">Pallet type preference</label>
+            <select id="pallet-requirements" name="pallet-requirements">
+              <option value="">Select preference</option>
+              <option value="chep">CHEP</option>
+              <option value="peco">PECO</option>
+              <option value="grade-a">Grade A</option>
+              <option value="grade-b">Grade B</option>
+              <option value="ht-pallet">HT Pallet</option>
+            </select>
+          </div>
+        </fieldset>
 
-          <!-- SECTION 6: SYSTEMS & INTEGRATION -->
-          <fieldset class="form-section">
-            <legend>6. Systems & Integration</legend>
+        <!-- SECTION 6: SYSTEMS & INTEGRATION -->
+        <fieldset class="form-section">
+          <div class="form-section-header">
+            <span class="section-number">6</span>
+            <legend>Systems & Integration</legend>
+          </div>
 
-            <div class="form-group">
-              <label>Do you need EDI/API integration for order flow and inventory visibility? *</label>
+          <div class="form-grid">
+            <div class="form-group required">
+              <label>EDI/API integration needed</label>
               <div class="radio-group">
                 <label class="radio-label">
                   <input type="radio" name="edi-api" value="yes" required>
@@ -397,88 +591,100 @@
               </div>
             </div>
 
-            <div class="form-group">
-              <label for="order-delivery-method">How do you expect to send us orders and receive status updates? *</label>
-              <textarea id="order-delivery-method" name="order-delivery-method" placeholder="e.g., EDI, CSV upload, email, API integration" required></textarea>
+            <div class="form-group required">
+              <label for="order-delivery-method">How will you send us orders?</label>
+              <input type="text" id="order-delivery-method" name="order-delivery-method" placeholder="e.g., EDI, CSV, API, Email" required>
             </div>
-          </fieldset>
+          </div>
+        </fieldset>
 
-          <!-- SECTION 7: ADDITIONAL SERVICES -->
-          <fieldset class="form-section">
-            <legend>7. Additional Services</legend>
+        <!-- SECTION 7: ADDITIONAL SERVICES -->
+        <fieldset class="form-section">
+          <div class="form-section-header">
+            <span class="section-number">7</span>
+            <legend>Additional Services</legend>
+          </div>
 
-            <div class="form-group">
-              <label>Do you need outbound transportation or last-mile/home delivery? *</label>
-              <div class="radio-group">
-                <label class="radio-label">
-                  <input type="radio" name="transportation" value="yes" required>
-                  <span>Yes</span>
-                </label>
-                <label class="radio-label">
-                  <input type="radio" name="transportation" value="no" required>
-                  <span>No</span>
-                </label>
-              </div>
+          <div class="form-group required">
+            <label>Outbound transportation needed</label>
+            <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="transportation" value="ltl">
+                <span>LTL shipping</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="transportation" value="ftl">
+                <span>Full truckload</span>
+              </label>
+              <label class="checkbox-label">
+                <input type="checkbox" name="transportation" value="last-mile">
+                <span>Last-mile/home delivery</span>
+              </label>
             </div>
+            <p class="form-hint">Check all that apply</p>
+          </div>
 
-            <div class="form-group">
-              <label>Do you need returns processing, disposal, or discard services? *</label>
-              <div class="radio-group">
-                <label class="radio-label">
-                  <input type="radio" name="returns-services" value="yes" required>
-                  <span>Yes</span>
-                </label>
-                <label class="radio-label">
-                  <input type="radio" name="returns-services" value="no" required>
-                  <span>No</span>
-                </label>
-              </div>
-            </div>
-          </fieldset>
+          <div class="form-group required">
+            <label for="returns-services">Returns processing needed</label>
+            <select id="returns-services" name="returns-services" required>
+              <option value="">Select</option>
+              <option value="no">No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+        </fieldset>
 
-          <!-- SECTION 8: CONTACT INFORMATION -->
-          <fieldset class="form-section">
-            <legend>8. Contact Information</legend>
+        <!-- SECTION 8: CONTACT INFORMATION -->
+        <fieldset class="form-section">
+          <div class="form-section-header">
+            <span class="section-number">8</span>
+            <legend>Contact Information</legend>
+          </div>
 
-            <div class="form-group">
-              <label for="company">Company Name *</label>
+          <div class="form-row">
+            <div class="form-group required">
+              <label for="company">Company name</label>
               <input type="text" id="company" name="company" required>
             </div>
 
-            <div class="form-group">
-              <label for="contact-name">Your Name *</label>
+            <div class="form-group required">
+              <label for="contact-name">Your name</label>
               <input type="text" id="contact-name" name="contact-name" required>
             </div>
+          </div>
 
+          <div class="form-row">
             <div class="form-group">
-              <label for="title">Job Title</label>
+              <label for="title">Job title</label>
               <input type="text" id="title" name="title" placeholder="e.g., Supply Chain Manager">
             </div>
 
-            <div class="form-group">
-              <label for="email">Email Address *</label>
+            <div class="form-group required">
+              <label for="email">Email address</label>
               <input type="email" id="email" name="email" required>
             </div>
+          </div>
 
-            <div class="form-group">
-              <label for="phone">Phone Number *</label>
+          <div class="form-row">
+            <div class="form-group required">
+              <label for="phone">Phone number</label>
               <input type="tel" id="phone" name="phone" required>
             </div>
 
             <div class="form-group">
-              <label for="company-location">Company Location</label>
+              <label for="company-location">Company location</label>
               <input type="text" id="company-location" name="company-location" placeholder="City, Province">
             </div>
+          </div>
 
-            <div class="form-group">
-              <label for="additional-notes">Additional Notes</label>
-              <textarea id="additional-notes" name="additional-notes" placeholder="Any other information that would help us provide a better solution..."></textarea>
-            </div>
-          </fieldset>
+          <div class="form-group">
+            <label for="additional-notes">Additional notes</label>
+            <textarea id="additional-notes" name="additional-notes" placeholder="Any other information that would help us provide a better solution..."></textarea>
+          </div>
+        </fieldset>
 
-          <button type="submit" class="cta-button-primary" style="width: 100%; margin-top: var(--spacing-lg);">Submit Questionnaire</button>
-        </form>
-      </div>
+        <button type="submit">Submit Questionnaire</button>
+      </form>
     </div>
   </section>
 
@@ -506,49 +712,60 @@
 
     document.addEventListener('DOMContentLoaded', function() {
       const qualifyForm = document.getElementById('qualifyForm');
+
       if (qualifyForm) {
         qualifyForm.addEventListener('submit', function(e) {
           setTimeout(() => {
-            showToast('Thank you! Your questionnaire has been received. Our team will review your needs and contact you within 24 hours with a customized proposal.', 'success');
+            showToast('Thank you! Your questionnaire has been received. Our team will review your needs and contact you within 24 hours.', 'success');
           }, 100);
         });
       }
 
-      // Show/hide seasonal peaks based on selection
-      const volumePattern = document.getElementsByName('volume-pattern');
+      // Show/hide seasonal peaks based on checkbox
+      const volumePatternCheckboxes = document.querySelectorAll('input[name="volume-pattern"]');
       const seasonalPeaksGroup = document.getElementById('seasonal-peaks-group');
 
-      volumePattern.forEach(radio => {
-        radio.addEventListener('change', function() {
-          if (this.value === 'seasonal') {
+      volumePatternCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+          const isSeasonalChecked = document.querySelector('input[name="volume-pattern"][value="seasonal"]').checked;
+          if (isSeasonalChecked) {
             seasonalPeaksGroup.style.display = 'block';
+            document.getElementById('seasonal-peaks').required = true;
           } else {
             seasonalPeaksGroup.style.display = 'none';
+            document.getElementById('seasonal-peaks').required = false;
           }
         });
       });
 
       // Show/hide container fields based on inbound type
-      const inboundType = document.getElementsByName('inbound-type');
+      const inboundType = document.getElementById('inbound-type');
       const containerFields = [
         'container-size-group',
         'containers-per-month-group',
         'cartons-per-container-group'
       ];
 
-      inboundType.forEach(radio => {
-        radio.addEventListener('change', function() {
+      if (inboundType) {
+        inboundType.addEventListener('change', function() {
           if (this.value === 'floor-loaded' || this.value === 'mixed') {
             containerFields.forEach(id => {
-              document.getElementById(id).style.display = 'block';
+              const field = document.getElementById(id);
+              field.style.display = 'block';
+              if (id === 'container-size-group') {
+                field.querySelector('select').required = true;
+              }
             });
           } else {
             containerFields.forEach(id => {
-              document.getElementById(id).style.display = 'none';
+              const field = document.getElementById(id);
+              field.style.display = 'none';
+              const input = field.querySelector('input, select');
+              if (input) input.required = false;
             });
           }
         });
-      });
+      }
     });
   </script>
 </body>
