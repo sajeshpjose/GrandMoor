@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Qualify for Grandmoor 3PL Services - Comprehensive questionnaire">
+  <title>Qualify for Grandmoor - 3PL Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- HEADER CONTAINER - Loaded dynamically from header.html -->
+  <div id="header-container"></div>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <img src="images/hero-banner.jpg" alt="Qualify for 3PL Services" class="hero-image">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Find Your Perfect 3PL Solution</h1>
+      <p>Help us understand your warehousing needs so we can provide an accurate quote and recommendation.</p>
+    </div>
+  </section>
+
+  <!-- QUALIFYING FORM SECTION -->
+  <section class="qualifying-section">
+    <div class="container">
+      <div class="qualifying-wrapper">
+        <div class="qualifying-intro">
+          <h2>Customer Qualifying Questionnaire</h2>
+          <p>This questionnaire helps us understand your storage, fulfillment, and logistics needs so we can design the right solution for your business. Most questions take 5-10 minutes to complete.</p>
+        </div>
+
+        <form name="qualify" method="POST" netlify netlify-honeypot="bot-field" id="qualifyForm" class="qualify-form">
+          <!-- Honeypot field (anti-spam) -->
+          <div style="display: none;">
+            <input type="text" name="bot-field" />
+          </div>
+
+          <!-- SECTION 1: STORAGE VOLUME & PROFILE -->
+          <fieldset class="form-section">
+            <legend>1. Storage Volume & Profile</legend>
+
+            <div class="form-group">
+              <label for="avg-pallets">How many pallets do you expect to store on average? *</label>
+              <input type="number" id="avg-pallets" name="avg-pallets" placeholder="e.g., 500" required>
+            </div>
+
+            <div class="form-group">
+              <label>Pallet type *</label>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input type="radio" name="pallet-type" value="standard" required>
+                  <span>Standard pallets (40"x48", &lt;52" tall)</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="pallet-type" value="oversized" required>
+                  <span>Oversized/non-standard</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="pallet-type" value="mixed" required>
+                  <span>Mixed (both standard and oversized)</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Expected dwell time *</label>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input type="radio" name="dwell-time" value="fast-turnover" required>
+                  <span>Fast turnover (days to weeks)</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="dwell-time" value="medium" required>
+                  <span>Medium (weeks to months)</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="dwell-time" value="long-term" required>
+                  <span>Long-term storage (months)</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Is volume steady year-round or seasonal? *</label>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input type="radio" name="volume-pattern" value="steady" required>
+                  <span>Steady year-round</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="volume-pattern" value="seasonal" required>
+                  <span>Seasonal</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group" id="seasonal-peaks-group" style="display: none;">
+              <label for="seasonal-peaks">When are your peak months?</label>
+              <input type="text" id="seasonal-peaks" name="seasonal-peaks" placeholder="e.g., July-September, November-December">
+            </div>
+          </fieldset>
+
+          <!-- SECTION 2: PRODUCT CHARACTERISTICS -->
+          <fieldset class="form-section">
+            <legend>2. Product Characteristics</legend>
+
+            <div class="form-group">
+              <label for="product-type">What are you storing? (product type, SKU count) *</label>
+              <textarea id="product-type" name="product-type" placeholder="e.g., Consumer electronics, 150 SKUs" required></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>How should the product be traced? *</label>
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="traceability" value="lot-number">
+                  <span>Lot #</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="traceability" value="serial-number">
+                  <span>Serial #</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="traceability" value="expiry-date">
+                  <span>Expiry Date (FIFO/FEFO)</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Any heavy cartons (over 40 lbs)? *</label>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input type="radio" name="heavy-cartons" value="yes" required>
+                  <span>Yes</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="heavy-cartons" value="no" required>
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Special handling requirements *</label>
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="special-handling" value="hazardous">
+                  <span>Hazardous materials</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="special-handling" value="temperature-sensitive">
+                  <span>Temperature-sensitive</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="special-handling" value="fragile">
+                  <span>Fragile</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="special-handling" value="high-value">
+                  <span>High-value</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="special-handling" value="none">
+                  <span>None</span>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- SECTION 3: INBOUND / RECEIVING -->
+          <fieldset class="form-section">
+            <legend>3. Inbound / Receiving</legend>
+
+            <div class="form-group">
+              <label>How will product arrive? *</label>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input type="radio" name="inbound-type" value="floor-loaded" required>
+                  <span>Floor-loaded containers</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="inbound-type" value="palletized" required>
+                  <span>Already palletized</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="inbound-type" value="mixed" required>
+                  <span>Mixed (both)</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group" id="container-size-group" style="display: none;">
+              <label>Container size? *</label>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input type="radio" name="container-size" value="20ft">
+                  <span>20' containers</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="container-size" value="40ft">
+                  <span>40' containers</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="container-size" value="both">
+                  <span>Both 20' and 40'</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group" id="containers-per-month-group" style="display: none;">
+              <label for="containers-per-month">Containers per month? *</label>
+              <input type="number" id="containers-per-month" name="containers-per-month" placeholder="e.g., 10">
+            </div>
+
+            <div class="form-group" id="cartons-per-container-group" style="display: none;">
+              <label for="cartons-per-container">Approximately how many cartons and SKUs per container?</label>
+              <input type="text" id="cartons-per-container" name="cartons-per-container" placeholder="e.g., 800 cartons, 15 SKUs">
+            </div>
+          </fieldset>
+
+          <!-- SECTION 4: OUTBOUND / FULFILLMENT -->
+          <fieldset class="form-section">
+            <legend>4. Outbound / Fulfillment</legend>
+
+            <div class="form-group">
+              <label>How do you ship out? *</label>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input type="radio" name="outbound-type" value="full-pallets" required>
+                  <span>Full pallets</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="outbound-type" value="cartons-cases" required>
+                  <span>Cartons/cases</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="outbound-type" value="individual-items" required>
+                  <span>Individual items</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="outbound-type" value="mixed" required>
+                  <span>Mixed (all of the above)</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="order-volume">Expected order volume *</label>
+              <input type="text" id="order-volume" name="order-volume" placeholder="e.g., 50 orders/day or 300/week" required>
+            </div>
+
+            <div class="form-group">
+              <label>Customer type *</label>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input type="radio" name="customer-type" value="b2b" required>
+                  <span>B2B (bulk pallet-out to retailers)</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="customer-type" value="b2c" required>
+                  <span>B2C/Direct to Customer (single-item picks)</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="customer-type" value="mixed" required>
+                  <span>Mixed (both)</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Special fulfillment needs *</label>
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="fulfillment-needs" value="amazon-fba">
+                  <span>Amazon FBA prep</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="fulfillment-needs" value="retail-compliance">
+                  <span>Retail compliance labeling</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="fulfillment-needs" value="marketplace">
+                  <span>Marketplace fulfillment</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="fulfillment-needs" value="none">
+                  <span>None</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="avg-units-per-order">Average units/lines per order</label>
+              <input type="text" id="avg-units-per-order" name="avg-units-per-order" placeholder="e.g., 3 units or 5 line items">
+            </div>
+
+            <div class="form-group">
+              <label>Do you need urgent/rush order handling? *</label>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input type="radio" name="rush-handling" value="yes" required>
+                  <span>Yes</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="rush-handling" value="no" required>
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- SECTION 5: VALUE-ADDED SERVICES -->
+          <fieldset class="form-section">
+            <legend>5. Value-Added Services</legend>
+
+            <div class="form-group">
+              <label>What value-added services do you need?</label>
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="value-added-services" value="pallet-labels">
+                  <span>Pallet labels</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="value-added-services" value="fnsku-labels">
+                  <span>FNSKU/case labels</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="value-added-services" value="shrink-wrap">
+                  <span>Shrink wrap, corner boards, repalletization</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="value-added-services" value="co-packing">
+                  <span>Co-packing, poly bagging, bubble bagging</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="value-added-services" value="kitting">
+                  <span>Kitting/bundling</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="value-added-services" value="quality-inspection">
+                  <span>Quality inspection, scanning, photo documentation</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="value-added-services" value="none">
+                  <span>None</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>What type of pallets would you require?</label>
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="pallet-requirements" value="chep">
+                  <span>CHEP</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="pallet-requirements" value="peco">
+                  <span>PECO</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="pallet-requirements" value="grade-a">
+                  <span>Grade A</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="pallet-requirements" value="grade-b">
+                  <span>Grade B</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="pallet-requirements" value="ht-pallet">
+                  <span>HT Pallet</span>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- SECTION 6: SYSTEMS & INTEGRATION -->
+          <fieldset class="form-section">
+            <legend>6. Systems & Integration</legend>
+
+            <div class="form-group">
+              <label>Do you need EDI/API integration for order flow and inventory visibility? *</label>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input type="radio" name="edi-api" value="yes" required>
+                  <span>Yes</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="edi-api" value="no" required>
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="order-delivery-method">How do you expect to send us orders and receive status updates? *</label>
+              <textarea id="order-delivery-method" name="order-delivery-method" placeholder="e.g., EDI, CSV upload, email, API integration" required></textarea>
+            </div>
+          </fieldset>
+
+          <!-- SECTION 7: ADDITIONAL SERVICES -->
+          <fieldset class="form-section">
+            <legend>7. Additional Services</legend>
+
+            <div class="form-group">
+              <label>Do you need outbound transportation or last-mile/home delivery? *</label>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input type="radio" name="transportation" value="yes" required>
+                  <span>Yes</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="transportation" value="no" required>
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Do you need returns processing, disposal, or discard services? *</label>
+              <div class="radio-group">
+                <label class="radio-label">
+                  <input type="radio" name="returns-services" value="yes" required>
+                  <span>Yes</span>
+                </label>
+                <label class="radio-label">
+                  <input type="radio" name="returns-services" value="no" required>
+                  <span>No</span>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- SECTION 8: CONTACT INFORMATION -->
+          <fieldset class="form-section">
+            <legend>8. Contact Information</legend>
+
+            <div class="form-group">
+              <label for="company">Company Name *</label>
+              <input type="text" id="company" name="company" required>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-name">Your Name *</label>
+              <input type="text" id="contact-name" name="contact-name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="title">Job Title</label>
+              <input type="text" id="title" name="title" placeholder="e.g., Supply Chain Manager">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" required>
+            </div>
+
+            <div class="form-group">
+              <label for="company-location">Company Location</label>
+              <input type="text" id="company-location" name="company-location" placeholder="City, Province">
+            </div>
+
+            <div class="form-group">
+              <label for="additional-notes">Additional Notes</label>
+              <textarea id="additional-notes" name="additional-notes" placeholder="Any other information that would help us provide a better solution..."></textarea>
+            </div>
+          </fieldset>
+
+          <button type="submit" class="cta-button-primary" style="width: 100%; margin-top: var(--spacing-lg);">Submit Questionnaire</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER CONTAINER - Loaded dynamically from footer.html -->
+  <div id="footer-container"></div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="toast">
+    <p id="toastMessage"></p>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toastMessage');
+
+      toastMessage.textContent = message;
+      toast.className = 'toast show ' + type;
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 4000);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const qualifyForm = document.getElementById('qualifyForm');
+      if (qualifyForm) {
+        qualifyForm.addEventListener('submit', function(e) {
+          setTimeout(() => {
+            showToast('Thank you! Your questionnaire has been received. Our team will review your needs and contact you within 24 hours with a customized proposal.', 'success');
+          }, 100);
+        });
+      }
+
+      // Show/hide seasonal peaks based on selection
+      const volumePattern = document.getElementsByName('volume-pattern');
+      const seasonalPeaksGroup = document.getElementById('seasonal-peaks-group');
+
+      volumePattern.forEach(radio => {
+        radio.addEventListener('change', function() {
+          if (this.value === 'seasonal') {
+            seasonalPeaksGroup.style.display = 'block';
+          } else {
+            seasonalPeaksGroup.style.display = 'none';
+          }
+        });
+      });
+
+      // Show/hide container fields based on inbound type
+      const inboundType = document.getElementsByName('inbound-type');
+      const containerFields = [
+        'container-size-group',
+        'containers-per-month-group',
+        'cartons-per-container-group'
+      ];
+
+      inboundType.forEach(radio => {
+        radio.addEventListener('change', function() {
+          if (this.value === 'floor-loaded' || this.value === 'mixed') {
+            containerFields.forEach(id => {
+              document.getElementById(id).style.display = 'block';
+            });
+          } else {
+            containerFields.forEach(id => {
+              document.getElementById(id).style.display = 'none';
+            });
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
