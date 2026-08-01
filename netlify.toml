@@ -4,11 +4,51 @@
   publish = "."
   command = ""
 
-# 404 fallback
+# Canonicalize the duplicate-content domain onto the primary domain.
+# Requires grandmoor.com to be attached to this Netlify site as a domain alias.
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 404
+  from = "https://grandmoor.com/*"
+  to = "https://grandmoor.ca/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.grandmoor.com/*"
+  to = "https://grandmoor.ca/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.grandmoor.ca/*"
+  to = "https://grandmoor.ca/:splat"
+  status = 301
+  force = true
+
+# Legacy .html URLs -> current clean URLs
+[[redirects]]
+  from = "/offerings.html"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/offerings"
+  to = "/services"
+  status = 301
+
+[[redirects]]
+  from = "/contact.html"
+  to = "/contact"
+  status = 301
+
+[[redirects]]
+  from = "/qualify.html"
+  to = "/qualify"
+  status = 301
+
+# No blanket catch-all here: Netlify automatically serves /404.html
+# with a real 404 status for any path that doesn't match a file or
+# redirect above, so real pages keep returning 200 and missing pages
+# get a proper (not soft) 404.
 
 # Headers for security and performance
 [[headers]]
@@ -37,6 +77,6 @@
 
 # Form submissions
 [[headers]]
-  for = "/contact.html"
+  for = "/contact/*"
   [headers.values]
     Cache-Control = "public, max-age=0"

@@ -303,7 +303,8 @@ section {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background-color: transparent;
+  background: linear-gradient(100deg, rgba(6, 10, 18, 0.9) 0%, rgba(6, 10, 18, 0.78) 40%, rgba(6, 10, 18, 0.5) 65%, rgba(6, 10, 18, 0.2) 100%),
+              linear-gradient(0deg, rgba(6, 10, 18, 0.55) 0%, rgba(6, 10, 18, 0) 45%);
   z-index: 1;
 }
 
@@ -475,6 +476,10 @@ section {
   font-weight: 300;
   color: var(--brown);
   margin-bottom: var(--spacing-md);
+}
+
+.offering-card h3 a {
+  color: inherit;
 }
 
 .offering-card p {
@@ -810,6 +815,23 @@ section {
   font-weight: 500;
   border-bottom: 1px solid rgb(170, 170, 170);
   padding-bottom: var(--spacing-md);
+}
+
+.service-card h4 a {
+  color: inherit;
+}
+
+.service-card-link {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--navy-dark);
+  text-decoration: underline;
+}
+
+.service-card-link:hover {
+  color: var(--burgundy);
 }
 
 .service-card p {
@@ -1332,6 +1354,42 @@ footer h2 {
   color: var(--burgundy);
 }
 
+.footer-nav-columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-2xl);
+  text-align: left;
+}
+
+.footer-nav-column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.footer-nav-column h3 {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--cream);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  margin: 0 0 var(--spacing-xs);
+  opacity: 0.6;
+}
+
+.footer-nav-column a {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  color: var(--cream);
+  font-weight: 400;
+  transition: color 0.2s ease;
+}
+
+.footer-nav-column a:hover {
+  color: var(--burgundy);
+}
+
 .footer-bottom {
   border-top: none
   padding-top: var(--spacing-lg);
@@ -1395,6 +1453,54 @@ footer h2 {
 
   .footer-nav {
     justify-content: flex-start;
+  }
+
+  .footer-nav-columns {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ============================================
+   HEADER DROPDOWN (Services)
+   ============================================ */
+
+@media (min-width: 768px) {
+  .has-dropdown {
+    position: relative;
+  }
+
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 240px;
+    background-color: var(--white);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+    padding: var(--spacing-sm) 0;
+    flex-direction: column;
+    gap: 0;
+    z-index: 1001;
+  }
+
+  .has-dropdown:hover .dropdown,
+  .has-dropdown:focus-within .dropdown {
+    display: flex;
+  }
+
+  .dropdown li {
+    width: 100%;
+  }
+
+  .dropdown a {
+    display: block;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    white-space: nowrap;
+  }
+
+  .dropdown a:hover {
+    color: var(--burgundy);
+    background-color: var(--cream);
   }
 }
 

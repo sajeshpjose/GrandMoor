@@ -3,12 +3,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Contact Grandmoor - Get in touch for warehousing and logistics inquiries in Mississauga.">
-  <title>Contact - Grandmoor Warehousing & Logistics</title>
+  <meta name="description" content="Contact Grandmoor for a warehousing or 3PL quote. 3500 Ridgeway Drive, Mississauga, ON L5L 0A2. Call +1 647 237 3050 or request a quote online.">
+  <title>Contact Grandmoor - Warehousing & Logistics Quotes in Mississauga</title>
+  <link rel="canonical" href="https://grandmoor.ca/contact">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Grandmoor">
+  <meta property="og:locale" content="en_CA">
+  <meta property="og:title" content="Contact Grandmoor - Warehousing & Logistics Quotes in Mississauga">
+  <meta property="og:description" content="Contact Grandmoor for a warehousing or 3PL quote. 3500 Ridgeway Drive, Mississauga, ON L5L 0A2. Call +1 647 237 3050 or request a quote online.">
+  <meta property="og:url" content="https://grandmoor.ca/contact">
+  <meta property="og:image" content="https://grandmoor.ca/images/hero-banner-3.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact Grandmoor - Warehousing & Logistics Quotes in Mississauga">
+  <meta name="twitter:description" content="Contact Grandmoor for a warehousing or 3PL quote. 3500 Ridgeway Drive, Mississauga, ON L5L 0A2. Call +1 647 237 3050 or request a quote online.">
+  <meta name="twitter:image" content="https://grandmoor.ca/images/hero-banner-3.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "Organization"],
+    "name": "Grandmoor Inc.",
+    "url": "https://grandmoor.ca/",
+    "logo": "https://grandmoor.ca/images/logo.svg",
+    "image": "https://grandmoor.ca/images/hero-banner-3.jpg",
+    "telephone": "+1-647-237-3050",
+    "email": "info@grandmoor.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "3500 Ridgeway Drive",
+      "addressLocality": "Mississauga",
+      "addressRegion": "ON",
+      "postalCode": "L5L 0A2",
+      "addressCountry": "CA"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 43.5890123, "longitude": -79.6441447 },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    },
+    "areaServed": ["Mississauga", "Toronto", "Brampton", "Etobicoke", "Greater Toronto Area"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://grandmoor.ca/" },
+      { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://grandmoor.ca/contact" }
+    ]
+  }
+  </script>
 </head>
 <body>
   <!-- HEADER CONTAINER - Loaded dynamically from header.html -->
@@ -16,7 +66,7 @@
 
   <!-- HERO SECTION -->
   <section class="hero">
-    <img src="images/hero-banner-3.jpg" alt="Contact Us" class="hero-image">
+    <img src="/images/hero-banner-3.jpg" alt="Contact Us" class="hero-image">
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1>Get in Touch</h1>
@@ -35,15 +85,14 @@
 
           <div class="contact-info-block">
             <h3>Address</h3>
-            <p>3500, RidgeWay Drive
-            <br>Mississauga, Ontario,
+            <p>3500 Ridgeway Drive
+            <br>Mississauga, Ontario
             <br>Canada L5L 0A2</p>
           </div>
 
           <div class="contact-info-block">
             <h3>Phone</h3>
-            <p><a href="tel:[PHONE]">+1 647 237 3050</a><br><a href="tel:[PHONE]">+1 437 366 9877</a></p>
-    
+            <p><a href="tel:+16472373050">+1 647 237 3050</a><br><a href="tel:+14373669877">+1 437 366 9877</a></p>
           </div>
 
           <div class="contact-info-block">
@@ -93,9 +142,11 @@
                 <option value="">Select a service</option>
                 <option value="3pl-warehousing">3PL Warehousing</option>
                 <option value="contract-warehousing">Contract Warehousing</option>
+                <option value="pallet-storage">Pallet Storage</option>
                 <option value="order-fulfillment">Order Fulfillment</option>
                 <option value="cross-docking">Cross-Docking</option>
-                <option value="final-mile">Final Mile Delivery</option>
+                <option value="container-destuffing">Container Destuffing</option>
+                <option value="inventory-management">Inventory Management</option>
                 <option value="other">Other</option>
               </select>
             </div>
@@ -140,7 +191,7 @@
     <p id="toastMessage"></p>
   </div>
 
-  <script src="js/main.js"></script>
+  <script src="/js/main.js"></script>
   <script>
     function showToast(message, type = 'success') {
       const toast = document.getElementById('toast');

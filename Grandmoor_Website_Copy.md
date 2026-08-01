@@ -26,7 +26,7 @@ Grandmoor delivers third-party logistics solutions from our Mississauga facility
 
 ### Intro Statement
 
-Grandmoor is a third-party logistics (3PL) provider built for businesses that need their goods stored, managed, and moved without friction. Operating from a 16,000 square foot facility in Mississauga, we give clients fast access to Highways 401, 403, 407, and the QEW, plus proximity to Toronto Pearson International Airport — making us a practical logistics partner for businesses across the GTA. Whether you're scaling an e-commerce operation or need a dependable partner for industrial distribution, Grandmoor is built to keep your supply chain moving.
+Grandmoor is a third-party logistics (3PL) provider built for businesses that need their goods stored, managed, and moved without friction. Operating from a 22,000 square foot facility in Mississauga, we give clients fast access to Highways 401, 403, 407, and the QEW, plus proximity to Toronto Pearson International Airport — making us a practical logistics partner for businesses across the GTA. Whether you're scaling an e-commerce operation or need a dependable partner for industrial distribution, Grandmoor is built to keep your supply chain moving.
 
 ---
 
@@ -93,7 +93,7 @@ Grandmoor organizes its services around three core pillars: warehousing and dist
 
 ### Service: 3PL Warehousing
 
-Flexible, scalable storage inside our 16,000 square foot Mississauga facility. Our team handles receiving, putaway, and ongoing inventory oversight so your stock stays organized and easy to retrieve — without you needing to run a warehouse of your own.
+Flexible, scalable storage inside our 22,000 square foot Mississauga facility. Our team handles receiving, putaway, and ongoing inventory oversight so your stock stays organized and easy to retrieve — without you needing to run a warehouse of your own.
 
 **Includes:**
 - Palletized and shelf storage
