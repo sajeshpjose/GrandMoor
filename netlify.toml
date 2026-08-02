@@ -59,16 +59,19 @@
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
-# Cache headers for static assets
+# Cache headers for static assets.
+# css/js are versioned via a "?v=" query string on the <link>/<script> tag
+# (bump it whenever the file changes) so a short max-age here is just a
+# safety net against a forgotten version bump, not the primary mechanism.
 [[headers]]
   for = "/css/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000"
+    Cache-Control = "public, max-age=3600, must-revalidate"
 
 [[headers]]
   for = "/js/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000"
+    Cache-Control = "public, max-age=3600, must-revalidate"
 
 [[headers]]
   for = "/images/*"
