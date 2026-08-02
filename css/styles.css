@@ -1134,9 +1134,6 @@ section {
 }
 
 .cta-section.navy {
-  background-image: url('images/cta-bg-1.jpg');
-  background-size: cover;
-  background-position: center;
   background-color: var(--navy-dark);
   justify-content: center;
 }
