@@ -1333,6 +1333,18 @@ footer h2 {
   margin: 0;
 }
 
+.contact-block p + p {
+  margin-top: var(--spacing-sm);
+}
+
+.contact-block a {
+  color: var(--cream);
+}
+
+.contact-block a:hover {
+  color: var(--burgundy);
+}
+
 .footer-nav {
   display: flex;
   flex-direction: column;
