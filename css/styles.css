@@ -248,7 +248,7 @@ nav a {
 
 .mobile-menu-item > a {
   display: block;
-  padding: var(--spacing-lg) 0;
+  padding: var(--spacing-md) 0;
   font-family: var(--font-sans);
   font-weight: 600;
   font-size: 18px;
@@ -260,7 +260,7 @@ nav a {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: var(--spacing-lg) 0;
+  padding: var(--spacing-md) 0;
   background: none;
   border: none;
   cursor: pointer;
