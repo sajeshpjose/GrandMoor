@@ -42,9 +42,30 @@ function initializeMenuToggle() {
   const mobileMenu = document.getElementById('mobileMenu');
 
   if (menuToggle && mobileMenu) {
+    // Collapse every accordion item back to closed
+    function collapseAccordions() {
+      mobileMenu.querySelectorAll('.mobile-accordion-item.open').forEach(item => {
+        item.classList.remove('open');
+        const toggle = item.querySelector('.mobile-accordion-toggle');
+        if (toggle) toggle.setAttribute('aria-expanded', 'false');
+      });
+    }
+
     menuToggle.addEventListener('click', function() {
       menuToggle.classList.toggle('active');
       mobileMenu.classList.toggle('active');
+      if (!mobileMenu.classList.contains('active')) {
+        collapseAccordions();
+      }
+    });
+
+    // Expand/collapse accordion sections (e.g. Services)
+    mobileMenu.querySelectorAll('.mobile-accordion-toggle').forEach(toggle => {
+      toggle.addEventListener('click', function() {
+        const item = toggle.closest('.mobile-accordion-item');
+        const isOpen = item.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      });
     });
 
     // Close mobile menu when a link is clicked
@@ -53,6 +74,7 @@ function initializeMenuToggle() {
       link.addEventListener('click', function() {
         menuToggle.classList.remove('active');
         mobileMenu.classList.remove('active');
+        collapseAccordions();
       });
     });
 
@@ -61,6 +83,7 @@ function initializeMenuToggle() {
       if (!menuToggle.contains(event.target) && !mobileMenu.contains(event.target)) {
         menuToggle.classList.remove('active');
         mobileMenu.classList.remove('active');
+        collapseAccordions();
       }
     });
   }
