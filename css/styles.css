@@ -1635,6 +1635,20 @@ textarea {
   min-height: 150px;
 }
 
+input.invalid,
+textarea.invalid,
+select.invalid {
+  border-color: #b3261e;
+}
+
+.field-error {
+  display: block;
+  color: #b3261e;
+  font-size: 13px;
+  margin-top: var(--spacing-xs);
+  min-height: 16px;
+}
+
 /* ============================================
    KEY VALUES SECTION
    ============================================ */
