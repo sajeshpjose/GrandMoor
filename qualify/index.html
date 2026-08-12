@@ -148,9 +148,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       line-height: 1.4;
     }
 
-    .form-group.required > label::after {
+    .form-group.required > label:not(.checkbox-label):not(.radio-label)::after {
       content: " *";
       color: #d32f2f;
+    }
+
+    .checkbox-label::after,
+    .radio-label::after {
+      content: "" !important;
     }
 
     .form-group input[type="text"],
