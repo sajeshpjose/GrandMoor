@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MSSXCT64');</script>
+<!-- End Google Tag Manager -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Answer a few questions to find out which Grandmoor warehousing and fulfillment services fit your business.">
@@ -282,6 +289,10 @@
   </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MSSXCT64"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
   <!-- HEADER CONTAINER - Loaded dynamically from header.html -->
   <div id="header-container"></div>
 
@@ -307,6 +318,7 @@
         <!-- Honeypot field (anti-spam) -->
         <div style="display: none;">
           <input type="text" name="bot-field" />
+          <input type="hidden" name="_subject" id="email-subject" value="New Qualifying Form Submission" />
         </div>
 
         <!-- SECTION 1: STORAGE VOLUME & PROFILE -->
@@ -318,19 +330,8 @@
 
           <div class="form-grid">
             <div class="form-group required">
-              <label for="avg-pallets">Average pallet storage volume</label>
-              <select id="avg-pallets" name="avg-pallets" required>
-                <option value="">Select volume range</option>
-                <option value="1-10">1-10 pallets</option>
-                <option value="10-50">10-50 pallets</option>
-                <option value="50-100">50-100 pallets</option>
-                <option value="100-200">100-200 pallets</option>
-                <option value="200-500">200-500 pallets</option>
-                <option value="500-1000">500-1,000 pallets</option>
-                <option value="1000-1500">1,000-1,500 pallets</option>
-                <option value="1500-2000">1,500-2,000 pallets</option>
-                <option value="2000+">2,000+ pallets</option>
-              </select>
+              <label for="avg-pallets">Average pallet storage volume/month</label>
+              <input type="text" id="avg-pallets" name="avg-pallets" placeholder="e.g., 500 pallets" required>
             </div>
 
             <div class="form-group required">
@@ -402,6 +403,7 @@
             <label for="traceability">Traceability requirements</label>
             <select id="traceability" name="traceability" required>
               <option value="">Select requirements</option>
+              <option value="none">None</option>
               <option value="lot-number">Lot #</option>
               <option value="serial-number">Serial #</option>
               <option value="expiry-date">Expiry Date (FIFO/FEFO)</option>
@@ -426,6 +428,10 @@
           <div class="form-group required">
             <label>Special handling required</label>
             <div class="checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="special-handling" value="none">
+                <span>None</span>
+              </label>
               <label class="checkbox-label">
                 <input type="checkbox" name="special-handling" value="hazardous">
                 <span>Hazardous materials</span>
@@ -496,14 +502,22 @@
 
           <div class="form-grid">
             <div class="form-group required">
-              <label for="outbound-type">Shipping format</label>
-              <select id="outbound-type" name="outbound-type" required>
-                <option value="">Select format</option>
-                <option value="full-pallets">Full pallets</option>
-                <option value="cartons-cases">Cartons/cases</option>
-                <option value="individual-items">Individual items</option>
-                <option value="mixed">Mixed (all of the above)</option>
-              </select>
+              <label>Shipping format</label>
+              <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="outbound-type" value="full-pallets">
+                  <span>Full pallets</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="outbound-type" value="cartons-cases">
+                  <span>Cartons/cases</span>
+                </label>
+                <label class="checkbox-label">
+                  <input type="checkbox" name="outbound-type" value="individual-items">
+                  <span>Individual items</span>
+                </label>
+              </div>
+              <p class="form-hint">Check all that apply</p>
             </div>
 
             <div class="form-group required">
@@ -524,6 +538,10 @@
             <div class="form-group required">
               <label>Fulfillment services needed</label>
               <div class="checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" name="fulfillment-services" value="none">
+                  <span>None</span>
+                </label>
                 <label class="checkbox-label">
                   <input type="checkbox" name="fulfillment-services" value="amazon-fba">
                   <span>Amazon FBA prep</span>
@@ -599,6 +617,7 @@
             <label for="pallet-requirements">Pallet type preference</label>
             <select id="pallet-requirements" name="pallet-requirements">
               <option value="">Select preference</option>
+              <option value="none">None</option>
               <option value="chep">CHEP</option>
               <option value="peco">PECO</option>
               <option value="grade-a">Grade A</option>
@@ -754,6 +773,12 @@
 
       if (qualifyForm) {
         qualifyForm.addEventListener('submit', function(e) {
+          // Set email subject to company name
+          const companyName = document.getElementById('company').value;
+          if (companyName) {
+            document.getElementById('email-subject').value = companyName + ' - Qualifying Form Submission';
+          }
+
           setTimeout(() => {
             showToast('Thank you! Your questionnaire has been received. Our team will review your needs and contact you within 24 hours.', 'success');
           }, 100);
