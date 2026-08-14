@@ -90,42 +90,141 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       background-color: var(--white);
     }
 
-    .form-section {
+    /* WIZARD PROGRESS */
+    .wizard-progress {
+      margin-bottom: var(--spacing-3xl);
+    }
+
+    .wizard-progress-track {
+      display: flex;
+      gap: var(--spacing-sm);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .wizard-progress-segment {
+      flex: 1;
+      height: 4px;
+      border-radius: 2px;
+      background-color: #e8e8e8;
+      transition: background-color 0.3s ease;
+    }
+
+    .wizard-progress-segment.filled {
+      background-color: var(--navy-dark);
+    }
+
+    .wizard-progress-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: #999;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    /* WIZARD STEPS */
+    .form-section.wizard-step {
       border: none;
       padding: 0;
-      margin-bottom: var(--spacing-4xl);
-      padding-bottom: var(--spacing-4xl);
-      border-bottom: 1px solid #e8e8e8;
+      margin: 0;
+      display: none;
     }
 
-    .form-section:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
+    .form-section.wizard-step.active {
+      display: block;
     }
 
-    .form-section-header {
-      display: flex;
-      align-items: baseline;
+    .wizard-step legend {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+    }
+
+    .wizard-step-header {
       margin-bottom: var(--spacing-2xl);
-      gap: var(--spacing-lg);
     }
 
-    .section-number {
+    .wizard-step-header h2 {
       font-family: var(--font-serif);
-      font-size: 24px;
-      font-weight: 300;
-      color: var(--orange-accent);
-      min-width: 40px;
-    }
-
-    .form-section legend {
-      font-family: var(--font-serif);
-      font-size: 24px;
+      font-size: 30px;
       font-weight: 300;
       color: var(--navy-dark);
-      padding: 0;
-      margin: 0;
+      margin-bottom: var(--spacing-sm);
+    }
+
+    .wizard-step-header p {
+      font-size: 16px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .wizard-subheading {
+      font-family: var(--font-serif);
+      font-size: 19px;
+      font-weight: 400;
+      color: var(--navy-dark);
+      margin: var(--spacing-2xl) 0 var(--spacing-lg);
+      padding-top: var(--spacing-lg);
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .wizard-subgroup:first-of-type .wizard-subheading {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
+
+    /* WIZARD NAV */
+    .wizard-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-3xl);
+      padding-top: var(--spacing-2xl);
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .wizard-btn-back {
+      background: none;
+      border: none;
+      padding: var(--spacing-md) 0;
+      font-family: var(--font-sans);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--navy-dark);
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .wizard-btn-back:hover {
+      color: var(--orange-accent);
+    }
+
+    .wizard-nav .wizard-btn-next {
+      width: auto;
+      min-width: 200px;
+      margin-top: 0;
+      margin-left: auto;
+    }
+
+    @media (max-width: 600px) {
+      .wizard-nav {
+        flex-direction: column-reverse;
+        align-items: stretch;
+      }
+
+      .wizard-btn-back {
+        text-align: center;
+      }
+
+      .wizard-nav .wizard-btn-next {
+        width: 100%;
+        min-width: 0;
+        margin-left: 0;
+      }
     }
 
     .form-grid {
@@ -248,7 +347,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       font-weight: 300;
     }
 
-    button[type="submit"] {
+    button[type="submit"],
+    .wizard-btn-next {
       width: 100%;
       padding: var(--spacing-md) var(--spacing-2xl);
       background-color: var(--navy-dark);
@@ -263,7 +363,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       margin-top: var(--spacing-2xl);
     }
 
-    button[type="submit"]:hover {
+    button[type="submit"]:hover,
+    .wizard-btn-next:hover {
       background-color: #0a1520;
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(22, 35, 43, 0.2);
@@ -287,7 +388,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         padding-bottom: var(--spacing-2xl);
       }
 
-      .form-section-header {
+      .wizard-step-header {
         margin-bottom: var(--spacing-lg);
       }
     }
@@ -319,6 +420,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>This questionnaire helps us understand your storage, fulfillment, and logistics needs. It takes 5-10 minutes to complete.</p>
       </div>
 
+      <div class="wizard-progress" id="wizardProgress">
+        <div class="wizard-progress-track">
+          <div class="wizard-progress-segment filled"></div>
+          <div class="wizard-progress-segment"></div>
+          <div class="wizard-progress-segment"></div>
+          <div class="wizard-progress-segment"></div>
+          <div class="wizard-progress-segment"></div>
+        </div>
+        <span class="wizard-progress-label" id="wizardProgressLabel">Step 1 of 5</span>
+      </div>
+
       <form name="qualify" method="POST" netlify netlify-honeypot="bot-field" id="qualifyForm" class="qualify-form">
         <!-- Honeypot field (anti-spam) -->
         <div style="display: none;">
@@ -326,11 +438,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <input type="hidden" name="_subject" id="email-subject" value="New Qualifying Form Submission" />
         </div>
 
-        <!-- SECTION 1: STORAGE VOLUME & PROFILE -->
-        <fieldset class="form-section">
-          <div class="form-section-header">
-            <span class="section-number">1</span>
-            <legend>Storage Volume & Profile</legend>
+        <!-- STEP 1: STORAGE VOLUME & PROFILE -->
+        <fieldset class="form-section wizard-step active">
+          <legend>Storage Volume & Profile</legend>
+          <div class="wizard-step-header">
+            <h2>Storage Volume & Profile</h2>
+            <p>Let's start with how much space you need and how it moves through our facility.</p>
           </div>
 
           <div class="form-grid">
@@ -385,11 +498,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </fieldset>
 
-        <!-- SECTION 2: PRODUCT CHARACTERISTICS -->
-        <fieldset class="form-section">
-          <div class="form-section-header">
-            <span class="section-number">2</span>
-            <legend>Product Characteristics</legend>
+        <!-- STEP 2: PRODUCT CHARACTERISTICS -->
+        <fieldset class="form-section wizard-step">
+          <legend>Product Characteristics</legend>
+          <div class="wizard-step-header">
+            <h2>Product Characteristics</h2>
+            <p>Tell us about what you're storing so we can plan the right handling and space.</p>
           </div>
 
           <div class="form-row">
@@ -458,13 +572,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </fieldset>
 
-        <!-- SECTION 3: INBOUND / RECEIVING -->
-        <fieldset class="form-section">
-          <div class="form-section-header">
-            <span class="section-number">3</span>
-            <legend>Inbound & Receiving</legend>
+        <!-- STEP 3: RECEIVING & FULFILLMENT -->
+        <fieldset class="form-section wizard-step">
+          <legend>Receiving & Fulfillment</legend>
+          <div class="wizard-step-header">
+            <h2>Receiving & Fulfillment</h2>
+            <p>How inventory arrives, and how orders go back out the door.</p>
           </div>
 
+          <div class="wizard-subgroup">
+          <h3 class="wizard-subheading">Inbound & Receiving</h3>
           <div class="form-grid">
             <div class="form-group required">
               <label for="inbound-type">Product arrival method</label>
@@ -496,15 +613,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <input type="text" id="cartons-per-container" name="cartons-per-container" placeholder="e.g., 800 cartons, 15 SKUs">
             </div>
           </div>
-        </fieldset>
-
-        <!-- SECTION 4: OUTBOUND / FULFILLMENT -->
-        <fieldset class="form-section">
-          <div class="form-section-header">
-            <span class="section-number">4</span>
-            <legend>Outbound & Fulfillment</legend>
           </div>
 
+          <div class="wizard-subgroup">
+          <h3 class="wizard-subheading">Outbound & Fulfillment</h3>
           <div class="form-grid">
             <div class="form-group required">
               <label>Shipping format</label>
@@ -582,15 +694,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               </div>
             </div>
           </div>
+          </div>
         </fieldset>
 
-        <!-- SECTION 5: VALUE-ADDED SERVICES -->
-        <fieldset class="form-section">
-          <div class="form-section-header">
-            <span class="section-number">5</span>
-            <legend>Value-Added Services</legend>
+        <!-- STEP 4: SERVICES & SYSTEMS -->
+        <fieldset class="form-section wizard-step">
+          <legend>Services & Systems</legend>
+          <div class="wizard-step-header">
+            <h2>Services & Systems</h2>
+            <p>Any extra handling, integrations, or transportation support you need.</p>
           </div>
 
+          <div class="wizard-subgroup">
+          <h3 class="wizard-subheading">Value-Added Services</h3>
           <div class="form-group">
             <label>Services needed</label>
             <div class="checkbox-group">
@@ -630,15 +746,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <option value="ht-pallet">HT Pallet</option>
             </select>
           </div>
-        </fieldset>
-
-        <!-- SECTION 6: SYSTEMS & INTEGRATION -->
-        <fieldset class="form-section">
-          <div class="form-section-header">
-            <span class="section-number">6</span>
-            <legend>Systems & Integration</legend>
           </div>
 
+          <div class="wizard-subgroup">
+          <h3 class="wizard-subheading">Systems & Integration</h3>
           <div class="form-grid">
             <div class="form-group required">
               <label>EDI/API integration needed</label>
@@ -659,15 +770,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <input type="text" id="order-delivery-method" name="order-delivery-method" placeholder="e.g., EDI, CSV, API, Email" required>
             </div>
           </div>
-        </fieldset>
-
-        <!-- SECTION 7: ADDITIONAL SERVICES -->
-        <fieldset class="form-section">
-          <div class="form-section-header">
-            <span class="section-number">7</span>
-            <legend>Additional Services</legend>
           </div>
 
+          <div class="wizard-subgroup">
+          <h3 class="wizard-subheading">Additional Services</h3>
           <div class="form-group required">
             <label>Outbound transportation needed</label>
             <div class="checkbox-group">
@@ -695,13 +801,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <option value="yes">Yes</option>
             </select>
           </div>
+          </div>
         </fieldset>
 
-        <!-- SECTION 8: CONTACT INFORMATION -->
-        <fieldset class="form-section">
-          <div class="form-section-header">
-            <span class="section-number">8</span>
-            <legend>Contact Information</legend>
+        <!-- STEP 5: CONTACT INFORMATION -->
+        <fieldset class="form-section wizard-step">
+          <legend>Contact Information</legend>
+          <div class="wizard-step-header">
+            <h2>Contact Information</h2>
+            <p>Last step — how should we reach you with a quote?</p>
           </div>
 
           <div class="form-row">
@@ -746,7 +854,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </fieldset>
 
-        <button type="submit">Submit Questionnaire</button>
+        <div class="wizard-nav">
+          <button type="button" class="wizard-btn-back" id="wizardBackBtn">Back</button>
+          <button type="button" class="wizard-btn-next" id="wizardActionBtn">Continue</button>
+        </div>
       </form>
     </div>
   </section>
@@ -834,6 +945,80 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             });
           }
         });
+      }
+
+      // Multi-step wizard
+      if (qualifyForm) {
+        const steps = Array.from(qualifyForm.querySelectorAll('.wizard-step'));
+        const totalSteps = steps.length;
+        let currentStep = 0;
+        let hasNavigated = false;
+
+        const progressSegments = Array.from(document.querySelectorAll('.wizard-progress-segment'));
+        const progressLabel = document.getElementById('wizardProgressLabel');
+        const progressEl = document.getElementById('wizardProgress');
+        const backBtn = document.getElementById('wizardBackBtn');
+        const actionBtn = document.getElementById('wizardActionBtn');
+
+        function validateStep(index) {
+          const invalid = steps[index].querySelector(':invalid');
+          if (invalid) {
+            invalid.reportValidity();
+            return false;
+          }
+          return true;
+        }
+
+        function renderStep() {
+          steps.forEach((step, i) => {
+            const isActive = i === currentStep;
+            step.classList.toggle('active', isActive);
+            step.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+          });
+
+          progressSegments.forEach((seg, i) => {
+            seg.classList.toggle('filled', i <= currentStep);
+          });
+
+          if (progressLabel) {
+            progressLabel.textContent = 'Step ' + (currentStep + 1) + ' of ' + totalSteps;
+          }
+
+          const isLast = currentStep === totalSteps - 1;
+          backBtn.style.visibility = currentStep === 0 ? 'hidden' : 'visible';
+          actionBtn.textContent = isLast ? 'Submit Questionnaire' : 'Continue';
+          actionBtn.setAttribute('type', isLast ? 'submit' : 'button');
+
+          if (hasNavigated && progressEl) {
+            progressEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }
+
+        actionBtn.addEventListener('click', function() {
+          if (actionBtn.getAttribute('type') === 'button') {
+            if (!validateStep(currentStep)) return;
+            hasNavigated = true;
+            currentStep = Math.min(currentStep + 1, totalSteps - 1);
+            renderStep();
+          }
+          // when type="submit" (last step), let the click submit the form normally
+        });
+
+        backBtn.addEventListener('click', function() {
+          hasNavigated = true;
+          currentStep = Math.max(currentStep - 1, 0);
+          renderStep();
+        });
+
+        // Enter key advances to the next step instead of submitting early
+        qualifyForm.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA' && currentStep < totalSteps - 1) {
+            e.preventDefault();
+            actionBtn.click();
+          }
+        });
+
+        renderStep();
       }
     });
   </script>
