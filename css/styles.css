@@ -1658,6 +1658,29 @@ select.invalid {
   min-height: 16px;
 }
 
+.consent-field {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+}
+
+.consent-field input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 3px;
+  padding: 0;
+  accent-color: var(--navy-dark);
+}
+
+.consent-field label {
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: #555;
+}
+
 /* ============================================
    KEY VALUES SECTION
    ============================================ */
