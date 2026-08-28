@@ -1494,6 +1494,15 @@ footer h2 {
   margin: 0;
 }
 
+.footer-bottom p a {
+  color: var(--cream);
+  text-decoration: underline;
+}
+
+.footer-bottom p a:hover {
+  color: var(--burgundy);
+}
+
 .footer-logo-background {
     position: relative;
      width: 100vw;
@@ -2104,4 +2113,55 @@ select.invalid {
   .image-text-section.reverse > * {
     direction: ltr;
   }
+}
+
+/* ============================================
+   LEGAL CONTENT (Terms, Privacy)
+   ============================================ */
+
+.legal-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.legal-content .legal-updated {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: var(--spacing-2xl);
+}
+
+.legal-content h2 {
+  margin-top: var(--spacing-3xl);
+  margin-bottom: var(--spacing-md);
+}
+
+.legal-content h2:first-of-type {
+  margin-top: 0;
+}
+
+.legal-content h3 {
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-sm);
+}
+
+.legal-content p {
+  margin-bottom: var(--spacing-md);
+  line-height: 1.7;
+  color: #333;
+}
+
+.legal-content ul,
+.legal-content ol {
+  margin: 0 0 var(--spacing-md) var(--spacing-lg);
+  padding: 0;
+}
+
+.legal-content li {
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.7;
+  color: #333;
+}
+
+.legal-content a {
+  color: var(--navy-dark);
 }
