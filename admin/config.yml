@@ -1,0 +1,26 @@
+```yaml
+backend:
+  name: github
+  repo: sajeshpjose/GrandMoor
+  branch: main
+  auth_endpoint: /api/auth
+  
+media_folder: "public/images/blog"
+public_folder: "/images/blog"
+
+collections:
+  - name: "blog"
+    label: "Blog"
+    folder: "content/blog/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string", required: true }
+      - { label: "Description (Meta)", name: "description", widget: "text", required: true, pattern: [".{100,160}", "Must be 100-160 characters"] }
+      - { label: "Date", name: "date", widget: "datetime", required: true }
+      - { label: "Author", name: "author", widget: "string", default: "Grandmoor Inc." }
+      - { label: "Featured Image", name: "image", widget: "image", required: true }
+      - { label: "Tags", name: "tags", widget: "list", required: true }
+      - { label: "Category", name: "category", widget: "select", options: ["Thought Leadership", "How-To", "Market Insight", "Operations"], required: true }
+      - { label: "Blog Post", name: "body", widget: "markdown", required: true }
+```
