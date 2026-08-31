@@ -1,0 +1,20 @@
+{
+  "name": "grandmoor-website",
+  "version": "1.0.0",
+  "description": "Grandmoor Inc. Warehousing & Logistics Website",
+  "main": "index.html",
+  "scripts": {
+    "build-blog": "node scripts/md-to-html.js"
+  },
+  "devDependencies": {
+    "gray-matter": "^4.0.3"
+  },
+  "keywords": [
+    "warehousing",
+    "logistics",
+    "3pl",
+    "fulfillment"
+  ],
+  "author": "Grandmoor Inc.",
+  "license": "MIT"
+}
