@@ -1,0 +1,36 @@
+name: Build Blog Posts (MD to HTML)
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'content/blog/posts/**'
+
+jobs:
+  build-blog:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install gray-matter
+
+      - name: Run markdown to HTML conversion
+        run: node scripts/md-to-html.js
+
+      - name: Commit HTML files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add blog/*.html
+          git diff --quiet && git diff --staged --quiet || (git commit -m "🔄 Auto-generate blog HTML from Markdown" && git push)
