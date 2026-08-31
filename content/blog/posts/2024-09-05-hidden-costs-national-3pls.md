@@ -1,5 +1,5 @@
 ---
-title: The Hidden Costs of National 3PLs: A Guide for D2C Brands
+title: "The Hidden Costs of National 3PLs: A Guide for D2C Brands"
 date: 2024-09-05T14:00:00Z
 author: Grandmoor Inc.
 description: Stop bleeding margin to national 3PLs. Learn the hidden fees and speed limits that crush D2C profitability.
