@@ -40,8 +40,8 @@ function markdownToHtml(markdown) {
 }
 
 // Read all markdown files from content/blog/posts/
-const postsDir = path.join(__dirname, 'content', 'blog', 'posts');
-const blogDir = path.join(__dirname, 'blog');
+const postsDir = path.join(__dirname, '..', 'content', 'blog', 'posts');
+const blogDir = path.join(__dirname, '..', 'blog');
 
 // Ensure blog directory exists
 if (!fs.existsSync(blogDir)) {
