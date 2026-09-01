@@ -213,6 +213,7 @@ files.forEach(file => {
     date: data.date,
     category: data.category || 'Blog',
     tags: Array.isArray(data.tags) ? data.tags : [],
+    image: data.image || '',
     readTime,
   });
 });
@@ -241,8 +242,12 @@ const cardsHtml = posts.map(post => {
     .map(t => `                        <span class="blog-card-tag">${t}</span>`)
     .join('\n');
 
+  const bannerHtml = post.image
+    ? `<img src="${post.image}" alt="${post.title}" style="width:100%;height:200px;object-fit:cover;display:block;">`
+    : `<div style="width:100%;height:200px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);display:flex;align-items:center;justify-content:center;color:white;font-size:2rem;font-weight:700;">${emoji}</div>`;
+
   return `            <article class="blog-card">
-                <div class="blog-card-image">${emoji}</div>
+                <div class="blog-card-image" style="padding:0;overflow:hidden;">${bannerHtml}</div>
                 <div class="blog-card-content">
                     <div class="blog-card-category">${post.category}</div>
                     <h2><a href="/blog/${post.slug}" class="blog-card-link">${post.title}</a></h2>
