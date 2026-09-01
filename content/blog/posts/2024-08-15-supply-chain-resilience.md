@@ -1,10 +1,16 @@
 ---
-title: "Don't Bet Your Supply Chain on a Single Large 3PL"
-date: 2024-08-15T14:00:00Z
+title: Don't Bet Your Supply Chain on a Single Large 3PL
+description: Concentration risk in logistics is real. Learn why multiple
+  warehouse partners create supply chain resilience.
+date: 2024-08-15T14:00:00.000Z
 author: Grandmoor Inc.
-description: Concentration risk in logistics is real. Learn why multiple warehouse partners create supply chain resilience.
-image: /images/blog/2024-08-15-supply-chain-risk.png
-tags: [supply-chain-resilience, risk-management, logistics, 3pl-strategy, business-continuity]
+image: /content/blog/images/jacques-dillies-jcav1covvoc-unsplash-1-.jpg
+tags:
+  - supply-chain-resilience
+  - risk-management
+  - logistics
+  - 3pl-strategy
+  - business-continuity
 category: Thought Leadership
 ---
 
