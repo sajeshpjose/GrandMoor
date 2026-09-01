@@ -1,10 +1,16 @@
 ---
 title: "Cross-Docking 101: When and How to Use It (And Why Most 3PLs Get It Wrong)"
-date: 2024-08-22T14:00:00Z
+description: Master cross-docking strategy. Learn when it saves money, why scale
+  operators fail at it, and how to implement it right.
+date: 2024-08-22T14:00:00.000Z
 author: Grandmoor Inc.
-description: Master cross-docking strategy. Learn when it saves money, why scale operators fail at it, and how to implement it right.
-image: /images/blog/2024-08-22-cross-docking.png
-tags: [cross-docking, warehouse-operations, logistics, supply-chain, transload]
+image: /content/blog/images/hannes-egler-nt4k2jdtwtq-unsplash-1-.jpg
+tags:
+  - cross-docking
+  - warehouse-operations
+  - logistics
+  - supply-chain
+  - transload
 category: How-To
 ---
 
