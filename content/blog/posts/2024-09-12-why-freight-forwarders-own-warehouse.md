@@ -1,10 +1,16 @@
 ---
 title: Why Freight Forwarders Should Own Their Warehouse Partnerships
-date: 2024-09-12T14:00:00Z
+description: Discover why large 3PLs fail freight forwarders. Learn how
+  founder-led warehousing builds trust, speed, and control.
+date: 2024-09-12T14:00:00.000Z
 author: Grandmoor Inc.
-description: Discover why large 3PLs fail freight forwarders. Learn how founder-led warehousing builds trust, speed, and control.
-image: /images/blog/2024-09-12-freight-forwarders.png
-tags: [freight-forwarding, 3pl, warehouse-partnerships, logistics-ontario, grandmoor-logistics]
+image: /content/blog/images/pickawood-6taio3pxde4-unsplash-1-.jpg
+tags:
+  - freight-forwarding
+  - 3pl
+  - warehouse-partnerships
+  - logistics-ontario
+  - grandmoor-logistics
 category: Thought Leadership
 ---
 
