@@ -1,10 +1,16 @@
 ---
 title: "The Hidden Costs of National 3PLs: A Guide for D2C Brands"
-date: 2024-09-05T14:00:00Z
+description: Stop bleeding margin to national 3PLs. Learn the hidden fees and
+  speed limits that crush D2C profitability.
+date: 2024-09-05T14:00:00.000Z
 author: Grandmoor Inc.
-description: Stop bleeding margin to national 3PLs. Learn the hidden fees and speed limits that crush D2C profitability.
-image: /images/blog/2024-09-05-hidden-costs.png
-tags: [e-commerce, fulfillment, 3pl, d2c, supply-chain-costs]
+image: /content/blog/images/arno-senoner-yqu6tjksq_k-unsplash-1-.jpg
+tags:
+  - e-commerce
+  - fulfillment
+  - 3pl
+  - d2c
+  - supply-chain-costs
 category: Market Insight
 ---
 
