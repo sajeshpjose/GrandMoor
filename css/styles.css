@@ -1612,42 +1612,56 @@ footer h2 {
    FORMS
    ============================================ */
 
+/* Form field treatment — matches the qualify page (soft borders,
+   roomier padding, navy focus ring) so both forms read as one system. */
+
 .form-group {
+  display: flex;
+  flex-direction: column;
   margin-bottom: var(--spacing-lg);
 }
 
 label {
   display: block;
   font-family: var(--font-sans);
-  font-weight: 300;
-  font-size: 16px;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.4;
   color: var(--navy-dark);
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
 }
 
 input,
 textarea,
 select {
   width: 100%;
-  padding: var(--spacing-sm);
-  border: 1px solid var(--navy-dark);
+  padding: var(--spacing-md);
+  border: 1px solid #ddd;
   border-radius: 4px;
   font-family: var(--font-sans);
   font-size: 16px;
+  color: var(--navy-dark);
+  background-color: var(--white);
   transition: border-color 0.2s ease;
+}
+
+select {
+  min-height: 48px;
+  cursor: pointer;
 }
 
 input:focus,
 textarea:focus,
 select:focus {
   outline: none;
-  border-color: var(--burgundy);
-  box-shadow: 0 0 0 3px rgba(115, 54, 53, 0.1);
+  border-color: var(--navy-dark);
+  box-shadow: 0 0 0 3px rgba(22, 35, 43, 0.1);
 }
 
 textarea {
   resize: vertical;
-  min-height: 150px;
+  min-height: 100px;
+  font-weight: 300;
 }
 
 input.invalid,
@@ -1666,6 +1680,7 @@ select.invalid {
 
 .consent-field {
   display: flex;
+  flex-direction: row;
   align-items: flex-start;
   gap: var(--spacing-sm);
 }
