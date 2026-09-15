@@ -121,12 +121,14 @@ header {
   align-items: center;
 }
 
-/* Hide desktop nav on mobile */
+/* Hide desktop nav below the width where it actually fits.
+   The full nav needs ~1076px (logo 299 + links 729 + padding 48),
+   so tablets use the mobile menu instead of a clipped nav. */
 nav:not(.mobile-menu) {
   display: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1100px) {
   nav:not(.mobile-menu) {
     display: block;
   }
@@ -324,7 +326,7 @@ nav a {
 }
 
 /* Desktop navigation */
-@media (min-width: 768px) {
+@media (min-width: 1100px) {
   .menu-toggle {
     display: none;
   }
