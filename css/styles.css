@@ -2060,6 +2060,78 @@ select.invalid {
 }
 
 /* ============================================
+   CONTACT PAGE - QUOTE FORM ABOVE THE FOLD
+   ============================================ */
+
+/* The quote form used to start around 1085px down the page, well below
+   the fold on a laptop. The contact hero is shortened and the form is
+   lifted into its lower edge as a floating card. The shorter hero is
+   scoped to .hero-compact because .hero itself is shared by 18 other
+   pages that still want the full-height banner. */
+
+.hero-compact {
+  min-height: 300px;
+}
+
+.contact-section {
+  padding-top: var(--spacing-xl);
+}
+
+.contact-form {
+  /* .hero-overlay is z-index 1 and .hero-content is z-index 2, and neither
+     .hero nor .contact-section creates a stacking context, so the card needs
+     to be positioned with a higher z-index to paint over the hero. */
+  position: relative;
+  z-index: 3;
+  margin-top: -80px;
+  background-color: var(--white);
+  padding: var(--spacing-lg);
+  border-radius: 8px;
+  box-shadow: 0 18px 44px rgba(6, 10, 18, 0.16);
+}
+
+.contact-form h2 {
+  margin-bottom: var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+  .hero-compact {
+    min-height: 440px;
+  }
+
+  .hero-compact .hero-content {
+    min-height: 0;
+    padding-top: var(--spacing-2xl);
+    padding-bottom: var(--spacing-2xl);
+  }
+
+  .contact-section {
+    padding-top: var(--spacing-2xl);
+  }
+
+  .contact-grid {
+    align-items: start;
+  }
+
+  /* The form comes first in the markup so it leads on mobile and keyboard
+     focus reaches it first; on desktop the address block moves back to the
+     left column. */
+  .contact-info {
+    order: -1;
+  }
+
+  .contact-form {
+    margin-top: -240px;
+    padding: var(--spacing-xl);
+  }
+
+  .contact-form h2 {
+    font-size: 32px;
+    margin-bottom: var(--spacing-lg);
+  }
+}
+
+/* ============================================
    UTILITY CLASSES
    ============================================ */
 
