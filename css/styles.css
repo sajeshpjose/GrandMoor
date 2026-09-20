@@ -2073,8 +2073,12 @@ select.invalid {
   min-height: 300px;
 }
 
+/* .container already supplies the side gutter, so the section's own
+   horizontal padding just doubled it up and squeezed the fields. */
 .contact-section {
   padding-top: var(--spacing-xl);
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .contact-form {
@@ -2085,7 +2089,7 @@ select.invalid {
   z-index: 3;
   margin-top: -80px;
   background-color: var(--white);
-  padding: var(--spacing-lg);
+  padding: var(--spacing-lg) var(--spacing-md);
   border-radius: 8px;
   box-shadow: 0 18px 44px rgba(6, 10, 18, 0.16);
 }
@@ -2122,7 +2126,7 @@ select.invalid {
 
   .contact-form {
     margin-top: -240px;
-    padding: var(--spacing-xl);
+    padding: var(--spacing-xl) var(--spacing-lg);
   }
 
   .contact-form h2 {
