@@ -2098,21 +2098,12 @@ select.invalid {
   margin-bottom: var(--spacing-md);
 }
 
-/* On a phone the card is the page's main element, so it gets a tighter
-   gutter than the site-wide .container default (same scoping approach as
-   .services-section .container). Desktop keeps the standard gutter. */
-@media (max-width: 767px) {
-  .contact-section .container {
-    padding-left: var(--spacing-sm);
-    padding-right: var(--spacing-sm);
-  }
-}
-
-@media (max-width: 480px) {
-  .contact-section .container {
-    padding-left: var(--spacing-xs);
-    padding-right: var(--spacing-xs);
-  }
+/* Match the footer's side padding, which is --spacing-lg at every width.
+   The site-wide .container drops to --spacing-md below 480px, so pin this
+   rather than just inheriting the default. */
+.contact-section .container {
+  padding-left: var(--spacing-lg);
+  padding-right: var(--spacing-lg);
 }
 
 @media (min-width: 768px) {
