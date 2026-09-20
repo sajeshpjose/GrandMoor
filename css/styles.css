@@ -1704,6 +1704,25 @@ select.invalid {
   color: #555;
 }
 
+.consent-field .consent-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.consent-field .consent-links {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.5;
+  color: #555;
+}
+
+.consent-field .consent-links a {
+  color: var(--navy-dark);
+  text-decoration: underline;
+}
+
 /* ============================================
    KEY VALUES SECTION
    ============================================ */
