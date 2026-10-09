@@ -8,6 +8,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-MSSXCT64');</script>
 <!-- End Google Tag Manager -->
+<!-- Google tag (gtag.js) for Google Ads conversion tracking -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18371717160"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18371717160');
+</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Answer a few questions to find out which Grandmoor warehousing and fulfillment services fit your business.">
@@ -895,9 +903,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             document.getElementById('email-subject').value = companyName + ' - Qualifying Form Submission';
           }
 
-          setTimeout(() => {
-            showToast('Thank you! Your questionnaire has been received. Our team will review your needs and contact you within 24 hours.', 'success');
-          }, 100);
+          // Report the Google Ads conversion, then submit the form once it is sent
+          // (or after 1s, so a blocked tag never stops the lead from being submitted).
+          e.preventDefault();
+          var submitted = false;
+          function submitForm() {
+            if (submitted) return;
+            submitted = true;
+            qualifyForm.submit();
+          }
+          setTimeout(submitForm, 1000);
+          if (typeof gtag === 'function') {
+            gtag('event', 'conversion', {
+              'send_to': 'AW-18371717160/mwPLCLK1jZcdEKjQqLhE',
+              'event_callback': submitForm
+            });
+          } else {
+            submitForm();
+          }
         });
       }
 
