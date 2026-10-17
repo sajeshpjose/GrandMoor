@@ -28,7 +28,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/styles.css?v=15">
+  <link rel="stylesheet" href="/css/styles.css?v=17">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -67,6 +67,39 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MSSXCT64"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+  <!-- OCTOBER PROMO STRIP - auto-hides after Oct 31; remove with its CSS/JS block when done -->
+  <div class="promo-strip" id="promo-strip" role="region" aria-label="October promotion">
+    <div class="promo-strip-inner">
+      <span class="promo-badge">October Offer</span>
+      <div class="promo-text">
+        <strong>Get free storage for October</strong>
+      </div>
+      <a href="/contact" class="promo-cta" id="promo-contact-btn">Contact now</a>
+      <a href="tel:+18885056667" class="promo-phone" id="promo-phone-link">or call 1-888-505-6667</a>
+    </div>
+    <button type="button" class="promo-close" id="promo-close" aria-label="Dismiss promotion">&times;</button>
+  </div>
+  <script>
+  (function () {
+    var strip = document.getElementById('promo-strip');
+    if (!strip) return;
+    // Offer runs through Oct 31, 2026 (local time)
+    if (new Date() >= new Date(2026, 10, 1)) { strip.remove(); return; }
+    try { if (sessionStorage.getItem('promoDismissed')) { strip.remove(); return; } } catch (e) {}
+    function track(name) {
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: name, promo_name: 'october_free_storage', promo_location: 'top_strip' });
+    }
+    document.getElementById('promo-contact-btn').addEventListener('click', function () { track('promo_contact_click'); });
+    document.getElementById('promo-phone-link').addEventListener('click', function () { track('promo_phone_click'); });
+    document.getElementById('promo-close').addEventListener('click', function () {
+      track('promo_dismiss');
+      strip.remove();
+      try { sessionStorage.setItem('promoDismissed', '1'); } catch (e) {}
+    });
+  })();
+  </script>
+
   <!-- HEADER CONTAINER - Loaded dynamically from header.html -->
   <div id="header-container"></div>
 
