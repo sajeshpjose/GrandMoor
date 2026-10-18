@@ -26,6 +26,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     .ty-card p { color: var(--navy-dark); margin-bottom: var(--spacing-sm); }
     .ty-card a.ty-phone { display: inline-block; margin-top: var(--spacing-xs); color: var(--brown); font-weight: 600; font-size: 20px; text-decoration: none; }
   </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1112543178032278');
+fbq('track', 'PageView');
+
+// Lead: fires once when Zoho returns the visitor to /contact/?sent=1
+(function () {
+  try {
+    var p = new URLSearchParams(window.location.search);
+    // 1) Offer landing page: Netlify form redirects to /first-month-free/thanks/
+    // 2) Contact page: Zoho form returns to /contact/?sent=1
+    var path = window.location.pathname.replace(/\/+$/, '');
+    if (path === '/first-month-free/thanks' || p.get('sent') === '1') {
+      fbq('track', 'Lead', { content_name: 'Quote form – First Month Free' });
+    }
+  } catch (e) {}
+})();
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1112543178032278&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MSSXCT64"
