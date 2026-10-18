@@ -173,6 +173,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             <button type="submit" class="cta-button" style="background-color: var(--navy-dark); color: var(--white); width: 100%; margin-top: var(--spacing-md);">Send Inquiry</button>
           </form>
+          <!-- Netlify form detection only (never shown): keeps the "contact" form registered
+               with Netlify so its submission notifications still fire. Filled in by the script below. -->
+          <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+            <input type="text" name="bot-field">
+            <input type="text" name="name">
+            <input type="text" name="company">
+            <input type="email" name="email">
+            <input type="tel" name="phone">
+            <input type="text" name="service">
+            <textarea name="message"></textarea>
+          </form>
         </div>
 
         <!-- CONTACT DETAILS -->
@@ -301,7 +312,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           function submitForm() {
             if (submitted) return;
             submitted = true;
-            contactForm.submit();
+            // Copy the inquiry to Netlify Forms first, so its notifications (ShipDash CRM,
+            // n8n webhook and team emails) keep firing, then submit to Zoho CRM.
+            sendToNetlify().then(function() { contactForm.submit(); });
+          }
+
+          function sendToNetlify() {
+            var serviceSlugs = {
+              '3PL Warehousing': '3pl-warehousing',
+              'Contract Warehousing': 'contract-warehousing',
+              'Pallet Storage': 'pallet-storage',
+              'Order Fulfillment': 'order-fulfillment',
+              'Cross-Docking': 'cross-docking',
+              'Container Destuffing': 'container-destuffing',
+              'Inventory Management': 'inventory-management',
+              'Other': 'other'
+            };
+            var service = document.getElementById('service').value;
+            var honeypot = contactForm.querySelector('input[name="aG9uZXlwb3Q"]');
+            var data = new URLSearchParams({
+              'form-name': 'contact',
+              'bot-field': honeypot ? honeypot.value : '',
+              'name': document.getElementById('name').value,
+              'company': document.getElementById('company').value,
+              'email': emailInput.value,
+              'phone': phoneInput.value,
+              'service': serviceSlugs[service] || service,
+              'message': document.getElementById('message').value
+            });
+            // Never let Netlify hold up the Zoho submission for more than 3 seconds.
+            var timeout = new Promise(function(resolve) { setTimeout(resolve, 3000); });
+            var post = fetch('/', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: data.toString()
+            }).catch(function() {});
+            return Promise.race([post, timeout]);
           }
           setTimeout(submitForm, 1000);
           if (typeof gtag === 'function') {
