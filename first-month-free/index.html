@@ -474,7 +474,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         function submitForm() {
           if (submitted) return;
           submitted = true;
-          form.submit();
+          // Send the lead to Zoho CRM first (same CRM as the contact page), then submit to
+          // Netlify as before, which shows /first-month-free/thanks/ and runs the team email.
+          sendToZoho().then(function () { form.submit(); });
+        }
+
+        function sendToZoho() {
+          // Zoho CRM web-to-lead keys for the "Request a Quote" webform (same as contact page): do not change.
+          var utm = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].map(function (k) {
+            var el = document.getElementById(k);
+            return el && el.value ? k + ': ' + el.value : '';
+          }).filter(Boolean).join(', ');
+          var data = new URLSearchParams({
+            'xnQsjsdp': 'a6e445c244202ccf919565425abfc010843c4189a1d8d0eb79d54040c6226160',
+            'zc_gad': '',
+            'xmIwtLD': '0ff338cdc16d9b26c4df6cdee713f364b79838487512b463f0534ea601c07f8b012d8dc6f027445286652584ff9ad570',
+            'actionType': 'TGVhZHM=',
+            'returnURL': 'https://grandmoor.ca/first-month-free/thanks/',
+            'aG9uZXlwb3Q': form.querySelector('[name="bot-field"]').value,
+            'Lead Source': 'Website',
+            'Last Name': document.getElementById('name').value,
+            'Company': document.getElementById('company').value,
+            'Email': emailInput.value,
+            'Phone': phoneInput.value,
+            'LEADCF5': 'Pallet Storage',
+            'Description': document.getElementById('message').value + (utm ? '\n' + utm : '')
+          });
+          // Background post; never hold up the visitor for more than 3 seconds.
+          var post = fetch('https://crm.zohocloud.ca/crm/WebToLeadForm', {
+            method: 'POST',
+            mode: 'no-cors',
+            keepalive: true,
+            referrerPolicy: 'unsafe-url',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: data.toString()
+          }).catch(function () {});
+          var timeout = new Promise(function (resolve) { setTimeout(resolve, 3000); });
+          return Promise.race([post, timeout]);
         }
         setTimeout(submitForm, 1000);
         track('lp_form_submit');
