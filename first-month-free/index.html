@@ -474,9 +474,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         function submitForm() {
           if (submitted) return;
           submitted = true;
-          // Send the lead to Zoho CRM first (same CRM as the contact page), then submit to
-          // Netlify as before, which shows /first-month-free/thanks/ and runs the team email.
-          sendToZoho().then(function () { form.submit(); });
+          // Same flow as the contact page's Request a Quote form:
+          // 1) copy to Netlify as the "contact" form, so ShipDash CRM, n8n and the team email fire,
+          // 2) send the lead to Zoho CRM, 3) show the offer thank-you page.
+          sendToNetlify()
+            .then(sendToZoho)
+            .then(function () { window.location.href = '/first-month-free/thanks/'; });
+        }
+
+        function sendToNetlify() {
+          var utm = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].map(function (k) {
+            var el = document.getElementById(k);
+            return el && el.value ? k + ': ' + el.value : '';
+          }).filter(Boolean).join(', ');
+          var data = new URLSearchParams({
+            'form-name': 'contact',
+            'bot-field': form.querySelector('[name="bot-field"]').value,
+            'name': document.getElementById('name').value,
+            'company': document.getElementById('company').value,
+            'email': emailInput.value,
+            'phone': phoneInput.value,
+            'service': 'pallet-storage',
+            'message': document.getElementById('message').value + (utm ? '\n' + utm : '')
+          });
+          // Never let Netlify hold up the visitor for more than 3 seconds.
+          var post = fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: data.toString()
+          }).catch(function () {});
+          var timeout = new Promise(function (resolve) { setTimeout(resolve, 3000); });
+          return Promise.race([post, timeout]);
         }
 
         function sendToZoho() {
