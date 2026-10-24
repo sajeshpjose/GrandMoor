@@ -403,6 +403,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <script>
     (function () {
       var form = document.getElementById('offerForm');
+      var formLoadedAt = Date.now(); // page-load time for the n8n spam filter
       var emailInput = document.getElementById('email');
       var phoneInput = document.getElementById('phone');
       var emailError = document.getElementById('emailError');
@@ -508,17 +509,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         }
 
         function sendToZoho() {
-          // Zoho CRM web-to-lead keys for the "Request a Quote" webform (same as contact page): do not change.
+          // Sent to the n8n spam filter, which forwards real leads to Zoho CRM.
+          // The Zoho web-to-lead keys live only in n8n, never in the page.
           var utm = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'].map(function (k) {
             var el = document.getElementById(k);
             return el && el.value ? k + ': ' + el.value : '';
           }).filter(Boolean).join(', ');
           var data = new URLSearchParams({
-            'xnQsjsdp': 'a6e445c244202ccf919565425abfc010843c4189a1d8d0eb79d54040c6226160',
             'zc_gad': '',
-            'xmIwtLD': '0ff338cdc16d9b26c4df6cdee713f364b79838487512b463f0534ea601c07f8b012d8dc6f027445286652584ff9ad570',
-            'actionType': 'TGVhZHM=',
-            'returnURL': 'https://grandmoor.ca/first-month-free/thanks/',
+            'form_ts': String(formLoadedAt),
             'aG9uZXlwb3Q': form.querySelector('[name="bot-field"]').value,
             'Lead Source': 'Website',
             'Last Name': document.getElementById('name').value,
@@ -529,7 +528,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             'Description': document.getElementById('message').value + (utm ? '\n' + utm : '')
           });
           // Background post; never hold up the visitor for more than 3 seconds.
-          var post = fetch('https://crm.zohocloud.ca/crm/WebToLeadForm', {
+          var post = fetch('https://n8n.grandmoor.com/webhook/grandmoor-contact', {
             method: 'POST',
             mode: 'no-cors',
             keepalive: true,
