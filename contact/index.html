@@ -116,13 +116,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="contact-form">
           <h2>Request a Quote</h2>
 
-          <form name="contact" method="POST" action="https://crm.zohocloud.ca/crm/WebToLeadForm" accept-charset="UTF-8" id="contactForm">
-            <!-- Zoho CRM web-to-lead keys: do not change -->
-            <input type="hidden" name="xnQsjsdp" value="a6e445c244202ccf919565425abfc010843c4189a1d8d0eb79d54040c6226160">
+          <form name="contact" method="POST" action="https://n8n.grandmoor.com/webhook/grandmoor-contact" accept-charset="UTF-8" id="contactForm">
+            <!-- Submissions go to the n8n spam filter, which forwards real leads to Zoho CRM.
+                 The Zoho web-to-lead keys live only in n8n, never in the page. -->
             <input type="hidden" name="zc_gad" id="zc_gad" value="">
-            <input type="hidden" name="xmIwtLD" value="0ff338cdc16d9b26c4df6cdee713f364b79838487512b463f0534ea601c07f8b012d8dc6f027445286652584ff9ad570">
-            <input type="hidden" name="actionType" value="TGVhZHM=">
-            <input type="hidden" name="returnURL" value="https://grandmoor.ca/contact/?sent=1">
+            <input type="hidden" name="form_ts" id="form_ts" value="">
             <input type="hidden" name="Lead Source" value="Website">
             <!-- Honeypot field (anti-spam) -->
             <div style="display: none;">
@@ -263,6 +261,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         showToast('Thank you! Your inquiry has been sent. We will get back to you shortly.', 'success');
       }
       const contactForm = document.getElementById('contactForm');
+      // Page-load time for the n8n spam filter (bots submit in under a few seconds).
+      document.getElementById('form_ts').value = Date.now();
       if (contactForm) {
         const emailInput = document.getElementById('email');
         const phoneInput = document.getElementById('phone');
@@ -313,7 +313,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             if (submitted) return;
             submitted = true;
             // Copy the inquiry to Netlify Forms first, so its notifications (ShipDash CRM,
-            // n8n webhook and team emails) keep firing, then submit to Zoho CRM.
+            // n8n webhook and team emails) keep firing, then submit to Zoho CRM (via the n8n spam filter).
             sendToNetlify().then(function() { contactForm.submit(); });
           }
 
