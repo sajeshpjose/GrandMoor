@@ -169,6 +169,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <textarea id="message" name="Description" required></textarea>
             </div>
 
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAAFlwwa0-s5KvFYYc" data-theme="light"></div>
+
             <button type="submit" class="cta-button" style="background-color: var(--navy-dark); color: var(--white); width: 100%; margin-top: var(--spacing-md);">Send Inquiry</button>
           </form>
           <!-- Netlify form detection only (never shown): keeps the "contact" form registered
@@ -305,6 +307,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             return;
           }
 
+          // Cloudflare Turnstile: block submission until the verification check is complete.
+          var ts = contactForm.querySelector('[name="cf-turnstile-response"]');
+          if (!ts || !ts.value) {
+            e.preventDefault();
+            showToast('Please complete the verification check.', 'error');
+            return;
+          }
+
           // Report the Google Ads conversion, then submit the form once it is sent
           // (or after 1s, so a blocked tag never stops the lead from being submitted).
           e.preventDefault();
@@ -362,5 +372,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       }
     });
   </script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </body>
 </html>
