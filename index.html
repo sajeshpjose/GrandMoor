@@ -67,12 +67,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MSSXCT64"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-  <!-- OCTOBER PROMO STRIP - auto-hides after Oct 31; remove with its CSS/JS block when done -->
-  <div class="promo-strip" id="promo-strip" role="region" aria-label="October promotion">
+  <!-- NOVEMBER PROMO STRIP - auto-hides after Nov 30; remove with its CSS/JS block when done -->
+  <div class="promo-strip" id="promo-strip" role="region" aria-label="November promotion">
     <div class="promo-strip-inner">
-      <span class="promo-badge">October Offer</span>
+      <span class="promo-badge">November Offer</span>
       <div class="promo-text">
-        <strong>Get free storage for October</strong>
+        <strong>First month free, up to 50 pallets</strong>
       </div>
       <a href="/first-month-free" class="promo-cta" id="promo-contact-btn">Contact now</a>
       <a href="tel:+18885056667" class="promo-phone" id="promo-phone-link">or call 1-888-505-6667</a>
@@ -83,12 +83,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   (function () {
     var strip = document.getElementById('promo-strip');
     if (!strip) return;
-    // Offer runs through Oct 31, 2026 (local time)
-    if (new Date() >= new Date(2026, 10, 1)) { strip.remove(); return; }
+    // Offer runs through Nov 30, 2026 (local time)
+    if (new Date() >= new Date(2026, 11, 1)) { strip.remove(); return; }
     try { if (sessionStorage.getItem('promoDismissed')) { strip.remove(); return; } } catch (e) {}
     function track(name) {
       window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: name, promo_name: 'october_free_storage', promo_location: 'top_strip' });
+      window.dataLayer.push({ event: name, promo_name: 'november_first_month_free', promo_location: 'top_strip' });
     }
     document.getElementById('promo-contact-btn').addEventListener('click', function () { track('promo_contact_click'); });
     document.getElementById('promo-phone-link').addEventListener('click', function () { track('promo_phone_click'); });
