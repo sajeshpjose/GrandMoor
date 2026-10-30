@@ -59,7 +59,6 @@ Mississauga is one of Ontario's busiest logistics hubs — home to Toronto Pears
 
 This isn't a side benefit — it's the reason Grandmoor exists where it does.
 
-*(Drive times above are estimates — confirm against your exact facility address before publishing.)*
 
 ---
 

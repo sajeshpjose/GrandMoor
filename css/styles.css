@@ -30,6 +30,16 @@
   --spacing-2xl: 4rem;
   --spacing-3xl: 5rem;
   --spacing-4xl: 6rem;
+
+  /* Spacing scale (8-point). Use these for all new gaps, padding and margins. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+  --space-8: 96px;
 }
 
 * {
@@ -58,7 +68,7 @@ body {
 h1 {
   font-family: var(--font-serif);
   font-size: 32px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.2;
   margin-bottom: var(--spacing-lg);
   color: var(--navy-dark);
@@ -67,7 +77,7 @@ h1 {
 h2 {
   font-family: var(--font-serif);
   font-size: 32px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.3;
   margin-bottom: var(--spacing-md);
   color: var(--navy-dark);
@@ -76,7 +86,7 @@ h2 {
 h3 {
   font-family: var(--font-serif);
   font-size: 24px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.4;
   margin-bottom: var(--spacing-sm);
   color: var(--navy-dark);
@@ -85,7 +95,7 @@ h3 {
 p {
   font-family: var(--font-sans);
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.6;
   margin-bottom: var(--spacing-md);
   color: var(--navy-dark);
@@ -137,7 +147,7 @@ nav:not(.mobile-menu) {
 .logo {
   font-family: var(--font-serif);
   font-size: 24px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--navy-dark);
   display: flex;
   align-items: center;
@@ -177,7 +187,7 @@ nav ul {
 
 nav a {
   font-family: var(--font-sans);
-  font-weight: 300;
+  font-weight: 400;
   color: var(--navy-dark);
   padding: var(--spacing-sm) 0;
 }
@@ -302,7 +312,7 @@ nav a {
   display: block;
   padding: var(--spacing-sm) 0 var(--spacing-sm) var(--spacing-lg);
   font-family: var(--font-sans);
-  font-weight: 300;
+  font-weight: 400;
   font-size: 16px;
   color: var(--navy-dark);
 }
@@ -406,7 +416,7 @@ section {
   color: var(--white);
   font-family: var(--font-serif);
   font-size: 36px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.2;
   margin-bottom: var(--spacing-lg);
 }
@@ -484,7 +494,7 @@ section {
 .intro-section .label {
   font-family: var(--font-sans);
   font-size: 12px;
-  font-weight: 300;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--navy-dark);
@@ -494,7 +504,7 @@ section {
 .intro-section h2 {
   font-family: var(--font-serif);
   font-size: 32px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--brown);
   line-height: 1.6;
   max-width: 1000px;
@@ -535,7 +545,7 @@ section {
 .offerings-title {
   font-family: var(--font-serif);
   font-size: 32px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--brown);
   margin-bottom: var(--spacing-3xl);
 }
@@ -555,7 +565,7 @@ section {
 .offering-card h3 {
   font-family: var(--font-serif);
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--brown);
   margin-bottom: var(--spacing-md);
 }
@@ -567,7 +577,7 @@ section {
 .offering-card p {
   font-family: var(--font-sans);
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--navy-dark);
   line-height: 1.6;
 }
@@ -623,7 +633,7 @@ section {
 .benefit-card h3 {
   font-family: var(--font-sans);
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--white);
   margin-bottom: var(--spacing-lg);
 }
@@ -687,7 +697,7 @@ section {
   font-size: 28px;
   color: var(--white);
   margin-bottom: var(--spacing-lg);
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .value-card p {
@@ -745,7 +755,7 @@ section {
 .location-content h2 {
   font-family: var(--font-serif);
   font-size: 48px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--cream);
   margin-bottom: var(--spacing-2xl);
 }
@@ -753,7 +763,7 @@ section {
 .location-content p {
   font-family: var(--font-sans);
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--cream);
   line-height: 1.8;
   margin-bottom: var(--spacing-lg);
@@ -768,7 +778,7 @@ section {
 .location-content li {
   font-family: var(--font-sans);
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--cream);
   line-height: 1.8;
   margin-bottom: var(--spacing-md);
@@ -777,12 +787,6 @@ section {
 .location-content .note {
   font-size: 16px;
   margin-bottom: var(--spacing-md);
-}
-
-.location-content .disclaimer {
-  font-size: 14px;
-  font-style: italic;
-  color: rgba(237, 235, 228, 0.7);
 }
 
 .location-images {
@@ -919,7 +923,7 @@ section {
 .service-card p {
   font-family: var(--font-sans);
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--navy-dark);
   line-height: 1.6;
   margin-bottom: var(--spacing-lg);
@@ -934,7 +938,7 @@ section {
 .service-card li {
   font-family: var(--font-sans);
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--navy-dark);
   line-height: 1.6;
   margin-bottom: var(--spacing-sm);
@@ -1151,7 +1155,7 @@ section {
 .image-text-content h2 {
   font-family: var(--font-serif);
   font-size: 28px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--cream);
   margin-bottom: var(--spacing-lg);
 }
@@ -1159,7 +1163,7 @@ section {
 .image-text-content p {
   font-family: var(--font-sans);
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--cream);
   line-height: 1.6;
 }
@@ -1256,14 +1260,14 @@ section {
   font-size: 32px;
   color: var(--white);
   margin-bottom: var(--spacing-md);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.3;
 }
 
 .cta-content p {
   font-family: var(--font-sans);
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--cream);
   margin-bottom: var(--spacing-lg);
   line-height: 1.6;
@@ -1322,7 +1326,7 @@ section {
   padding: var(--spacing-md) var(--spacing-2xl);
   border-radius: 100px;
   font-family: var(--font-sans);
-  font-weight: 300;
+  font-weight: 400;
   font-size: 18px;
   text-decoration: none;
   border: none;
@@ -1663,7 +1667,7 @@ select:focus {
 textarea {
   resize: vertical;
   min-height: 100px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 input.invalid,
@@ -1699,7 +1703,7 @@ select.invalid {
 .consent-field label {
   margin-bottom: 0;
   font-size: 14px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.5;
   color: #555;
 }
@@ -1713,7 +1717,7 @@ select.invalid {
 .consent-field .consent-links {
   margin: 0;
   font-size: 13px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.5;
   color: #555;
 }
@@ -1752,7 +1756,7 @@ select.invalid {
 .value-card h3 {
   font-family: var(--font-serif);
   font-size: 32px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--white);
   margin-bottom: 40px;
   line-height: 1.2;
@@ -1761,7 +1765,7 @@ select.invalid {
 .value-card p {
   font-family: var(--font-sans);
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 400;
   color: #888888;
   line-height: 1.6;
   margin: 0;
@@ -1813,7 +1817,7 @@ select.invalid {
 .pillars-content p {
   font-family: var(--font-serif);
   font-size: 24px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--white);
   margin-bottom: var(--spacing-lg);
   line-height: 1.4;
@@ -1833,14 +1837,14 @@ select.invalid {
   padding: var(--spacing-xs) var(--spacing-lg);
   font-family: var(--font-serif);
   font-size: 24px;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .pillar-connector {
   font-family: var(--font-serif);
   font-size: 24px;
   color: var(--white);
-  font-weight: 300;
+  font-weight: 400;
 }
 
 @media (min-width: 768px) {
@@ -1891,7 +1895,7 @@ select.invalid {
 .service-card h4 {
   font-family: var(--font-serif);
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--brown);
   margin-bottom: var(--spacing-md);
 }
@@ -1899,7 +1903,7 @@ select.invalid {
 .service-card p {
   font-family: var(--font-sans);
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--navy-dark);
   line-height: 1.6;
   margin-bottom: var(--spacing-md);
@@ -1924,7 +1928,7 @@ select.invalid {
 .service-card li {
   font-family: var(--font-sans);
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--navy-dark);
   line-height: 1.6;
   margin-bottom: var(--spacing-sm);
@@ -1952,7 +1956,7 @@ select.invalid {
 .services-label {
   font-family: var(--font-sans);
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 400;
   text-transform: uppercase;
   color: var(--brown);
   margin-bottom: var(--spacing-2xl);
@@ -1995,7 +1999,7 @@ select.invalid {
 .contact-form h2 {
   font-family: var(--font-serif);
   font-size: 28px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--brown);
   margin-bottom: var(--spacing-2xl);
 }
@@ -2007,7 +2011,7 @@ select.invalid {
 .contact-info-block h3 {
   font-family: var(--font-serif);
   font-size: 20px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--brown);
   margin-bottom: var(--spacing-sm);
 }
@@ -2015,7 +2019,7 @@ select.invalid {
 .contact-info-block p {
   font-family: var(--font-sans);
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--navy-dark);
   line-height: 1.6;
 }
@@ -2176,7 +2180,7 @@ select.invalid {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   font-family: var(--font-sans);
   font-size: 16px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.6;
   max-width: 400px;
   opacity: 0;
@@ -2410,4 +2414,208 @@ select.invalid {
 @media (max-width: 600px) {
   .promo-text strong { font-size: 17px; }
   .promo-strip { padding: 0.75rem 2.5rem 0.75rem 0.75rem; }
+}
+
+/* ============================================
+   DESIGN SYSTEM v2 - TYPE AND SPACING
+   Mirrors the Figma frame "GrandMoor - Components, Text Styles & Spacing".
+   Sits last on purpose: it normalises the older per-component rules above.
+
+   Text styles (desktop):
+   Display/H1     Inria Serif 300  72/88      Heading/Large  Inria Serif 300  48/60
+   Heading/Medium Inria Serif 300  32/40      Heading/Small  Inria Serif 400  24/32
+   Eyebrow        Inter 400 20/28 caps +1     Label/Caps     Inter 600 12/16 caps +1
+   Body/Large     Inter 400 18/28.8           Body           Inter 400 16/25.6
+   Body/Small     Inter 400 14/22.4           UI/Large       Inter 600 18/28
+   UI/Small       Inter 500 14/22
+   Spacing: 4 8 16 24 32 48 64 96 (--space-1 to --space-8)
+   ============================================ */
+
+/* ---- Text: headings (Inria Serif) ---- */
+h1, h2, h3,
+.logo, .hero h1, .intro-section h2, .offerings-title, .value-card h3,
+.location-content h2, .promise-text, .image-text-content h2, .cta-content h2,
+footer h2, .pillars-content p, .pillar-tag, .pillar-connector,
+.contact-form h2, .contact-info-block h3 {
+  font-family: var(--font-serif);
+  font-weight: 300;
+}
+
+/* Heading/Medium: H2, H3, pillar and statement text */
+h2, h3,
+.intro-section h2, .value-card h3, .promise-text, .image-text-content h2,
+.cta-content h2, footer h2, .contact-form h2,
+.pillars-content p, .pillar-tag, .pillar-connector {
+  font-size: 28px;
+  line-height: 1.286;
+  margin-bottom: var(--space-4);
+}
+
+/* Heading/Small: card titles */
+h4, .service-card h4, .offering-card h3, .benefit-card h3, .contact-info-block h3 {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.333;
+  margin-bottom: var(--space-3);
+}
+
+/* Heading/Large */
+.offerings-title, .location-content h2 {
+  font-size: 36px;
+  line-height: 1.222;
+  margin-bottom: var(--space-4);
+}
+
+/* Display/H1 (the hero keeps its own sizing on mobile) */
+h1, .hero h1 {
+  font-size: 40px;
+  line-height: 1.2;
+  margin-bottom: var(--space-5);
+}
+
+/* ---- Text: eyebrows and labels (Inter) ---- */
+.services-label {
+  font-family: var(--font-sans);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: var(--space-6);
+}
+
+.intro-section .label, footer .label, .footer-nav-column h3, .promo-badge, .lp-badge {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.333;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.intro-section .label { margin-bottom: var(--space-6); }
+footer .label { margin-bottom: var(--space-5); }
+
+/* ---- Text: body (Inter Regular) ---- */
+p, li,
+.offering-card p, .benefit-card p, .value-card p, .service-card p, .service-card li,
+.image-text-content p, .contact-info-block p, .location-content li, .location-content .note,
+.hero p, .cta-content p, .location-content > p, .location-content p, .contact-block p {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+p { margin-bottom: var(--space-3); }
+.pillar-tag, .pillar-connector { margin-bottom: 0; }
+
+/* Body/Large: intro and call-to-action paragraphs */
+.hero p, .cta-content p, .location-content > p, .location-content p, .contact-block p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.hero p { margin-bottom: 0; }
+.cta-content p { margin-bottom: var(--space-5); }
+.location-content p, .location-content > p { margin-bottom: var(--space-3); }
+.location-content li { font-size: 16px; margin-bottom: var(--space-3); }
+.service-card p { margin-bottom: var(--space-3); }
+.service-card li { margin-bottom: var(--space-2); }
+.value-card h3 { margin-bottom: var(--space-4); }
+
+/* Body/Small: helper text, footer links and the legal line */
+.field-error, .consent-field .consent-links, .footer-nav-column a, .footer-bottom p,
+.legal-content .legal-updated, .lp-fine, .lp-footer, .lp-card .lp-card-sub {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ---- Text: UI ---- */
+/* UI/Large: buttons and nav links */
+.cta-button-primary, .cta-button-secondary, .cta-button-tertiary, .cta-button,
+.mobile-menu-item > a, .mobile-accordion-toggle {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.556;
+}
+
+/* UI/Small: small buttons, inline links and form labels */
+.promo-cta, .promo-phone, .service-card-link, label, .form-group label, .lp-card .form-group label {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.571;
+}
+
+/* ---- Spacing: section rhythm ---- */
+.intro-section, .key-values, .core-pillars, .services-section, .promise-section,
+.cta-section, .benefits-section, .offerings-section, .location-content, .image-text-content, footer {
+  padding-top: var(--space-7);
+  padding-bottom: var(--space-7);
+}
+
+.services-section + .services-section { padding-top: 0; }
+
+.footer-contact {
+  gap: var(--space-7);
+  margin-top: var(--space-7);
+  padding-top: var(--space-7);
+}
+
+footer h2 { margin-bottom: var(--space-6); }
+.legal-content h2 { margin-top: var(--space-7); margin-bottom: var(--space-4); }
+.legal-content p { line-height: 1.6; }
+.legal-content li { line-height: 1.6; }
+
+/* ---- Forms: one set of values for contact, offer and qualify ---- */
+.form-group { margin-bottom: var(--space-4); }
+.form-group label, label { margin-bottom: var(--space-2); }
+
+input, textarea, select {
+  padding: 11px var(--space-3);
+  min-height: 48px;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+textarea { min-height: 120px; font-weight: 400; }
+
+/* No reserved line under a field until it has something to say */
+.field-error { min-height: 0; margin-top: var(--space-1); }
+.field-error:empty { display: none; }
+
+.contact-form { gap: var(--space-4); padding: var(--space-5) var(--space-4); }
+.contact-form h2 { margin-bottom: var(--space-5); }
+
+.consent-field { gap: var(--space-3); margin-bottom: var(--space-4); }
+.consent-field label { font-size: 14px; font-weight: 400; line-height: 1.6; margin-bottom: 0; }
+.consent-field .consent-text { gap: var(--space-1); }
+
+@media (min-width: 768px) {
+  /* Display/H1, Heading/Large and Heading/Medium reach their full desktop size */
+  h2, h3,
+  .intro-section h2, .value-card h3, .promise-text, .image-text-content h2,
+  .cta-content h2, footer h2, .contact-form h2,
+  .pillars-content p, .pillar-tag, .pillar-connector {
+    font-size: 32px;
+    line-height: 1.25;
+  }
+
+  .offerings-title, .location-content h2 { font-size: 48px; line-height: 1.25; }
+  h1, .hero h1 { font-size: 72px; line-height: 1.222; }
+  .contact-form h2 { margin-bottom: var(--space-5); }
+  .contact-form { padding: var(--space-6) var(--space-5); }
+
+  .intro-section, .key-values, .core-pillars, .services-section, .promise-section,
+  .cta-section, .benefits-section, .offerings-section, .location-content, .image-text-content, footer {
+    padding-top: var(--space-8);
+    padding-bottom: var(--space-8);
+  }
+
+  .services-section + .services-section { padding-top: 0; }
+  .footer-contact { gap: var(--space-8); margin-top: var(--space-7); padding-top: var(--space-7); }
+
+  /* Card copy stays at Body size; only intro copy steps up */
+  .value-card p, .service-card p, .image-text-content p { font-size: 16px; }
 }
