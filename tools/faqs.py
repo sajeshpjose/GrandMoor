@@ -7,7 +7,7 @@ CALC = '<a href="/rate-calculator">rate calculator</a>'
 CONTACT = '<a href="/contact">contact us</a>'
 
 MIN = ("Is there a minimum number of pallets?",
-       f"No. There is no minimum pallet count, so you can store a single pallet or several hundred. Pricing is tiered by volume, which means your per-pallet rate depends on how many pallets you store. Use our {CALC} to get your rate by email in a few minutes.")
+       f"No. There is no minimum pallet count, so you can store a single pallet or several hundred. Pricing is tiered by volume: the more pallets you store, the lower your rate per pallet. Use our {CALC} to get your rate by email in a few minutes.")
 LEAD = ("How much notice do you need for inbound and outbound shipments?",
         "We need just 8 hours' notice for both inbound receiving and outbound shipments. Let us know what is arriving or leaving and when, and our team schedules the dock time so your freight is not left waiting.")
 HACCP = ("Is Grandmoor a food-grade warehouse?",
@@ -30,7 +30,7 @@ FAQS = {
   'pallet-storage/index.html': [
     MIN,
     ("How is pallet storage priced?",
-     f"Pallet storage is priced per pallet, with tiered rates based on how many pallets you store. Tell our {CALC} how many pallets you have and we email you a rate sheet straight away."),
+     f"Pallet storage is priced per pallet with volume tiers, so the more pallets you store, the lower your rate per pallet. Tell our {CALC} how many pallets you have and we email you a rate sheet straight away."),
     LEAD, HACCP,
     ("Can I get the first month free?",
      "New customers can get their first month of pallet storage free for up to 50 pallets. The offer requires a minimum six-month agreement. Outside of that promotion, there is no minimum contract length."),
