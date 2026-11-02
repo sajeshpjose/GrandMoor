@@ -78,26 +78,36 @@ async function buildRateSheetPdf({ quote, contact, issued = new Date() }) {
   text(contact.name, MARGIN, y, { size: 10 });
   text(`${VALID_DAYS} days from issue`, 450, y, { size: 8.5, color: GREY });
 
-  // Estimate box
-  y -= 22;
-  const boxH = 112;
-  rect(MARGIN, y - boxH, PAGE_W - MARGIN * 2, boxH, NAVY);
-  text('YOUR MONTHLY STORAGE ESTIMATE', MARGIN + 18, y - 24, { font: bold, size: 8.5, color: PEACH });
-  text(money(quote.monthly), MARGIN + 18, y - 62, { font: bold, size: 32, color: WHITE });
-  text('per month, CAD, before taxes', MARGIN + 18, y - 80, { size: 9, color: PEACH });
-  const rows = [];
-  if (nRegular) rows.push([`${nRegular.toLocaleString('en-CA')} regular pallet${nRegular === 1 ? '' : 's'}`, `${money(quote.regularRate)} each`]);
-  if (nOversized) rows.push([`${nOversized.toLocaleString('en-CA')} oversized pallet${nOversized === 1 ? '' : 's'}`, `${money(quote.oversizedRate)} each`]);
-  let ry = y - 30;
-  for (const [label, val] of rows) {
-    text(label, 330, ry, { size: 9.5, color: WHITE });
-    textRight(val, PAGE_W - MARGIN - 18, ry, { font: bold, size: 9.5, color: WHITE });
-    ry -= 17;
+  // Line items
+  y -= 34;
+  const R = PAGE_W - MARGIN;
+  const cols = { pallets: 330, rate: 450 };
+  text('DESCRIPTION', MARGIN, y, { font: bold, size: 8, color: GREY });
+  textRight('PALLETS', cols.pallets, y, { font: bold, size: 8, color: GREY });
+  textRight('RATE / MONTH', cols.rate, y, { font: bold, size: 8, color: GREY });
+  textRight('AMOUNT', R, y, { font: bold, size: 8, color: GREY });
+  y -= 8;
+  rect(MARGIN, y, R - MARGIN, 1.2, NAVY);
+  const items = [];
+  if (nRegular) items.push(['Pallet storage, regular size', nRegular, quote.regularRate]);
+  if (nOversized) items.push(['Pallet storage, oversized', nOversized, quote.oversizedRate]);
+  for (const [label, n, rate] of items) {
+    y -= 20;
+    text(label, MARGIN, y, { size: 10 });
+    textRight(n.toLocaleString('en-CA'), cols.pallets, y, { size: 10 });
+    textRight(money(rate), cols.rate, y, { size: 10 });
+    textRight(money(n * rate), R, y, { size: 10 });
+    y -= 8;
+    rect(MARGIN, y, R - MARGIN, 0.5, hex('#d6d3c9'));
   }
-  text(`${pallets.toLocaleString('en-CA')} pallet${pallets === 1 ? '' : 's'} in total`, 330, y - boxH + 14, { size: 8.5, color: PEACH });
+  y -= 22;
+  text('Monthly storage estimate', 330 - 60, y, { font: bold, size: 10.5 });
+  textRight(money(quote.monthly), R, y, { font: bold, size: 13 });
+  y -= 13;
+  textRight('CAD, per month, before taxes', R, y, { size: 8.5, color: GREY });
 
   // Terms
-  y -= boxH + 34;
+  y -= 34;
   text('WHAT THIS RATE SHEET ASSUMES', MARGIN, y, { font: bold, size: 8.5, color: GREY });
   y -= 6;
   const notes = [

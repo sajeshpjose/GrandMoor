@@ -26,6 +26,9 @@ function describePallets(q) {
 
 function emailBodies({ quote, contact, validUntil, replyTo }) {
   const first = contact.name.split(' ')[0];
+  const items = [];
+  if (quote.regular) items.push(['Pallet storage, regular size', quote.regular, quote.regularRate]);
+  if (quote.oversized) items.push(['Pallet storage, oversized', quote.oversized, quote.oversizedRate]);
   const summary = `${describePallets(quote)} at ${money(quote.monthly)} per month`;
   const text = [
     `Hi ${first},`,
@@ -53,10 +56,11 @@ function emailBodies({ quote, contact, validUntil, replyTo }) {
 <tr><td style="padding:28px">
 <p style="margin:0 0 16px;font-size:16px">Hi ${esc(first)},</p>
 <p style="margin:0 0 20px;font-size:15px;line-height:1.6">Thanks for using the GrandMoor rate calculator. Your rate sheet is attached as a PDF.</p>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#16232b"><tr><td style="padding:20px 24px">
-<div style="font-size:11px;letter-spacing:1.5px;color:#ffba95">YOUR MONTHLY STORAGE ESTIMATE</div>
-<div style="font-size:30px;font-weight:bold;color:#ffffff;margin:6px 0 4px">${esc(money(quote.monthly))}</div>
-<div style="font-size:13px;color:#ffba95">${esc(describePallets(quote))}, before taxes</div></td></tr></table>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="font-size:14px;border-collapse:collapse">
+<tr style="color:#5d676d;font-size:11px;letter-spacing:1px"><td style="padding:0 0 6px;border-bottom:2px solid #16232b">DESCRIPTION</td><td align="right" style="padding:0 0 6px;border-bottom:2px solid #16232b">PALLETS</td><td align="right" style="padding:0 0 6px;border-bottom:2px solid #16232b">RATE / MONTH</td><td align="right" style="padding:0 0 6px;border-bottom:2px solid #16232b">AMOUNT</td></tr>
+${items.map((i) => `<tr><td style="padding:10px 0;border-bottom:1px solid #d6d3c9">${i[0]}</td><td align="right" style="border-bottom:1px solid #d6d3c9">${i[1]}</td><td align="right" style="border-bottom:1px solid #d6d3c9">${esc(money(i[2]))}</td><td align="right" style="border-bottom:1px solid #d6d3c9">${esc(money(i[1] * i[2]))}</td></tr>`).join('')}
+<tr><td colspan="3" style="padding:14px 0 0;font-weight:bold">Monthly storage estimate</td><td align="right" style="padding:14px 0 0;font-weight:bold;font-size:16px">${esc(money(quote.monthly))}</td></tr>
+<tr><td colspan="4" align="right" style="font-size:12px;color:#5d676d;padding-top:2px">CAD, per month, before taxes</td></tr></table>
 <p style="margin:20px 0 0;font-size:14px;line-height:1.6">This rate sheet assumes at least <strong>${quote.tier.min} pallet${quote.tier.min === 1 ? '' : 's'}</strong> in storage and is valid for <strong>${VALID_DAYS} days</strong>, until <strong>${esc(validUntil)}</strong>.</p>
 <p style="margin:16px 0 0;font-size:14px;line-height:1.6;background:#edebe4;padding:14px 16px;border-left:3px solid #ff5b04"><strong>Other services.</strong> We also offer Container Destuffing, Pick and Pack, Final Mile Delivery, and Amazon / Marketplace Fulfillment. Pricing depends on your number of orders, number of SKUs and item weight. Call <a href="tel:+18885056667" style="color:#ff5b04">+1 888 505 6667</a>, email <a href="mailto:info@grandmoor.com" style="color:#ff5b04">info@grandmoor.com</a> or fill in our <a href="https://grandmoor.ca/qualify" style="color:#ff5b04">qualifier form</a> for details.</p>
 <p style="margin:16px 0 0;font-size:14px;line-height:1.6">Got any questions? Please email <a href="mailto:info@grandmoor.com" style="color:#ff5b04">info@grandmoor.com</a> (or just reply to this email) or call <a href="tel:+18885056667" style="color:#ff5b04">+1 888 505 6667</a>.</p>
