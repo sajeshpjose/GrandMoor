@@ -62,6 +62,11 @@ const files = fs.readdirSync(postsDir).filter(f => f.endsWith('.md'));
 // Collect summary data for each post so we can rebuild the blog listing page below
 const posts = [];
 
+// Every post, from either source, is normalised to { slug, data, htmlContent, readTime }
+// and rendered by the same template below.
+const entries = [];
+
+// Source 1: Markdown posts written in Decap CMS (content/blog/posts/*.md)
 files.forEach(file => {
   const filePath = path.join(postsDir, file);
   const fileContent = fs.readFileSync(filePath, 'utf-8');
@@ -72,7 +77,6 @@ files.forEach(file => {
   // Generate slug from filename (keep the date prefix — it's part of the
   // published URL, e.g. /blog/2024-09-12-why-freight-forwarders-own-warehouse)
   const slug = file.replace(/\.md$/, '');
-  const htmlFileName = file.replace(/\.md$/, '.html');
   const readTime = Math.ceil(content.split(' ').length / 200);
 
   // The page template already renders the post title as the H1, so drop a
@@ -82,14 +86,61 @@ files.forEach(file => {
     .replace(/^\s*# .*(\r?\n)+/, '')
     .replace(/^# (.*)$/gm, '## $1');
 
-  // Convert markdown to HTML
-  const htmlContent = markdownToHtml(body);
+  entries.push({ slug, data, htmlContent: markdownToHtml(body), readTime });
+});
+
+// Source 2: articles written by Soro.ai, synced by scripts/sync-soro.js into
+// content/blog/soro/*.json. Their content is already HTML.
+const soroDir = path.join(__dirname, '..', 'content', 'blog', 'soro');
+if (fs.existsSync(soroDir)) {
+  fs.readdirSync(soroDir).filter(f => f.endsWith('.json')).forEach(file => {
+    const a = JSON.parse(fs.readFileSync(path.join(soroDir, file), 'utf-8'));
+    if (!a.slug || !a.title || !a.content) return;
+    const html = cleanSoroHtml(a.content, a.title);
+    const words = html.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length;
+    entries.push({
+      slug: a.slug,
+      data: {
+        title: a.title,
+        description: a.excerpt || '',
+        date: a.isoDate,
+        author: 'Grandmoor Inc.',
+        category: 'Insights',
+        image: a.image || '',
+        tags: [],
+      },
+      htmlContent: html,
+      readTime: Math.max(1, Math.ceil(words / 200)),
+    });
+  });
+}
+
+// Make Soro's HTML safe and consistent with the page template: no scripts,
+// iframes or inline event handlers; one H1 per page (the template's).
+function cleanSoroHtml(html, title) {
+  let out = String(html)
+    .replace(/<script[\s\S]*?<\/script>/gi, '')
+    .replace(/<style[\s\S]*?<\/style>/gi, '')
+    .replace(/<iframe[\s\S]*?<\/iframe>/gi, '')
+    .replace(/\son[a-z]+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, '')
+    .replace(/(href|src)\s*=\s*(["'])\s*javascript:[^"']*\2/gi, '$1="#"');
+  // Drop a leading heading that just repeats the title, then demote any H1s
+  const lead = out.match(/^\s*<h1[^>]*>([\s\S]*?)<\/h1>/i);
+  if (lead && lead[1].replace(/<[^>]+>/g, '').trim().toLowerCase() === String(title).trim().toLowerCase()) {
+    out = out.slice(lead[0].length);
+  }
+  return out.replace(/<h1(\s[^>]*)?>/gi, '<h2$1>').replace(/<\/h1>/gi, '</h2>');
+}
+
+entries.forEach(({ slug, data, htmlContent, readTime }) => {
+  const htmlFileName = `${slug}.html`;
 
   // SEO fields. `seoTitle` in frontmatter overrides the <title> when the
   // headline is too long for search results (aim for 60 characters or fewer).
   const canonical = `${SITE}/blog/${slug}`;
   const description = (data.description || '').replace(/\s+/g, ' ').trim();
-  const fullTitle = data.seoTitle || `${data.title} | Grandmoor`;
+  // Add the brand suffix only when the result still fits in ~60 characters
+  const fullTitle = data.seoTitle || (`${data.title} | Grandmoor`.length <= 60 ? `${data.title} | Grandmoor` : data.title);
   const image = data.image ? (data.image.startsWith('http') ? data.image : SITE + data.image) : DEFAULT_IMAGE;
   const isoDate = data.date ? new Date(data.date).toISOString() : '';
   const authorName = data.author || 'Grandmoor Inc.';
@@ -181,7 +232,7 @@ ${JSON.stringify(jsonLd, null, 2)}
         .blog-category {
             display: inline-block;
             background: #f0f0f0;
-            color: #667eea;
+            color: #c2410c;
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 0.85rem;
@@ -208,7 +259,7 @@ ${JSON.stringify(jsonLd, null, 2)}
             line-height: 1.8;
         }
         .blog-container a {
-            color: #667eea;
+            color: #c2410c;
             text-decoration: none;
         }
         .blog-container a:hover {
@@ -222,7 +273,7 @@ ${JSON.stringify(jsonLd, null, 2)}
         .back-link {
             display: inline-block;
             margin-bottom: 30px;
-            color: #667eea;
+            color: #c2410c;
             font-weight: 600;
         }
         .blog-container ul, .blog-container ol {
@@ -272,7 +323,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <div class="blog-meta">
             <span class="blog-category">${data.category || 'Blog'}</span>
-            <span>📅 <time datetime="${isoDate}">${new Date(data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time></span>
+            <span>📅 <time datetime="${isoDate}">${new Date(data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/Toronto' })}</time></span>
             <span>⏱️ ${readTime} min read</span>
         </div>
 
@@ -314,6 +365,7 @@ const categoryEmoji = {
   'How-To': '🛠️',
   'Market Insight': '📊',
   'Operations': '📦',
+  'Insights': '📰',
 };
 
 posts.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -321,7 +373,7 @@ posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 const cardsHtml = posts.map(post => {
   const emoji = categoryEmoji[post.category] || '📄';
   const dateFormatted = post.date
-    ? new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+    ? new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/Toronto' })
     : '';
   const tagsHtml = post.tags
     .slice(0, 3)
@@ -329,8 +381,8 @@ const cardsHtml = posts.map(post => {
     .join('\n');
 
   const bannerHtml = post.image
-    ? `<img src="${post.image}" alt="${post.title}" style="width:100%;height:200px;object-fit:cover;display:block;">`
-    : `<div style="width:100%;height:200px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);display:flex;align-items:center;justify-content:center;color:white;font-size:2rem;font-weight:700;">${emoji}</div>`;
+    ? `<img src="${post.image}" alt="${post.title}" style="width:100%;height:180px;object-fit:cover;display:block;">`
+    : `<div class="blog-card-fallback"><span>${post.category}</span></div>`;
 
   return `            <article class="blog-card">
                 <div class="blog-card-image" style="padding:0;overflow:hidden;">${bannerHtml}</div>

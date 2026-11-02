@@ -38,6 +38,20 @@
   status = 404
   force = true
 
+# Old Soro widget blog -> static blog pages (articles are now synced into /blog)
+[[redirects]]
+  from = "/blog-widget"
+  to = "/blog/:post"
+  status = 301
+  force = true
+  query = {post = ":post"}
+
+[[redirects]]
+  from = "/blog-widget"
+  to = "/blog"
+  status = 301
+  force = true
+
 # Legacy .html URLs -> current clean URLs
 [[redirects]]
   from = "/offerings.html"
