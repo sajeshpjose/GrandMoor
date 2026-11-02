@@ -1,0 +1,54 @@
+name: Sync Soro blog articles
+
+# Pulls new articles from Soro.ai once a day, turns them into static pages at
+# /blog/<slug>, updates the blog index and sitemap, and commits the result.
+# Netlify deploys the commit like any other push.
+on:
+  schedule:
+    - cron: '17 13 * * *'   # daily, 8:17 a.m. Toronto (EST) / 9:17 a.m. (EDT)
+  workflow_dispatch:
+    inputs:
+      refresh:
+        description: 'Re-download every article (picks up edits made in Soro)'
+        type: boolean
+        default: false
+  push:
+    branches:
+      - soro-sync   # test runs on the feature branch; remove after merge
+
+concurrency:
+  group: soro-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install --no-save gray-matter
+
+      - name: Fetch articles from Soro
+        run: node scripts/sync-soro.js ${{ inputs.refresh && '--refresh' || '' }}
+
+      - name: Build blog pages, index and sitemap
+        run: node scripts/md-to-html.js
+
+      - name: Commit changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/blog/soro blog sitemap.xml
+          if git diff --staged --quiet; then
+            echo "No new articles."
+          else
+            git commit -m "Sync Soro blog articles"
+            git push origin HEAD:${GITHUB_REF_NAME}
+          fi
