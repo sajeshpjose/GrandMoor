@@ -2638,6 +2638,7 @@ textarea { min-height: 120px; font-weight: 400; }
     background: var(--navy-dark);
     color: var(--white);
     border-radius: 8px;
+    border: 2px solid var(--orange-accent);
     padding: var(--space-4);
   }
   .hero-calc-label { font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--peach); margin-bottom: var(--space-2); }
