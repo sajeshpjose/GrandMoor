@@ -88,7 +88,6 @@ async function buildRateSheetPdf({ quote, contact, issued = new Date() }) {
   const rows = [];
   if (nRegular) rows.push([`${nRegular.toLocaleString('en-CA')} regular pallet${nRegular === 1 ? '' : 's'}`, `${money(quote.regularRate)} each`]);
   if (nOversized) rows.push([`${nOversized.toLocaleString('en-CA')} oversized pallet${nOversized === 1 ? '' : 's'}`, `${money(quote.oversizedRate)} each`]);
-  rows.push([`Expected orders per month`, `${quote.inbound.toLocaleString('en-CA')} in / ${quote.outbound.toLocaleString('en-CA')} out`]);
   let ry = y - 30;
   for (const [label, val] of rows) {
     text(label, 330, ry, { size: 9.5, color: WHITE });

@@ -33,7 +33,6 @@ function emailBodies({ quote, contact, validUntil, replyTo }) {
     `Thanks for using the GrandMoor rate calculator. Your rate sheet is attached.`,
     '',
     `Your estimate: ${summary}, before taxes.`,
-    `Expected orders: ${quote.inbound} inbound and ${quote.outbound} outbound per month.`,
     '',
     `The rate sheet assumes at least ${quote.tier.min} pallet${quote.tier.min === 1 ? '' : 's'} in storage and is valid for ${VALID_DAYS} days, until ${validUntil}.`,
     '',
@@ -116,7 +115,6 @@ exports.handler = async (event) => {
   const leadMessage = [
     'Rate calculator request',
     `Pallets: ${describePallets(quote)}`,
-    `Orders per month: ${quote.inbound} inbound, ${quote.outbound} outbound`,
     `Quoted: ${money(quote.regularRate)} regular${quote.oversized ? `, ${money(quote.oversizedRate)} oversized` : ''} per pallet per month (tier ${tierLabel(quote.tier)})`,
     `Estimated monthly storage: ${money(quote.monthly)}`,
     `Rate sheet valid until ${validUntil}`,

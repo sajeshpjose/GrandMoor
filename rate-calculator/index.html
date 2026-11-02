@@ -36,7 +36,7 @@ src="https://www.facebook.com/tr?id=1112543178032278&ev=PageView&noscript=1"
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pallet Storage Rate Calculator | Grandmoor Mississauga</title>
-  <meta name="description" content="Get your pallet storage rate in minutes. Tell us how many pallets you store and your monthly orders, and we email a branded GrandMoor rate sheet instantly.">
+  <meta name="description" content="Get your pallet storage rate in minutes. Tell us how many pallets you store, and we email a branded GrandMoor rate sheet instantly.">
   <link rel="canonical" href="https://grandmoor.ca/rate-calculator">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Grandmoor">
@@ -155,23 +155,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
               <span class="field-error" id="oversizedError"></span>
             </div>
 
-            <div class="form-group">
-              <label>How many orders do you expect each month? *</label>
-              <div class="rc-row">
-                <div>
-                  <label for="inbound" style="font-weight:400;font-size:14px;margin-bottom:var(--space-2)">Inbound (received)</label>
-                  <input type="number" id="inbound" inputmode="numeric" min="0" step="1" placeholder="e.g. 4" required>
-                  <span class="field-error" id="inboundError"></span>
-                </div>
-                <div>
-                  <label for="outbound" style="font-weight:400;font-size:14px;margin-bottom:var(--space-2)">Outbound (shipped)</label>
-                  <input type="number" id="outbound" inputmode="numeric" min="0" step="1" placeholder="e.g. 20" required>
-                  <span class="field-error" id="outboundError"></span>
-                </div>
-              </div>
-              <p class="rc-hint">A rough estimate is fine.</p>
-            </div>
-
             <div class="rc-actions">
               <button type="submit" class="cta-button">Continue</button>
             </div>
@@ -284,8 +267,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           var o = intOf('oversized');
           ok = setError('oversized', o >= 1 && o < pallets ? '' : 'Enter a number between 1 and ' + (pallets > 1 ? pallets - 1 : 'your total') + '.') && ok;
         } else setError('oversized', '');
-        ok = setError('inbound', intOf('inbound') >= 0 ? '' : 'Enter a number (0 or more).') && ok;
-        ok = setError('outbound', intOf('outbound') >= 0 ? '' : 'Enter a number (0 or more).') && ok;
         return ok;
       }
 
@@ -329,7 +310,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             pallets: $('pallets').value, size: selectedSize(), oversized: $('oversized').value,
-            inbound: $('inbound').value, outbound: $('outbound').value,
             name: $('name').value, company: $('company').value, email: $('email').value, phone: $('phone').value,
             website: $('website').value, token: ts.value, attribution: attribution()
           })

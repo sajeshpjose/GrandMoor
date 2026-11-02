@@ -14,7 +14,6 @@ const TIERS = [
 const OVERSIZE_SURCHARGE = 0.25;
 const VALID_DAYS = 14;
 const MAX_PALLETS = 100000;
-const MAX_ORDERS = 1000000;
 
 const REGULAR_PALLET = '48" x 40" pallet, up to 60" tall (including the pallet) and up to 2,000 lb';
 
@@ -47,12 +46,6 @@ function buildQuote(input) {
     }
   } else return { error: 'Choose regular, oversized or mixed pallets.' };
 
-  const inbound = toInt(input.inbound);
-  const outbound = toInt(input.outbound);
-  if (!(inbound >= 0 && inbound <= MAX_ORDERS) || !(outbound >= 0 && outbound <= MAX_ORDERS)) {
-    return { error: 'Enter your expected monthly inbound and outbound orders (0 or more).' };
-  }
-
   const tier = tierFor(pallets);
   const regular = pallets - oversized;
   const regularRate = tier.rate;
@@ -60,7 +53,7 @@ function buildQuote(input) {
   const monthly = round2(regular * regularRate + oversized * oversizedRate);
 
   return {
-    quote: { pallets, size, regular, oversized, inbound, outbound, tier, regularRate, oversizedRate, monthly }
+    quote: { pallets, size, regular, oversized, tier, regularRate, oversizedRate, monthly }
   };
 }
 
