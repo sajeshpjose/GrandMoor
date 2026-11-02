@@ -1,13 +1,18 @@
 # Grandmoor Inc.
 
-> Grandmoor is a founder-led third-party logistics (3PL) warehouse in Mississauga, Ontario, serving businesses across the Greater Toronto Area. It offers pallet storage with a single-pallet minimum, contract warehousing without a long-term lease, e-commerce order fulfillment, cross-docking, container destuffing and inventory management.
+> Grandmoor is a founder-led, HACCP-certified third-party logistics (3PL) warehouse in Mississauga, Ontario, serving businesses across the Greater Toronto Area. It offers pallet storage with a single-pallet minimum, contract warehousing without a long-term lease, e-commerce order fulfillment, cross-docking, container destuffing and inventory management.
 
 - Address: 3500 Ridgeway Drive, Mississauga, ON L5L 0A2, Canada
 - Phone: 1-888-505-6667 (toll-free), 647-237-3050
 - Email: info@grandmoor.com
 - Hours: Monday to Saturday, 9:00 to 18:00
 - Areas served: Mississauga, Toronto, Brampton, Etobicoke and the wider GTA
-- Facility: 27,000 sq ft warehouse with 6 dock doors and 24 ft clear height
+- Certification: HACCP-certified; most customers are food and beverage businesses
+- Accepted goods: all product types except hazardous materials
+- Minimums: no minimum pallet count; tiered per-pallet pricing by volume
+- Lead time: 8 hours' notice for inbound and outbound shipments
+- Contracts: no minimum contract length (first-month-free promotion requires a six-month minimum)
+- Facility: 27,000 sq ft warehouse with 6 dock doors, 24 ft clear height and ambient temperature-controlled storage
 - Location: near Toronto Pearson International Airport with access to Highways 401, 403, 407 and the QEW
 
 ## Services

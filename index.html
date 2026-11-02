@@ -28,7 +28,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/styles.css?v=19">
+  <link rel="stylesheet" href="/css/styles.css?v=20">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -61,6 +61,65 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     "areaServed": ["Mississauga", "Toronto", "Brampton", "Etobicoke", "Greater Toronto Area"]
   }
   </script>
+
+  <!-- FAQ-SCHEMA:START -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does Grandmoor do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Grandmoor is a HACCP-certified third-party logistics (3PL) warehouse in Mississauga. We offer pallet storage, contract warehousing, e-commerce order fulfillment, cross-docking, container destuffing and inventory management for businesses across the Greater Toronto Area, with most of our customers in food and beverage."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a minimum number of pallets?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. There is no minimum pallet count, so you can store a single pallet or several hundred. Pricing is tiered by volume, which means your per-pallet rate depends on how many pallets you store. Use our rate calculator to get your rate by email in a few minutes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much notice do you need for inbound and outbound shipments?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We need just 8 hours' notice for both inbound receiving and outbound shipments. Let us know what is arriving or leaving and when, and our team schedules the dock time so your freight is not left waiting."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What types of products do you accept?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We accept all types of goods except hazardous materials. Most of our customers are food and beverage companies, and we also store and handle products for importers, distributors and e-commerce brands across the GTA."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a minimum contract length?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. There is no minimum contract length for storage or 3PL services. The only exception is our first-month-free promotion, which requires a minimum six-month agreement."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where is the warehouse and when is it open?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our 27,000 sq ft facility is at 3500 Ridgeway Drive, Mississauga, ON L5L 0A2, with direct access to Highways 401, 403, 407 and the QEW and minutes from Toronto Pearson. We are open Monday to Saturday, 9 a.m. to 6 p.m."
+      }
+    }
+  ]
+}
+  </script>
+  <!-- FAQ-SCHEMA:END -->
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -314,7 +373,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 
   <!-- FOOTER CONTAINER - Loaded dynamically from footer.html -->
-  <div id="footer-container"></div>
+  <!-- FAQ:START -->
+  <section class="faq-section" aria-labelledby="faq-title">
+    <div class="container">
+      <h2 id="faq-title" class="faq-title">Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary><h3>What does Grandmoor do?</h3></summary>
+          <p>Grandmoor is a HACCP-certified third-party logistics (3PL) warehouse in Mississauga. We offer pallet storage, contract warehousing, e-commerce order fulfillment, cross-docking, container destuffing and inventory management for businesses across the Greater Toronto Area, with most of our customers in food and beverage.</p>
+        </details>
+        <details class="faq-item">
+          <summary><h3>Is there a minimum number of pallets?</h3></summary>
+          <p>No. There is no minimum pallet count, so you can store a single pallet or several hundred. Pricing is tiered by volume, which means your per-pallet rate depends on how many pallets you store. Use our <a href="/rate-calculator">rate calculator</a> to get your rate by email in a few minutes.</p>
+        </details>
+        <details class="faq-item">
+          <summary><h3>How much notice do you need for inbound and outbound shipments?</h3></summary>
+          <p>We need just 8 hours' notice for both inbound receiving and outbound shipments. Let us know what is arriving or leaving and when, and our team schedules the dock time so your freight is not left waiting.</p>
+        </details>
+        <details class="faq-item">
+          <summary><h3>What types of products do you accept?</h3></summary>
+          <p>We accept all types of goods except hazardous materials. Most of our customers are food and beverage companies, and we also store and handle products for importers, distributors and e-commerce brands across the GTA.</p>
+        </details>
+        <details class="faq-item">
+          <summary><h3>Is there a minimum contract length?</h3></summary>
+          <p>No. There is no minimum contract length for storage or 3PL services. The only exception is our first-month-free promotion, which requires a minimum six-month agreement.</p>
+        </details>
+        <details class="faq-item">
+          <summary><h3>Where is the warehouse and when is it open?</h3></summary>
+          <p>Our 27,000 sq ft facility is at 3500 Ridgeway Drive, Mississauga, ON L5L 0A2, with direct access to Highways 401, 403, 407 and the QEW and minutes from Toronto Pearson. We are open Monday to Saturday, 9 a.m. to 6 p.m.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+<!-- FAQ:END -->
+    <div id="footer-container"></div>
 
   <script src="/js/main.js?v=2"></script>
   <script>
