@@ -39,7 +39,7 @@ function emailBodies({ quote, contact, validUntil, replyTo }) {
     '',
     `We also offer Container Destuffing, Pick and Pack, Final Mile Delivery, and Amazon / Marketplace Fulfillment. Pricing depends on your number of orders, number of SKUs and item weight. Call +1 888 505 6667, email info@grandmoor.com or fill in our qualifier form at https://grandmoor.ca/qualify for details.`,
     '',
-    `Questions, or ready to start? Reply to this email or call +1 888 505 6667.`,
+    `Got any questions? Please email info@grandmoor.com (or just reply to this email) or call +1 888 505 6667.`,
     '',
     'GrandMoor Warehousing & Logistics',
     '3500 Ridgeway Drive, Mississauga, ON L5L 0A2'
@@ -60,7 +60,7 @@ function emailBodies({ quote, contact, validUntil, replyTo }) {
 <div style="font-size:13px;color:#ffba95">${esc(describePallets(quote))}, before taxes</div></td></tr></table>
 <p style="margin:20px 0 0;font-size:14px;line-height:1.6">This rate sheet assumes at least <strong>${quote.tier.min} pallet${quote.tier.min === 1 ? '' : 's'}</strong> in storage and is valid for <strong>${VALID_DAYS} days</strong>, until <strong>${esc(validUntil)}</strong>.</p>
 <p style="margin:16px 0 0;font-size:14px;line-height:1.6;background:#edebe4;padding:14px 16px;border-left:3px solid #ff5b04"><strong>Other services.</strong> We also offer Container Destuffing, Pick and Pack, Final Mile Delivery, and Amazon / Marketplace Fulfillment. Pricing depends on your number of orders, number of SKUs and item weight. Call <a href="tel:+18885056667" style="color:#ff5b04">+1 888 505 6667</a>, email <a href="mailto:info@grandmoor.com" style="color:#ff5b04">info@grandmoor.com</a> or fill in our <a href="https://grandmoor.ca/qualify" style="color:#ff5b04">qualifier form</a> for details.</p>
-<p style="margin:16px 0 0;font-size:14px;line-height:1.6">Questions, or ready to start? Reply to this email or call <a href="tel:+18885056667" style="color:#ff5b04">+1 888 505 6667</a>.</p>
+<p style="margin:16px 0 0;font-size:14px;line-height:1.6">Got any questions? Please email <a href="mailto:info@grandmoor.com" style="color:#ff5b04">info@grandmoor.com</a> (or just reply to this email) or call <a href="tel:+18885056667" style="color:#ff5b04">+1 888 505 6667</a>.</p>
 </td></tr>
 <tr><td style="padding:16px 28px;background:#edebe4;font-size:12px;color:#5d676d">GrandMoor Warehousing &amp; Logistics<br>3500 Ridgeway Drive, Mississauga, ON L5L 0A2</td></tr>
 </table></td></tr></table></body></html>`;

@@ -128,7 +128,7 @@ async function buildRateSheetPdf({ quote, contact, issued = new Date() }) {
 
   // Footer
   rect(0, 0, PAGE_W, 62, NAVY);
-  text('Ready to get started? Call +1 888 505 6667 or reply to the email this came with.', MARGIN, 38, { font: bold, size: 9.5, color: WHITE });
+  text('Got any questions? Email info@grandmoor.com or call +1 888 505 6667.', MARGIN, 38, { font: bold, size: 9.5, color: WHITE });
   text('GrandMoor Warehousing & Logistics  |  3500 Ridgeway Drive, Mississauga, ON L5L 0A2  |  grandmoor.ca', MARGIN, 22, { size: 8, color: PEACH });
 
   return Buffer.from(await pdf.save());
