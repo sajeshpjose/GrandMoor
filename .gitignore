@@ -29,7 +29,7 @@ build/
 
 # Netlify specific
 .netlify/
-functions/
+/functions/
 
 # OS specific
 .AppleDouble

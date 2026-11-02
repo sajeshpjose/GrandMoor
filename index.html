@@ -28,7 +28,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/styles.css?v=17">
+  <link rel="stylesheet" href="/css/styles.css?v=19">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -112,6 +112,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="/contact" class="cta-button-primary">Request for quote</a>
       <p>GrandMoor delivers third-party logistics solutions from our Mississauga facility, positioned in the heart of the GTA's logistics network, close to Toronto Pearson International Airport and the region's major highway corridors.</p>
     </div>
+    <!-- Rate calculator card: desktop hero. Phones and small laptops get the floating bar below. -->
+    <aside class="hero-calc" aria-label="Rate calculator">
+      <p class="hero-calc-label">Rate calculator</p>
+      <h2>Get your pallet storage rate</h2>
+      <p>Answer a few quick questions. We email your rate sheet instantly.</p>
+      <a href="/rate-calculator" class="cta-button-primary">Get my rate</a>
+    </aside>
   </section>
 
   <!-- INTRO SECTION -->
@@ -300,9 +307,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <img src="/images/warehouse-section-2.jpg" alt="Warehouse facility">
   </section>
 
+  <!-- RATE CALCULATOR FLOATING BAR (phones and small laptops) -->
+  <div class="calc-bar" id="calcBar">
+    <a href="/rate-calculator" class="calc-bar-link"><strong>Pallet storage rate in 1 minute</strong><span>Get my rate &rarr;</span></a>
+    <button type="button" class="calc-bar-close" id="calcBarClose" aria-label="Dismiss">&times;</button>
+  </div>
+
   <!-- FOOTER CONTAINER - Loaded dynamically from footer.html -->
   <div id="footer-container"></div>
 
   <script src="/js/main.js?v=2"></script>
+  <script>
+    // Rate calculator card: count clicks, and keep UTMs/click IDs so the calculator page can report the source.
+    (function () {
+      try {
+        var keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid'];
+        var p = new URLSearchParams(window.location.search), saved = {}, fresh = false;
+        try { saved = JSON.parse(sessionStorage.getItem('gm_attr') || '{}'); } catch (e) {}
+        keys.forEach(function (k) { if (p.get(k)) { saved[k] = p.get(k); fresh = true; } });
+        if (fresh) sessionStorage.setItem('gm_attr', JSON.stringify(saved));
+        document.querySelectorAll('.hero-calc a, .calc-bar-link').forEach(function (link) {
+          link.addEventListener('click', function () {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: 'rate_calculator_card_click', location: link.classList.contains('calc-bar-link') ? 'home_floating_bar' : 'home_hero_card' });
+          });
+        });
+        var bar = document.getElementById('calcBar');
+        try { if (sessionStorage.getItem('gm_calc_bar_closed')) bar.hidden = true; } catch (e) {}
+        document.getElementById('calcBarClose').addEventListener('click', function () {
+          bar.hidden = true;
+          try { sessionStorage.setItem('gm_calc_bar_closed', '1'); } catch (e) {}
+        });
+      } catch (e) {}
+    })();
+  </script>
 </body>
 </html>

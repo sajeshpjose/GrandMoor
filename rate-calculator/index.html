@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MSSXCT64');</script>
+<!-- End Google Tag Manager -->
+<!-- Google tag (gtag.js) for Google Ads conversion tracking -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18371717160"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18371717160');
+</script>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1112543178032278');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1112543178032278&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pallet Storage Rate Calculator | Grandmoor Mississauga</title>
+  <meta name="description" content="Get your pallet storage rate in minutes. Tell us how many pallets you store and your monthly orders, and we email a branded GrandMoor rate sheet instantly.">
+  <link rel="canonical" href="https://grandmoor.ca/rate-calculator">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Grandmoor">
+  <meta property="og:locale" content="en_CA">
+  <meta property="og:title" content="Pallet Storage Rate Calculator | Grandmoor Mississauga">
+  <meta property="og:description" content="Get your pallet storage rate in minutes. We email a branded GrandMoor rate sheet instantly.">
+  <meta property="og:url" content="https://grandmoor.ca/rate-calculator">
+  <meta property="og:image" content="https://grandmoor.ca/images/hero-banner-3.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css?v=19">
+  <style>
+    /* Rate calculator: reuses the site's form fields; only the step UI is new. */
+    .rc-wrap { max-width: 640px; margin: 0 auto; }
+    .rc-offer { background: var(--peach); color: var(--navy-dark); border-radius: 8px; padding: var(--space-3) var(--space-4); margin-bottom: var(--space-4); font-size: 15px; line-height: 1.5; }
+    .rc-offer a { color: var(--navy-dark); font-weight: 500; }
+    .rc-card { background: var(--white); border: 1px solid var(--light-beige); border-radius: 8px; padding: var(--space-6) var(--space-5); }
+    .rc-progress { display: flex; gap: var(--space-2); margin-bottom: var(--space-5); }
+    .rc-progress span { flex: 1; height: 4px; border-radius: 2px; background: var(--light-beige); }
+    .rc-progress span.on { background: var(--orange-accent); }
+    .rc-step-label { font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--orange-accent); margin-bottom: var(--space-2); }
+    .rc-card h2 { margin-bottom: var(--space-4); }
+    .rc-options { display: grid; gap: var(--space-2); }
+    .rc-option { display: flex; gap: var(--space-3); align-items: flex-start; padding: var(--space-3); border: 1px solid #ddd; border-radius: 4px; cursor: pointer; margin: 0; font-weight: 400; }
+    .rc-option input { width: auto; margin-top: 4px; accent-color: var(--orange-accent); }
+    .rc-option:has(input:checked) { border-color: var(--navy-dark); box-shadow: 0 0 0 3px rgba(22, 35, 43, 0.1); }
+    .rc-option strong { display: block; font-weight: 500; }
+    .rc-option small { display: block; color: #5d676d; font-size: 14px; line-height: 1.5; }
+    .rc-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+    .rc-hint { font-size: 14px; color: #5d676d; margin-top: var(--space-2); }
+    .rc-actions { display: flex; gap: var(--space-3); margin-top: var(--space-4); }
+    .rc-actions .cta-button { width: 100%; background-color: var(--navy-dark); color: var(--white); }
+    .rc-actions .rc-back { background: transparent; color: var(--navy-dark); border: 1px solid var(--navy-dark); width: auto; }
+    .rc-actions .cta-button[disabled] { opacity: 0.6; cursor: wait; }
+    .rc-instant { background: var(--cream); border-radius: 4px; padding: var(--space-3); margin-bottom: var(--space-4); font-size: 15px; }
+    .rc-form-error { color: #b3261e; font-size: 15px; margin-top: var(--space-3); }
+    .rc-form-error:empty { display: none; }
+    .rc-done { text-align: center; }
+    .rc-estimate { background: var(--navy-dark); color: var(--white); border-radius: 8px; padding: var(--space-5) var(--space-4); margin: var(--space-4) 0; }
+    .rc-estimate .rc-estimate-label { font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--peach); }
+    .rc-estimate .rc-estimate-amount { font-family: var(--font-serif); font-size: 48px; line-height: 1.1; margin: var(--space-2) 0; }
+    .rc-estimate .rc-estimate-note { color: var(--peach); font-size: 14px; }
+    .rc-hp { position: absolute; left: -9999px; height: 0; overflow: hidden; }
+    [hidden] { display: none !important; }
+    @media (max-width: 600px) {
+      .rc-card { padding: var(--space-5) var(--space-3); }
+      .rc-row { grid-template-columns: 1fr; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://grandmoor.ca/" },
+      { "@type": "ListItem", "position": 2, "name": "Rate Calculator", "item": "https://grandmoor.ca/rate-calculator" }
+    ]
+  }
+  </script>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MSSXCT64"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+  <!-- HEADER CONTAINER - Loaded dynamically from header.html -->
+  <div id="header-container"></div>
+
+  <!-- HERO SECTION -->
+  <section class="hero hero-compact">
+    <img src="/images/hero-banner-3.jpg" alt="" class="hero-image">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1>Pallet Storage Rate Calculator</h1>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="container">
+      <div class="rc-wrap">
+        <div class="rc-offer" id="rcOffer">
+          <strong>New customer?</strong> If your first order comes in November, you can get our November offer: first month free, up to 50 pallets. <a href="/first-month-free">See the offer</a>
+        </div>
+        <div class="rc-card" id="rcCard">
+
+          <div class="rc-progress" aria-hidden="true"><span class="on" id="bar1"></span><span id="bar2"></span></div>
+
+          <!-- STEP 1: STORAGE DETAILS -->
+          <form id="rcStep1" novalidate>
+            <p class="rc-step-label">Step 1 of 2</p>
+            <h2>Tell us what you need to store</h2>
+
+            <div class="form-group">
+              <label for="pallets">How many pallets will you store? *</label>
+              <input type="number" id="pallets" inputmode="numeric" min="1" step="1" placeholder="e.g. 40" required>
+              <span class="field-error" id="palletsError"></span>
+            </div>
+
+            <div class="form-group">
+              <label id="sizeLabel">What size are your pallets? *</label>
+              <div class="rc-options" role="radiogroup" aria-labelledby="sizeLabel">
+                <label class="rc-option"><input type="radio" name="size" value="regular" checked>
+                  <span><strong>Regular size</strong><small>48" x 40" pallet, up to 60" tall (including the pallet) and up to 2,000 lb.</small></span></label>
+                <label class="rc-option"><input type="radio" name="size" value="oversized">
+                  <span><strong>Oversized</strong><small>Larger or heavier than a regular pallet.</small></span></label>
+                <label class="rc-option"><input type="radio" name="size" value="mixed">
+                  <span><strong>A mix of both</strong><small>Some regular, some oversized.</small></span></label>
+              </div>
+              <span class="field-error" id="sizeError"></span>
+            </div>
+
+            <div class="form-group" id="oversizedGroup" hidden>
+              <label for="oversized">How many of those pallets are oversized? *</label>
+              <input type="number" id="oversized" inputmode="numeric" min="1" step="1">
+              <span class="field-error" id="oversizedError"></span>
+            </div>
+
+            <div class="form-group">
+              <label>How many orders do you expect each month? *</label>
+              <div class="rc-row">
+                <div>
+                  <label for="inbound" style="font-weight:400;font-size:14px;margin-bottom:var(--space-2)">Inbound (received)</label>
+                  <input type="number" id="inbound" inputmode="numeric" min="0" step="1" placeholder="e.g. 4" required>
+                  <span class="field-error" id="inboundError"></span>
+                </div>
+                <div>
+                  <label for="outbound" style="font-weight:400;font-size:14px;margin-bottom:var(--space-2)">Outbound (shipped)</label>
+                  <input type="number" id="outbound" inputmode="numeric" min="0" step="1" placeholder="e.g. 20" required>
+                  <span class="field-error" id="outboundError"></span>
+                </div>
+              </div>
+              <p class="rc-hint">A rough estimate is fine.</p>
+            </div>
+
+            <div class="rc-actions">
+              <button type="submit" class="cta-button">Continue</button>
+            </div>
+          </form>
+
+          <!-- STEP 2: CONTACT DETAILS -->
+          <form id="rcStep2" novalidate hidden>
+            <p class="rc-step-label">Step 2 of 2</p>
+            <h2>Where should we send your rate sheet?</h2>
+            <p class="rc-instant"><strong>You get it instantly.</strong> We email your GrandMoor rate sheet as a PDF the moment you submit.</p>
+
+            <div class="rc-hp" aria-hidden="true"><input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></div>
+
+            <div class="form-group">
+              <label for="name">Full Name *</label>
+              <input type="text" id="name" autocomplete="name" required>
+              <span class="field-error" id="nameError"></span>
+            </div>
+            <div class="form-group">
+              <label for="company">Company Name *</label>
+              <input type="text" id="company" autocomplete="organization" required>
+              <span class="field-error" id="companyError"></span>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" autocomplete="email" required>
+              <span class="field-error" id="emailError"></span>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" autocomplete="tel" required>
+              <span class="field-error" id="phoneError"></span>
+            </div>
+
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAAFlwwa0-s5KvFYYc" data-theme="light"></div>
+            <p class="rc-form-error" id="formError" role="alert"></p>
+
+            <div class="rc-actions">
+              <button type="button" class="cta-button rc-back" id="backBtn">Back</button>
+              <button type="submit" class="cta-button" id="submitBtn">Email me my rate sheet</button>
+            </div>
+          </form>
+
+          <!-- DONE -->
+          <div class="rc-done" id="rcDone" hidden>
+            <p class="rc-step-label">Rate sheet sent</p>
+            <h2>Check your inbox</h2>
+            <p>We emailed your rate sheet to <strong id="doneEmail"></strong>.</p>
+            <p class="rc-hint" style="margin-bottom:var(--space-3)">Your rate sheet covers <strong id="doneSummary"></strong>.</p>
+            <p class="rc-instant" style="text-align:left"><strong>Other services.</strong> We also offer Container Destuffing, Pick and Pack, Final Mile Delivery, and Amazon / Marketplace Fulfillment. Pricing depends on your number of orders, number of SKUs and item weight. <a href="tel:+18885056667">Call</a>, <a href="mailto:info@grandmoor.com">email</a> or <a href="/qualify">fill in our qualifier form</a> for details.</p>
+            <p class="rc-hint">Valid for 14 days, until <span id="doneValid"></span>. Can't find the email? Check your spam folder or call <a href="tel:+18885056667">+1 888 505 6667</a>.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER CONTAINER - Loaded dynamically from footer.html -->
+  <div id="footer-container"></div>
+
+  <script src="/js/main.js?v=2"></script>
+  <script>
+    (function () {
+      var $ = function (id) { return document.getElementById(id); };
+      var step1 = $('rcStep1'), step2 = $('rcStep2'), done = $('rcDone');
+      var sizeInputs = document.querySelectorAll('input[name="size"]');
+      var card = $('rcCard');
+
+      function setError(inputId, message) {
+        var input = $(inputId), err = $(inputId + 'Error');
+        if (input) input.classList.toggle('invalid', Boolean(message));
+        if (err) err.textContent = message || '';
+        return !message;
+      }
+      function intOf(id) { var v = $(id).value.trim(); return /^\d+$/.test(v) ? parseInt(v, 10) : NaN; }
+      function selectedSize() { return document.querySelector('input[name="size"]:checked').value; }
+      function show(el) { [step1, step2, done].forEach(function (s) { s.hidden = s !== el; }); card.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      // Anonymous funnel events for GTM/GA4. Nothing typed into a field is ever sent from here.
+      function track(name, params) { window.dataLayer = window.dataLayer || []; window.dataLayer.push(Object.assign({ event: name }, params || {})); }
+      // Where the visitor came from: UTMs and ad click IDs, kept for the session so they survive
+      // the hop from the home page card. Sent with the lead so sales can see the source.
+      var ATTR_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid'];
+      function attribution() {
+        var out = {}, saved = {};
+        try { saved = JSON.parse(sessionStorage.getItem('gm_attr') || '{}'); } catch (e) {}
+        var p = new URLSearchParams(window.location.search), fresh = false;
+        ATTR_KEYS.forEach(function (k) { if (p.get(k)) { saved[k] = p.get(k); fresh = true; } });
+        if (fresh) { try { sessionStorage.setItem('gm_attr', JSON.stringify(saved)); } catch (e) {} }
+        ATTR_KEYS.forEach(function (k) { if (saved[k]) out[k] = String(saved[k]).slice(0, 120); });
+        if (document.referrer) out.referrer = document.referrer.slice(0, 200);
+        return out;
+      }
+      // The November offer note only applies through November 30, 2026 (Toronto time).
+      if (Date.now() >= new Date('2026-12-01T00:00:00-05:00').getTime()) $('rcOffer').hidden = true;
+      track('rate_calculator_view');
+      var started = {};
+      function trackOnce(name, params) { if (!started[name]) { started[name] = true; track(name, params); } }
+      step1.addEventListener('input', function () { trackOnce('rate_calculator_start'); });
+      step2.addEventListener('input', function () { trackOnce('rate_calculator_contact_start'); });
+
+      sizeInputs.forEach(function (r) {
+        r.addEventListener('change', function () { $('oversizedGroup').hidden = selectedSize() !== 'mixed'; track('rate_calculator_size_selected', { pallet_size: selectedSize() }); });
+      });
+
+      function validateStep1() {
+        var pallets = intOf('pallets'), ok = true;
+        ok = setError('pallets', pallets >= 1 && pallets <= 100000 ? '' : 'Enter a whole number of pallets (1 or more).') && ok;
+        if (selectedSize() === 'mixed') {
+          var o = intOf('oversized');
+          ok = setError('oversized', o >= 1 && o < pallets ? '' : 'Enter a number between 1 and ' + (pallets > 1 ? pallets - 1 : 'your total') + '.') && ok;
+        } else setError('oversized', '');
+        ok = setError('inbound', intOf('inbound') >= 0 ? '' : 'Enter a number (0 or more).') && ok;
+        ok = setError('outbound', intOf('outbound') >= 0 ? '' : 'Enter a number (0 or more).') && ok;
+        return ok;
+      }
+
+      step1.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!validateStep1()) { var bad = step1.querySelector('.invalid'); if (bad) { bad.focus(); track('rate_calculator_validation_error', { step: 1, field: bad.id }); } return; }
+        $('bar2').classList.add('on');
+        show(step2);
+        track('rate_calculator_step1');
+      });
+      $('backBtn').addEventListener('click', function () { track('rate_calculator_back'); $('bar2').classList.remove('on'); show(step1); });
+
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+      // Catch the commonest typos before the rate sheet goes to a mailbox that doesn't exist.
+      var domainFixes = { 'gmial.com': 'gmail.com', 'gmai.com': 'gmail.com', 'gmail.co': 'gmail.com', 'gamil.com': 'gmail.com', 'hotmial.com': 'hotmail.com', 'hotmai.com': 'hotmail.com', 'outlok.com': 'outlook.com', 'yaho.com': 'yahoo.com', 'yahooo.com': 'yahoo.com', 'gmail.ca': 'gmail.com' };
+      $('email').addEventListener('blur', function () {
+        var v = this.value.trim(), at = v.lastIndexOf('@');
+        var fix = at > 0 && domainFixes[v.slice(at + 1).toLowerCase()];
+        if (fix) setError('email', 'Did you mean ' + v.slice(0, at + 1) + fix + '? Please check your email address.');
+      });
+      function validateStep2() {
+        var ok = true, digits = ($('phone').value.match(/\d/g) || []).length;
+        ok = setError('name', $('name').value.trim() ? '' : 'Enter your name.') && ok;
+        ok = setError('company', $('company').value.trim() ? '' : 'Enter your company name.') && ok;
+        ok = setError('email', emailPattern.test($('email').value.trim()) ? '' : 'Enter a valid email address.') && ok;
+        ok = setError('phone', /^[0-9+()\-.\s]{7,20}$/.test($('phone').value.trim()) && digits >= 10 && digits <= 15 ? '' : 'Enter a valid phone number.') && ok;
+        return ok;
+      }
+
+      step2.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var formError = $('formError'), btn = $('submitBtn');
+        formError.textContent = '';
+        if (!validateStep2()) { var bad2 = step2.querySelector('.invalid'); bad2.focus(); track('rate_calculator_validation_error', { step: 2, field: bad2.id }); return; }
+        var ts = step2.querySelector('[name="cf-turnstile-response"]');
+        if (!ts || !ts.value) { formError.textContent = 'Please complete the verification check.'; track('rate_calculator_validation_error', { step: 2, field: 'captcha' }); return; }
+
+        btn.disabled = true; btn.textContent = 'Sending...';
+        fetch('/.netlify/functions/rate-quote', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            pallets: $('pallets').value, size: selectedSize(), oversized: $('oversized').value,
+            inbound: $('inbound').value, outbound: $('outbound').value,
+            name: $('name').value, company: $('company').value, email: $('email').value, phone: $('phone').value,
+            website: $('website').value, token: ts.value, attribution: attribution()
+          })
+        }).then(function (r) { return r.json().then(function (d) { return { ok: r.ok, status: r.status, data: d }; }); })
+          .then(function (res) {
+            if (!res.ok) {
+              formError.textContent = res.data.error || 'Something went wrong. Please try again.';
+              track('rate_calculator_error', { error_status: res.status });
+              if (window.turnstile) window.turnstile.reset();
+              return;
+            }
+            $('doneEmail').textContent = $('email').value.trim();
+            $('doneSummary').textContent = res.data.summary || 'your pallets';
+            $('doneValid').textContent = res.data.validUntil || '';
+            $('bar1').classList.add('on'); $('bar2').classList.add('on');
+            show(done);
+            track('rate_calculator_submit');
+            // GA4 standard lead event, the Google Ads lead conversion (same one the contact form uses) and Meta Lead.
+            track('generate_lead', { form_name: 'rate_calculator', pallets: intOf('pallets'), pallet_size: selectedSize() });
+            if (typeof gtag === 'function') gtag('event', 'conversion', { 'send_to': 'AW-18371717160/mwPLCLK1jZcdEKjQqLhE' });
+            if (typeof fbq === 'function') fbq('track', 'Lead', { content_name: 'Rate Calculator' });
+          })
+          .catch(function () { formError.textContent = 'Network problem. Please try again, or call +1 888 505 6667.'; })
+          .then(function () { btn.disabled = false; btn.textContent = 'Email me my rate sheet'; });
+      });
+    })();
+  </script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</body>
+</html>

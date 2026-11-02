@@ -24,6 +24,20 @@
   status = 301
   force = true
 
+# Server-side code and the internal pricing table must never be downloadable.
+# The site publishes the whole folder, so block these paths explicitly.
+[[redirects]]
+  from = "/netlify/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/node_modules/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
 # Legacy .html URLs -> current clean URLs
 [[redirects]]
   from = "/offerings.html"
@@ -83,3 +97,7 @@
   for = "/contact/*"
   [headers.values]
     Cache-Control = "public, max-age=0"
+
+# Serverless functions (contact form captcha check + forwarding)
+[functions]
+  directory = "netlify/functions"
