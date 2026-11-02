@@ -41,4 +41,5 @@
 
 ## Blog
 
-- [Grandmoor Blog](https://grandmoor.ca/blog): warehousing and logistics articles for freight forwarders, importers and e-commerce brands
+- [Grandmoor Blog](https://grandmoor.ca/blog-widget): latest warehousing and logistics articles, published every few days
+- [Blog archive](https://grandmoor.ca/blog): long-form articles for freight forwarders, importers and e-commerce brands
