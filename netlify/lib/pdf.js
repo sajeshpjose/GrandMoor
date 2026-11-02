@@ -118,7 +118,7 @@ async function buildRateSheetPdf({ quote, contact, issued = new Date() }) {
   }
 
   // Other services
-  y -= 20;
+  y -= 44;
   const svcLines = wrap(OTHER_SERVICES, regular, 9, PAGE_W - MARGIN * 2 - 28);
   const svcH = 34 + svcLines.length * 12;
   rect(MARGIN, y - svcH + 12, PAGE_W - MARGIN * 2, svcH, CREAM);
