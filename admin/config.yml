@@ -16,6 +16,10 @@ collections:
       - label: Title
         name: title
         widget: string
+      - label: SEO Title (optional, 60 characters max — use when the title is long)
+        name: seoTitle
+        widget: string
+        required: false
       - label: Description
         name: description
         widget: text

@@ -2677,3 +2677,127 @@ textarea { min-height: 120px; font-weight: 400; }
   .calc-bar-close { background: none; border: 0; color: var(--peach); font-size: 24px; line-height: 1; padding: 8px 16px 8px 8px; cursor: pointer; }
   body:has(.calc-bar:not([hidden])) { padding-bottom: 80px; }
 }
+
+/* ============================================
+   FAQ SECTION (service, location and home pages)
+   ============================================ */
+.faq-section {
+  background-color: var(--cream);
+  padding: var(--spacing-3xl) var(--spacing-lg);
+}
+.faq-section .container {
+  max-width: 860px;
+  margin: 0 auto;
+}
+.faq-title {
+  font-family: var(--font-serif);
+  font-size: 36px;
+  font-weight: 400;
+  color: var(--navy-dark);
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+}
+.faq-list {
+  border-top: 1px solid var(--light-beige);
+}
+.faq-item {
+  border-bottom: 1px solid var(--light-beige);
+}
+.faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+}
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+.faq-item summary h3 {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--navy-dark);
+  margin: 0;
+}
+.faq-item summary::after {
+  content: '+';
+  flex-shrink: 0;
+  font-family: var(--font-sans);
+  font-size: 24px;
+  font-weight: 300;
+  color: var(--orange-accent);
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+.faq-item[open] summary::after {
+  transform: rotate(45deg);
+}
+.faq-item summary:focus-visible {
+  outline: 2px solid var(--orange-accent);
+  outline-offset: 4px;
+}
+.faq-item p {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--dark-brown);
+  margin: 0 0 var(--space-4);
+  max-width: 760px;
+}
+.faq-item p a {
+  color: var(--orange-accent);
+  text-decoration: underline;
+}
+@media (max-width: 767px) {
+  .faq-section {
+    padding: var(--spacing-2xl) var(--spacing-md);
+  }
+  .faq-title {
+    font-size: 28px;
+  }
+  .faq-item summary h3 {
+    font-size: 16px;
+  }
+}
+
+/* HACCP badge in hero + footer certification line */
+.hero-badge {
+  display: inline-flex;
+  align-self: flex-start;
+  width: fit-content;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  padding: 6px 14px;
+  margin-bottom: var(--spacing-md);
+}
+.hero-badge::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--orange-accent);
+}
+.footer-contact .footer-cert,
+.footer-cert {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--peach) !important;
+  margin-bottom: var(--space-3);
+}

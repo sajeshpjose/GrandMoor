@@ -4,6 +4,14 @@ const fs = require('fs');
 const path = require('path');
 const matter = require('gray-matter');
 
+const SITE = 'https://grandmoor.ca';
+const DEFAULT_IMAGE = SITE + '/images/hero-banner.jpg';
+
+// Escape text for use inside HTML attribute values (titles/descriptions can contain quotes)
+function attr(str) {
+  return String(str || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
 // Simple markdown to HTML converter
 function markdownToHtml(markdown) {
   let html = markdown;
@@ -67,29 +75,92 @@ files.forEach(file => {
   const htmlFileName = file.replace(/\.md$/, '.html');
   const readTime = Math.ceil(content.split(' ').length / 200);
 
+  // The page template already renders the post title as the H1, so drop a
+  // leading "# Title" from the markdown body and demote any other "# " headings
+  // to H2. This keeps exactly one H1 per page.
+  const body = content
+    .replace(/^\s*# .*(\r?\n)+/, '')
+    .replace(/^# (.*)$/gm, '## $1');
+
   // Convert markdown to HTML
-  const htmlContent = markdownToHtml(content);
+  const htmlContent = markdownToHtml(body);
+
+  // SEO fields. `seoTitle` in frontmatter overrides the <title> when the
+  // headline is too long for search results (aim for 60 characters or fewer).
+  const canonical = `${SITE}/blog/${slug}`;
+  const description = (data.description || '').replace(/\s+/g, ' ').trim();
+  const fullTitle = data.seoTitle || `${data.title} | Grandmoor`;
+  const image = data.image ? (data.image.startsWith('http') ? data.image : SITE + data.image) : DEFAULT_IMAGE;
+  const isoDate = data.date ? new Date(data.date).toISOString() : '';
+  const authorName = data.author || 'Grandmoor Inc.';
+  const authorIsOrg = /grandmoor/i.test(authorName);
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: data.title,
+    description,
+    image,
+    datePublished: isoDate,
+    dateModified: data.updated ? new Date(data.updated).toISOString() : isoDate,
+    author: authorIsOrg
+      ? { '@type': 'Organization', name: 'Grandmoor Inc.', url: SITE + '/' }
+      : { '@type': 'Person', name: authorName },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Grandmoor Inc.',
+      url: SITE + '/',
+      logo: { '@type': 'ImageObject', url: SITE + '/images/logo.svg' },
+    },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
+    keywords: Array.isArray(data.tags) ? data.tags.join(', ') : undefined,
+  };
 
   // Create HTML file with full page structure
   const fullHtml = `<!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-MSSXCT64');</script>
+<!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="${data.description || ''}">
+    <meta name="description" content="${attr(description)}">
     <meta name="robots" content="index, follow">
-    <title>${data.title} | Grandmoor</title>
+    <title>${attr(fullTitle)}</title>
+    <link rel="canonical" href="${canonical}">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Grandmoor">
+    <meta property="og:locale" content="en_CA">
+    <meta property="og:title" content="${attr(data.title)}">
+    <meta property="og:description" content="${attr(description)}">
+    <meta property="og:url" content="${canonical}">
+    <meta property="og:image" content="${image}">
+    <meta property="article:published_time" content="${isoDate}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="${attr(data.title)}">
+    <meta name="twitter:description" content="${attr(description)}">
+    <meta name="twitter:image" content="${image}">
+    <script type="application/ld+json">
+${JSON.stringify(jsonLd, null, 2)}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/styles.css?v=20">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        .blog-page {
+            font-family: var(--font-sans);
             line-height: 1.6;
             color: #333;
             background-color: #f9f9f9;
+            padding: 1px 0;
+        }
+        .blog-page h1, .blog-page h2, .blog-page h3 {
+            font-family: var(--font-serif);
         }
         .blog-container {
             max-width: 800px;
@@ -116,32 +187,37 @@ files.forEach(file => {
             font-size: 0.85rem;
             font-weight: 600;
         }
-        h1 {
+        .blog-container h1 {
             font-size: 2.5rem;
             margin: 30px 0 20px 0;
             line-height: 1.3;
             color: #1a1a1a;
         }
-        h2 {
+        .blog-container h2 {
             font-size: 1.8rem;
             margin: 40px 0 20px 0;
             color: #1a1a1a;
         }
-        h3 {
+        .blog-container h3 {
             font-size: 1.4rem;
             margin: 30px 0 15px 0;
             color: #1a1a1a;
         }
-        p {
+        .blog-container p {
             margin-bottom: 20px;
             line-height: 1.8;
         }
-        a {
+        .blog-container a {
             color: #667eea;
             text-decoration: none;
         }
-        a:hover {
+        .blog-container a:hover {
             text-decoration: underline;
+        }
+        .blog-author {
+            margin: -10px 0 30px 0;
+            color: #666;
+            font-size: 0.95rem;
         }
         .back-link {
             display: inline-block;
@@ -149,24 +225,24 @@ files.forEach(file => {
             color: #667eea;
             font-weight: 600;
         }
-        ul, ol {
+        .blog-container ul, .blog-container ol {
             margin-left: 20px;
             margin-bottom: 20px;
         }
-        li {
+        .blog-container li {
             margin-bottom: 10px;
         }
-        table {
+        .blog-container table {
             width: 100%;
             border-collapse: collapse;
             margin: 30px 0;
         }
-        th, td {
+        .blog-container th, .blog-container td {
             border: 1px solid #ddd;
             padding: 12px;
             text-align: left;
         }
-        th {
+        .blog-container th {
             background: #f5f5f5;
             font-weight: 600;
         }
@@ -175,29 +251,39 @@ files.forEach(file => {
                 padding: 20px;
                 margin: 20px auto;
             }
-            h1 {
+            .blog-container h1 {
                 font-size: 1.8rem;
             }
-            h2 {
+            .blog-container h2 {
                 font-size: 1.4rem;
             }
         }
     </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MSSXCT64"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    <div id="header-container"></div>
+    <main class="blog-page">
     <div class="blog-container">
         <a href="/blog" class="back-link">← Back to Blog</a>
 
         <div class="blog-meta">
             <span class="blog-category">${data.category || 'Blog'}</span>
-            <span>📅 ${new Date(data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+            <span>📅 <time datetime="${isoDate}">${new Date(data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time></span>
             <span>⏱️ ${readTime} min read</span>
         </div>
 
         <h1>${data.title}</h1>
+        <p class="blog-author">By ${authorName}</p>
 
         ${htmlContent}
     </div>
+    </main>
+    <div id="footer-container"></div>
+    <script src="/js/main.js?v=2"></script>
 </body>
 </html>`;
 
@@ -268,7 +354,7 @@ const indexPath = path.join(blogDir, 'index.html');
 const indexHtml = fs.readFileSync(indexPath, 'utf-8');
 
 const gridStartMarker = '<div class="blog-grid">';
-const gridEndMarker = '        </div>\n    </div>\n</body>\n</html>';
+const gridEndMarker = '        </div>\n        <!-- BLOG-GRID:END -->';
 
 const gridStart = indexHtml.indexOf(gridStartMarker);
 const gridEnd = indexHtml.indexOf(gridEndMarker, gridStart);
@@ -285,4 +371,25 @@ if (gridStart === -1 || gridEnd === -1) {
 
   fs.writeFileSync(indexPath, updatedIndexHtml, 'utf-8');
   console.log(`🎉 Blog listing page regenerated with ${posts.length} post(s)!`);
+}
+
+// Keep sitemap.xml in sync with the blog: replace everything between the
+// BLOG markers with the blog index plus one entry per post.
+const sitemapPath = path.join(__dirname, '..', 'sitemap.xml');
+if (fs.existsSync(sitemapPath)) {
+  const startMark = '  <!-- BLOG:START (generated by scripts/md-to-html.js) -->';
+  const endMark = '  <!-- BLOG:END -->';
+  const latest = posts.length ? new Date(posts[0].date).toISOString().slice(0, 10) : '';
+  const entries = [
+    `  <url>\n    <loc>${SITE}/blog</loc>\n${latest ? `    <lastmod>${latest}</lastmod>\n` : ''}  </url>`,
+    ...posts.map(p => `  <url>\n    <loc>${SITE}/blog/${p.slug}</loc>\n    <lastmod>${new Date(p.date).toISOString().slice(0, 10)}</lastmod>\n  </url>`),
+  ].join('\n');
+  let xml = fs.readFileSync(sitemapPath, 'utf-8');
+  const block = `${startMark}\n${entries}\n${endMark}`;
+  const a = xml.indexOf(startMark), b = xml.indexOf(endMark);
+  xml = (a !== -1 && b !== -1)
+    ? xml.slice(0, a) + block + xml.slice(b + endMark.length)
+    : xml.replace('</urlset>', `${block}\n</urlset>`);
+  fs.writeFileSync(sitemapPath, xml, 'utf-8');
+  console.log(`🗺️  sitemap.xml updated with ${posts.length} blog post(s)`);
 }
