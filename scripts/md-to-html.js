@@ -139,7 +139,8 @@ entries.forEach(({ slug, data, htmlContent, readTime }) => {
   // headline is too long for search results (aim for 60 characters or fewer).
   const canonical = `${SITE}/blog/${slug}`;
   const description = (data.description || '').replace(/\s+/g, ' ').trim();
-  const fullTitle = data.seoTitle || `${data.title} | Grandmoor`;
+  // Add the brand suffix only when the result still fits in ~60 characters
+  const fullTitle = data.seoTitle || (`${data.title} | Grandmoor`.length <= 60 ? `${data.title} | Grandmoor` : data.title);
   const image = data.image ? (data.image.startsWith('http') ? data.image : SITE + data.image) : DEFAULT_IMAGE;
   const isoDate = data.date ? new Date(data.date).toISOString() : '';
   const authorName = data.author || 'Grandmoor Inc.';
@@ -231,7 +232,7 @@ ${JSON.stringify(jsonLd, null, 2)}
         .blog-category {
             display: inline-block;
             background: #f0f0f0;
-            color: #667eea;
+            color: #c2410c;
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 0.85rem;
@@ -258,7 +259,7 @@ ${JSON.stringify(jsonLd, null, 2)}
             line-height: 1.8;
         }
         .blog-container a {
-            color: #667eea;
+            color: #c2410c;
             text-decoration: none;
         }
         .blog-container a:hover {
@@ -272,7 +273,7 @@ ${JSON.stringify(jsonLd, null, 2)}
         .back-link {
             display: inline-block;
             margin-bottom: 30px;
-            color: #667eea;
+            color: #c2410c;
             font-weight: 600;
         }
         .blog-container ul, .blog-container ol {
@@ -322,7 +323,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <div class="blog-meta">
             <span class="blog-category">${data.category || 'Blog'}</span>
-            <span>📅 <time datetime="${isoDate}">${new Date(data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</time></span>
+            <span>📅 <time datetime="${isoDate}">${new Date(data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/Toronto' })}</time></span>
             <span>⏱️ ${readTime} min read</span>
         </div>
 
@@ -372,7 +373,7 @@ posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 const cardsHtml = posts.map(post => {
   const emoji = categoryEmoji[post.category] || '📄';
   const dateFormatted = post.date
-    ? new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+    ? new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/Toronto' })
     : '';
   const tagsHtml = post.tags
     .slice(0, 3)
@@ -380,8 +381,8 @@ const cardsHtml = posts.map(post => {
     .join('\n');
 
   const bannerHtml = post.image
-    ? `<img src="${post.image}" alt="${post.title}" style="width:100%;height:200px;object-fit:cover;display:block;">`
-    : `<div style="width:100%;height:200px;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);display:flex;align-items:center;justify-content:center;color:white;font-size:2rem;font-weight:700;">${emoji}</div>`;
+    ? `<img src="${post.image}" alt="${post.title}" style="width:100%;height:180px;object-fit:cover;display:block;">`
+    : `<div class="blog-card-fallback"><span>${post.category}</span></div>`;
 
   return `            <article class="blog-card">
                 <div class="blog-card-image" style="padding:0;overflow:hidden;">${bannerHtml}</div>

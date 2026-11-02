@@ -12,9 +12,6 @@ on:
         description: 'Re-download every article (picks up edits made in Soro)'
         type: boolean
         default: false
-  push:
-    branches:
-      - soro-sync   # test runs on the feature branch; remove after merge
 
 concurrency:
   group: soro-sync
