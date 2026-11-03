@@ -1,5 +1,6 @@
 // Rate calculator endpoint: verifies the Cloudflare Turnstile token, prices the quote,
-// records the lead through the Netlify "contact" form (team email + ShipDash CRM), and emails
+// records the lead through the Netlify "contact" form (team email + ShipDash CRM), returns the
+// lead summary so the page can send it on to Zoho CRM via n8n, and emails
 // the visitor a branded PDF rate sheet via Resend.
 // Requires TURNSTILE_SECRET_KEY and RESEND_API_KEY. Optional: RATE_FROM_EMAIL, RATE_REPLY_TO.
 
@@ -164,12 +165,14 @@ exports.handler = async (event) => {
   await leadPost;
   if (!mail || mail.status >= 400) {
     console.error('Resend failed', mail && mail.status, mail && (await mail.text().catch(() => '')));
-    return json(502, { error: "We couldn't email your rate sheet. Our team has your details and will send it shortly." });
+    return json(502, { error: "We couldn't email your rate sheet. Our team has your details and will send it shortly.", lead: leadMessage });
   }
 
   return json(200, {
     ok: true,
     summary: describePallets(quote),
-    validUntil
+    validUntil,
+    // The page forwards this to Zoho CRM (via the n8n spam filter), like the other site forms.
+    lead: leadMessage
   });
 };
