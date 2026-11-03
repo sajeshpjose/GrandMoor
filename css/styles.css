@@ -2629,7 +2629,7 @@ textarea { min-height: 120px; font-weight: 400; }
 
 @media (min-width: 1200px) {
   .hero-calc {
-    display: block;
+    display: flex;
     position: absolute;
     z-index: 3;
     right: var(--space-5);
@@ -2640,10 +2640,13 @@ textarea { min-height: 120px; font-weight: 400; }
     border-radius: 8px;
     border: 2px solid var(--orange-accent);
     padding: var(--space-4);
+    flex-direction: column;
+    gap: var(--space-3);
   }
-  .hero-calc-label { font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--peach); margin-bottom: var(--space-2); }
-  .hero-calc h2 { font-size: 26px; color: var(--white); margin-bottom: var(--space-2); }
-  .hero-calc p:not(.hero-calc-label) { font-size: 15px; color: var(--cream); margin-bottom: var(--space-3); }
+  /* Eyebrow reuses the hero HACCP pill (.hero-badge); spacing comes from the card's gap */
+  .hero-calc > *, .hero-calc .hero-badge { margin: 0; }
+  .hero-calc h2 { font-size: 26px; line-height: 1.2; color: var(--white); }
+  .hero-calc p { font-size: 15px; color: var(--cream); }
 }
 
 @media (max-width: 1199px) {
