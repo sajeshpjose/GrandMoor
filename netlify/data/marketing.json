@@ -1,0 +1,475 @@
+{
+  "updated": "2026-11-06",
+  "_about": "Weekly marketing numbers for the admin dashboard (/admin/dashboard). Served only through netlify/functions/marketing-data.js; the /netlify/* path is blocked from public download. Append one object to 'weeks' per week (oldest first). Use null for anything not available so the dashboard shows it as missing rather than zero.",
+  "weeks": [
+    {
+      "start": "2026-10-09",
+      "end": "2026-10-15",
+      "ga": {
+        "users": null,
+        "newUsers": null,
+        "sessions": 238,
+        "engagedSessions": 59,
+        "engagementRate": 0.2479,
+        "avgEngagementSec": 7,
+        "formStarts": null,
+        "leadEvents": null,
+        "phoneClicks": null,
+        "channels": {
+          "Cross-network": 110,
+          "Direct": 81,
+          "Organic Search": 18,
+          "Paid Search": 15,
+          "Referral": 11,
+          "Organic Social": 3
+        },
+        "topPages": null
+      },
+      "googleAds": {
+        "spend": 98.53,
+        "impressions": 13956,
+        "clicks": 179,
+        "conversions": 0,
+        "lostImpressionShareBudget": null,
+        "campaigns": [
+          {
+            "name": "August Campaign",
+            "status": "Performance Max (paused after this week)",
+            "spend": 21.61,
+            "impressions": 13454,
+            "clicks": 167,
+            "conversions": 0
+          },
+          {
+            "name": "October 26",
+            "status": "Search",
+            "spend": 76.92,
+            "impressions": 502,
+            "clicks": 12,
+            "conversions": 0
+          }
+        ]
+      },
+      "meta": {
+        "spend": 0,
+        "impressions": 0,
+        "reach": 0,
+        "linkClicks": 0,
+        "leads": 0,
+        "campaigns": [],
+        "note": "No delivery this week (campaign started Oct 16)."
+      },
+      "googleBusinessProfile": null,
+      "forms": {
+        "total": 1,
+        "internal": 0,
+        "testsExcluded": 3,
+        "byType": {
+          "Contact": 1
+        },
+        "leads": [
+          {
+            "date": "2026-10-14",
+            "type": "Contact",
+            "company": "Cryologix (Australia)",
+            "pallets": "3PL warehousing, found us on Reddit"
+          }
+        ]
+      },
+      "notes": [
+        "167 of the 179 Google Ads clicks came from the Performance Max campaign at CA$0.13 each (mostly display placements). It was paused after this week, so later weeks look lower but are higher quality.",
+        "Meta ads had not started yet."
+      ]
+    },
+    {
+      "start": "2026-10-16",
+      "end": "2026-10-22",
+      "ga": {
+        "users": null,
+        "newUsers": null,
+        "sessions": 355,
+        "engagedSessions": 119,
+        "engagementRate": 0.3352,
+        "avgEngagementSec": 16,
+        "formStarts": null,
+        "leadEvents": null,
+        "phoneClicks": null,
+        "channels": {
+          "Paid Social": 190,
+          "Direct": 51,
+          "Organic Social": 36,
+          "Cross-network": 30,
+          "Referral": 18,
+          "Organic Search": 17,
+          "Paid Search": 9,
+          "AI Assistant": 5
+        },
+        "topPages": null
+      },
+      "googleAds": {
+        "spend": 76.3,
+        "impressions": 586,
+        "clicks": 15,
+        "conversions": 0,
+        "lostImpressionShareBudget": null,
+        "campaigns": [
+          {
+            "name": "October 26",
+            "status": "Search",
+            "spend": 74.18,
+            "impressions": 259,
+            "clicks": 10,
+            "conversions": 0
+          },
+          {
+            "name": "August Campaign",
+            "status": "Performance Max (paused)",
+            "spend": 2.12,
+            "impressions": 327,
+            "clicks": 5,
+            "conversions": 0
+          }
+        ]
+      },
+      "meta": {
+        "spend": 133.86,
+        "impressions": 6668,
+        "reach": 3596,
+        "linkClicks": null,
+        "leads": 7,
+        "campaigns": [
+          {
+            "name": "GM | First Month Free | Leads | Mississauga",
+            "spend": 133.86,
+            "impressions": 6668,
+            "reach": 3596,
+            "linkClicks": null,
+            "leads": 7
+          }
+        ]
+      },
+      "googleBusinessProfile": null,
+      "forms": {
+        "total": 6,
+        "internal": 0,
+        "testsExcluded": 13,
+        "byType": {
+          "First month free": 4,
+          "Contact": 2
+        },
+        "leads": [
+          {
+            "date": "2026-10-19",
+            "type": "First month free",
+            "company": "(Instagram ad)",
+            "pallets": "—"
+          },
+          {
+            "date": "2026-10-19",
+            "type": "Contact",
+            "company": "PGS-Premium Grade Supplies",
+            "pallets": "3PL warehousing"
+          },
+          {
+            "date": "2026-10-19",
+            "type": "First month free",
+            "company": "(Instagram ad)",
+            "pallets": "—"
+          },
+          {
+            "date": "2026-10-20",
+            "type": "First month free",
+            "company": "Pinook Home",
+            "pallets": "11 to 25, also fulfillment"
+          },
+          {
+            "date": "2026-10-20",
+            "type": "Contact",
+            "company": "MGI Golf",
+            "pallets": "3PL warehousing, wants a walk-through"
+          },
+          {
+            "date": "2026-10-21",
+            "type": "First month free",
+            "company": "Atlas Global Supply Inc.",
+            "pallets": "11 to 25 (rice and tea)"
+          }
+        ]
+      },
+      "notes": [
+        "Meta first-month-free campaign launched: 7 pixel leads for CA$133.86, and 4 first-month-free forms arrived (2 tagged Instagram).",
+        "Best week for genuine leads so far: 6."
+      ]
+    },
+    {
+      "start": "2026-10-23",
+      "end": "2026-10-29",
+      "ga": {
+        "users": null,
+        "newUsers": null,
+        "sessions": 208,
+        "engagedSessions": 79,
+        "engagementRate": 0.3798,
+        "avgEngagementSec": 13,
+        "formStarts": null,
+        "leadEvents": null,
+        "phoneClicks": null,
+        "channels": {
+          "Paid Social": 103,
+          "Direct": 31,
+          "Organic Search": 19,
+          "Paid Search": 19,
+          "Organic Social": 13,
+          "Referral": 11,
+          "Cross-network": 8,
+          "AI Assistant": 4
+        },
+        "topPages": null
+      },
+      "googleAds": {
+        "spend": 104.98,
+        "impressions": 380,
+        "clicks": 18,
+        "conversions": 0,
+        "lostImpressionShareBudget": null,
+        "campaigns": [
+          {
+            "name": "October 26",
+            "status": "Search",
+            "spend": 104.98,
+            "impressions": 380,
+            "clicks": 18,
+            "conversions": 0
+          }
+        ]
+      },
+      "meta": {
+        "spend": 206.03,
+        "impressions": 9361,
+        "reach": 4504,
+        "linkClicks": null,
+        "leads": 0,
+        "campaigns": [
+          {
+            "name": "GM | First Month Free | Leads | Mississauga",
+            "spend": 206.03,
+            "impressions": 9361,
+            "reach": 4504,
+            "linkClicks": null,
+            "leads": 0
+          }
+        ]
+      },
+      "googleBusinessProfile": null,
+      "forms": {
+        "total": 1,
+        "internal": 0,
+        "testsExcluded": 3,
+        "byType": {
+          "Contact": 1
+        },
+        "leads": [
+          {
+            "date": "2026-10-29",
+            "type": "Contact",
+            "company": "Fasting Nutrition",
+            "pallets": "Order fulfillment, product launch"
+          }
+        ]
+      },
+      "notes": [
+        "Meta spent CA$206.03 with 0 leads, the weakest week for paid social.",
+        "Only 1 genuine lead."
+      ]
+    },
+    {
+      "start": "2026-10-30",
+      "end": "2026-11-05",
+      "ga": {
+        "users": 657,
+        "newUsers": 633,
+        "sessions": 716,
+        "engagedSessions": 161,
+        "engagementRate": 0.2249,
+        "avgEngagementSec": 7,
+        "formStarts": 27,
+        "leadEvents": null,
+        "phoneClicks": null,
+        "channels": {
+          "Paid Social": 536,
+          "Direct": 81,
+          "Organic Search": 34,
+          "Paid Search": 24,
+          "Referral": 18,
+          "Unassigned": 17,
+          "Organic Social": 12,
+          "Cross-network": 8,
+          "AI Assistant": 2
+        },
+        "topPages": [
+          {
+            "path": "/first-month-free/",
+            "views": 704,
+            "users": 522,
+            "avgEngagementSec": 1
+          },
+          {
+            "path": "/",
+            "views": 135,
+            "users": 57,
+            "avgEngagementSec": 37
+          },
+          {
+            "path": "/rate-calculator/",
+            "views": 33,
+            "users": 10,
+            "avgEngagementSec": 95
+          },
+          {
+            "path": "/3pl-warehousing/",
+            "views": 28,
+            "users": 23,
+            "avgEngagementSec": 39
+          },
+          {
+            "path": "/contact/",
+            "views": 22,
+            "users": 14,
+            "avgEngagementSec": 17
+          }
+        ]
+      },
+      "googleAds": {
+        "spend": 113.83,
+        "impressions": 396,
+        "clicks": 23,
+        "conversions": 1,
+        "lostImpressionShareBudget": 0.2658,
+        "campaigns": [
+          {
+            "name": "October 26",
+            "status": "Eligible (Limited): missing enough relevant keywords",
+            "budgetPerDay": 15,
+            "spend": 113.83,
+            "impressions": 396,
+            "clicks": 23,
+            "conversions": 1
+          },
+          {
+            "name": "August Campaign",
+            "status": "Paused",
+            "budgetPerDay": 7.32,
+            "spend": 0,
+            "impressions": 0,
+            "clicks": 0,
+            "conversions": 0
+          }
+        ]
+      },
+      "meta": {
+        "spend": 202.22,
+        "impressions": 16884,
+        "reach": 6257,
+        "linkClicks": null,
+        "leads": 6,
+        "campaigns": [
+          {
+            "name": "GM | First Month Free | Leads | Mississauga",
+            "spend": 202.22,
+            "impressions": 16884,
+            "reach": 6257,
+            "linkClicks": null,
+            "leads": 6
+          }
+        ]
+      },
+      "googleBusinessProfile": null,
+      "forms": {
+        "total": 10,
+        "internal": 6,
+        "testsExcluded": 3,
+        "byType": {
+          "Rate calculator": 7,
+          "First month free": 2,
+          "Qualify": 1,
+          "Contact": 0
+        },
+        "leads": [
+          {
+            "date": "2026-10-30",
+            "type": "Qualify",
+            "company": "1937609 Ontario Ltd.",
+            "pallets": "1 pallet (guitar strings, Amazon FBA)"
+          },
+          {
+            "date": "2026-10-31",
+            "type": "First month free",
+            "company": "ASAZ Enterprises",
+            "pallets": "26 to 50 (engine oil cases)"
+          },
+          {
+            "date": "2026-11-01",
+            "type": "Rate calculator",
+            "company": "GrandMoor",
+            "pallets": "22 (10 regular, 12 oversized)",
+            "flag": "Internal"
+          },
+          {
+            "date": "2026-11-01",
+            "type": "Rate calculator",
+            "company": "GrandMoor",
+            "pallets": "20 oversized",
+            "flag": "Internal"
+          },
+          {
+            "date": "2026-11-02",
+            "type": "Rate calculator",
+            "company": "Silvester inc",
+            "pallets": "95 (47 regular, 48 oversized)",
+            "flag": "Internal"
+          },
+          {
+            "date": "2026-11-02",
+            "type": "Rate calculator",
+            "company": "Silvester",
+            "pallets": "5 oversized",
+            "flag": "Internal"
+          },
+          {
+            "date": "2026-11-03",
+            "type": "Rate calculator",
+            "company": "TD bank",
+            "pallets": "89 regular",
+            "flag": "Internal"
+          },
+          {
+            "date": "2026-11-04",
+            "type": "Rate calculator",
+            "company": "Gogo",
+            "pallets": "10 regular",
+            "flag": "Likely fake"
+          },
+          {
+            "date": "2026-11-05",
+            "type": "Rate calculator",
+            "company": "Pelican Creations Inc",
+            "pallets": "20 regular"
+          },
+          {
+            "date": "2026-11-05",
+            "type": "First month free",
+            "company": "Arctchelor",
+            "pallets": "Not sure yet"
+          }
+        ]
+      },
+      "notes": [
+        "450 of the 536 Paid Social sessions came on Nov 5 alone, with about 1 second average engagement on /first-month-free/. Check that day's placements and consider excluding Audience Network.",
+        "Meta reported 6 pixel leads for CA$202.22, but only 2 genuine first-month-free forms arrived. The pixel is likely counting other form submissions too.",
+        "Google Ads traffic engages far better (58% engaged, about 43s) but loses 27% of impressions to budget and is flagged for missing keywords.",
+        "Phone clicks and form completions are not tracked in GA yet."
+      ]
+    }
+  ],
+  "_sources": "GA4 traffic acquisition (sessions), Google Ads 'GrandMoor - Weekly history' report, Meta Ads Manager weekly exports, Netlify form emails. Form counts exclude any submission containing 'test'; 'internal' counts entries from team emails or phones, or obviously fake details."
+}

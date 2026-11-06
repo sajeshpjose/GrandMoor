@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Marketing Dashboard | GrandMoor Admin</title>
+  <style>
+    :root {
+      --navy: #16232b; --orange: #ff5b04; --peach: #ffba95; --cream: #edebe4;
+      --beige: #e2d9d1; --white: #ffffff;
+      --ink: #16232b; --ink-2: #4a5560; --ink-3: #7a838b;
+      --line: #e4e0d8; --grid: #eeebe5;
+      --good: #1f7a4d; --warn: #9a5b00;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      --serif: 'Inria Serif', Georgia, serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--cream); color: var(--ink); font-family: var(--font); font-size: 14px; line-height: 1.45; }
+    header { background: var(--navy); border-bottom: 4px solid var(--orange); color: var(--white); }
+    .bar { max-width: 1180px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .brand { font-family: var(--serif); font-size: 22px; }
+    .brand small { font-family: var(--font); font-size: 11px; letter-spacing: 1.5px; color: var(--peach); margin-left: 8px; text-transform: uppercase; }
+    .bar nav { margin-left: auto; display: flex; gap: 16px; }
+    .bar nav a { color: var(--white); text-decoration: none; font-size: 13px; opacity: .85; }
+    .bar nav a:hover { opacity: 1; text-decoration: underline; }
+    main { max-width: 1180px; margin: 0 auto; padding: 24px; }
+    h1 { font-family: var(--serif); font-weight: 400; font-size: 28px; margin: 0; }
+    h2 { font-size: 13px; letter-spacing: .8px; text-transform: uppercase; color: var(--ink-2); margin: 0 0 12px; font-weight: 600; }
+    .toolbar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+    .toolbar .meta { color: var(--ink-3); font-size: 12px; }
+    .toolbar .spacer { flex: 1; }
+    select, input, button { font: inherit; }
+    select, input[type=password] { padding: 7px 10px; border: 1px solid #cfc9bf; border-radius: 6px; background: var(--white); color: var(--ink); }
+    button { padding: 8px 14px; border: 0; border-radius: 6px; background: var(--orange); color: var(--white); cursor: pointer; font-weight: 600; }
+    button.ghost { background: transparent; color: var(--ink-2); border: 1px solid #cfc9bf; font-weight: 500; }
+    .card { background: var(--white); border-radius: 10px; padding: 18px 20px; border: 1px solid var(--line); }
+    .grid { display: grid; gap: 16px; margin-bottom: 16px; }
+    .kpis { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (max-width: 960px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } .two { grid-template-columns: 1fr; } }
+    .kpi .label { font-size: 12px; color: var(--ink-2); }
+    .kpi .value { font-size: 30px; font-weight: 600; letter-spacing: -.5px; margin: 4px 0 2px; font-variant-numeric: tabular-nums; }
+    .kpi .value.missing { color: var(--ink-3); }
+    .kpi .sub { font-size: 12px; color: var(--ink-3); min-height: 17px; }
+    .delta-up { color: var(--good); } .delta-down { color: #b3261e; }
+    table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+    th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+    th { font-size: 12px; color: var(--ink-2); font-weight: 600; }
+    td.num, th.num { text-align: right; }
+    tr:last-child td { border-bottom: 0; }
+    .src-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; }
+    .src-head .big { font-size: 24px; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px 16px; margin: 6px 0 14px; }
+    .stats div span { display: block; font-size: 12px; color: var(--ink-3); }
+    .stats div b { font-size: 16px; font-variant-numeric: tabular-nums; font-weight: 600; }
+    .empty { color: var(--ink-3); background: #f7f5f1; border: 1px dashed #d6d0c6; border-radius: 8px; padding: 14px; font-size: 13px; }
+    .tag { display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 10px; background: #fbeee6; color: #8a3a0b; margin-left: 6px; }
+    .tag.warn::before { content: "⚠ "; }
+    /* horizontal bars (single series: one hue, no legend) */
+    .hbars { display: grid; gap: 6px; }
+    .hbar { display: grid; grid-template-columns: 130px 1fr 52px; align-items: center; gap: 10px; font-size: 13px; padding: 2px 0; border-radius: 4px; }
+    .hbar:hover { background: #faf8f4; }
+    .hbar .track { height: 14px; }
+    .hbar .fill { height: 14px; background: var(--orange); border-radius: 0 4px 4px 0; min-width: 2px; }
+    .hbar .n { text-align: right; font-variant-numeric: tabular-nums; color: var(--ink-2); }
+    /* column trend charts */
+    .cols { display: flex; align-items: flex-end; gap: 6px; height: 150px; border-bottom: 1px solid var(--line); padding-top: 18px; }
+    .col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; position: relative; }
+    .col .bar-v { width: 100%; max-width: 40px; background: var(--navy); border-radius: 4px 4px 0 0; min-height: 2px; }
+    .col:hover .bar-v { background: var(--orange); }
+    .col .v { font-size: 11px; color: var(--ink-2); margin-bottom: 4px; font-variant-numeric: tabular-nums; }
+    .col-labels { display: flex; gap: 6px; }
+    .col-labels span { flex: 1; min-width: 0; text-align: center; font-size: 11px; color: var(--ink-3); padding-top: 4px; white-space: nowrap; overflow: visible; }
+    @media (max-width: 600px) { .col-labels span, .col .v { font-size: 9px; } }
+    .mult h3 { font-size: 15px; font-weight: 600; margin: 0; }
+    .mult .src { font-size: 11px; color: var(--ink-3); margin: 2px 0 0; min-height: 15px; }
+    .mult .now { font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; margin: 6px 0 0; }
+    .mult .cols { height: 180px; }
+    .mult .col .bar-v { max-width: 64px; }
+    .footnote { font-size: 12px; color: var(--ink-3); margin: 12px 0 0; }
+    #wk-table td.cur, #wk-table th.cur { background: #fbf3ee; }
+    .notes li { margin-bottom: 6px; }
+    .login { max-width: 440px; margin: 60px auto; text-align: center; }
+    .login p { color: var(--ink-2); }
+    .login form { display: flex; gap: 8px; justify-content: center; margin-top: 12px; }
+    .err { color: #b3261e; font-size: 13px; min-height: 18px; margin-top: 8px; }
+    .hidden { display: none !important; }
+    footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 0 32px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <span class="brand">GrandMoor<small>Admin</small></span>
+      <nav>
+        <a href="/admin/">Blog CMS</a>
+        <a href="/admin/dashboard/">Marketing dashboard</a>
+        <a href="/" target="_blank" rel="noopener">View site</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="login" class="login card hidden">
+      <h1>Sign in</h1>
+      <p>Log in at <a href="/admin/">/admin</a> with GitHub first, then come back here.</p>
+      <div id="pw-wrap" class="hidden">
+        <p>Or enter the dashboard password:</p>
+        <form id="pw-form">
+          <input type="password" id="pw" placeholder="Password" autocomplete="current-password" />
+          <button type="submit">View</button>
+        </form>
+      </div>
+      <div class="err" id="login-err"></div>
+    </section>
+
+    <section id="app" class="hidden">
+      <div class="toolbar">
+        <h1>Marketing performance</h1>
+        <span class="spacer"></span>
+        <label for="week" class="meta">Week</label>
+        <select id="week"></select>
+        <span class="meta" id="updated"></span>
+      </div>
+
+      <div class="grid kpis" id="kpis"></div>
+
+      <div class="toolbar" style="margin:8px 0 12px"><h2 style="margin:0">Week by week, all channels</h2><span class="spacer"></span><span class="meta" id="wk-range"></span></div>
+      <div class="grid two" id="multiples"></div>
+      <div class="card" style="margin-bottom:16px">
+        <h2>Weekly summary</h2>
+        <div style="overflow-x:auto"><table id="wk-table"></table></div>
+        <p class="footnote" id="wk-foot"></p>
+      </div>
+
+      <div class="grid two">
+        <div class="card" id="gads"></div>
+        <div class="card" id="meta"></div>
+      </div>
+
+      <div class="grid two">
+        <div class="card"><h2>Website sessions by channel</h2><div id="channels"></div></div>
+        <div class="card"><h2>Top pages</h2><div id="pages"></div></div>
+      </div>
+
+      <div class="grid two">
+        <div class="card"><h2>Genuine leads</h2><div id="leads"></div></div>
+        <div class="card"><h2>Notes &amp; actions</h2><div id="notes"></div><div id="live"></div></div>
+      </div>
+    </section>
+  </main>
+  <footer>Numbers come from the weekly Google Analytics, Google Ads and Meta reports plus Netlify form submissions.</footer>
+
+  <script>
+  (function () {
+    var API = '/.netlify/functions/marketing-data';
+    var PW_KEY = 'gm-dashboard-pw';
+    var state = { data: null };
+
+    function $(id) { return document.getElementById(id); }
+    function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+    function isNum(v) { return typeof v === 'number' && !isNaN(v); }
+    function n(v) { return isNum(v) ? v.toLocaleString('en-CA') : '—'; }
+    function money(v, dp) { return isNum(v) ? 'CA$' + v.toLocaleString('en-CA', { minimumFractionDigits: dp == null ? 2 : dp, maximumFractionDigits: dp == null ? 2 : dp }) : '—'; }
+    function pct(v, dp) { return isNum(v) ? (v * 100).toFixed(dp == null ? 1 : dp) + '%' : '—'; }
+    function secs(v) { if (!isNum(v)) return '—'; return v >= 60 ? Math.floor(v / 60) + 'm ' + (v % 60) + 's' : v + 's'; }
+    function fmtDate(iso, opts) { var d = new Date(iso + 'T12:00:00'); return d.toLocaleDateString('en-CA', opts || { month: 'short', day: 'numeric' }); }
+    function weekLabel(w) { return fmtDate(w.start) + ' – ' + fmtDate(w.end, { month: 'short', day: 'numeric', year: 'numeric' }); }
+    function get(o, path) { return path.split('.').reduce(function (a, k) { return a == null ? null : a[k]; }, o); }
+
+    function githubToken() {
+      var keys = ['decap-cms-user', 'netlify-cms-user'];
+      for (var i = 0; i < keys.length; i++) {
+        try { var u = JSON.parse(localStorage.getItem(keys[i]) || 'null'); if (u && u.token) return u.token; } catch (e) {}
+      }
+      return null;
+    }
+    function savedPw() { try { return sessionStorage.getItem(PW_KEY); } catch (e) { return null; } }
+
+    function load(pw) {
+      var headers = {};
+      var tok = githubToken();
+      if (tok) headers.Authorization = 'Bearer ' + tok;
+      if (pw) headers['X-Dashboard-Password'] = pw;
+      return fetch(API, { headers: headers }).then(function (r) {
+        return r.json().then(function (body) { return { ok: r.ok, body: body }; });
+      });
+    }
+
+    function showLogin(body, msg) {
+      $('app').classList.add('hidden');
+      $('login').classList.remove('hidden');
+      if (body && body.passwordEnabled) $('pw-wrap').classList.remove('hidden');
+      $('login-err').textContent = msg || '';
+    }
+
+    function start(pw) {
+      load(pw).then(function (res) {
+        if (!res.ok) { showLogin(res.body, pw ? 'That password did not work.' : ''); return; }
+        if (pw) { try { sessionStorage.setItem(PW_KEY, pw); } catch (e) {} }
+        state.data = res.body;
+        $('login').classList.add('hidden');
+        $('app').classList.remove('hidden');
+        initWeeks();
+      }).catch(function () { showLogin(null, 'Could not reach the dashboard service. Try again shortly.'); });
+    }
+
+    $('pw-form').addEventListener('submit', function (e) { e.preventDefault(); start($('pw').value); });
+
+    function initWeeks() {
+      var weeks = state.data.weeks || [];
+      var sel = $('week');
+      sel.innerHTML = weeks.map(function (w, i) { return '<option value="' + i + '">' + esc(weekLabel(w)) + '</option>'; }).reverse().join('');
+      sel.onchange = function () { render(+sel.value); renderTrends(weeks, +sel.value); };
+      $('updated').textContent = state.data.updated ? 'Updated ' + fmtDate(state.data.updated, { month: 'short', day: 'numeric', year: 'numeric' }) : '';
+      if (weeks.length) render(weeks.length - 1); else $('kpis').innerHTML = '<div class="empty">No weekly data yet.</div>';
+      renderTrends(weeks, weeks.length - 1);
+    }
+
+    function spendOf(w) {
+      var g = get(w, 'googleAds.spend'), m = get(w, 'meta.spend');
+      if (!isNum(g) && !isNum(m)) return null;
+      return (isNum(g) ? g : 0) + (isNum(m) ? m : 0);
+    }
+    function leadsOf(w) { return get(w, 'forms.total'); }
+    function genuineLeads(w) { return (get(w, 'forms.leads') || []).filter(function (l) { return !l.flag; }); }
+    function genuineOf(w) { var t = get(w, 'forms.total'); if (!isNum(t)) return null; var i = get(w, 'forms.internal'); return t - (isNum(i) ? i : 0); }
+    function visitsOf(w) { return get(w, 'ga.sessions'); }
+    function gClicksOf(w) { return get(w, 'googleAds.clicks'); }
+    // Meta exports often omit clicks; fall back to GA Paid Social sessions (visits that arrived from Meta ads).
+    function fbClicksOf(w) {
+      var c = get(w, 'meta.linkClicks');
+      if (isNum(c)) return { v: c, proxy: false };
+      var ps = get(w, 'ga.channels');
+      if (ps) return { v: isNum(ps['Paid Social']) ? ps['Paid Social'] : 0, proxy: true };
+      return { v: null, proxy: true };
+    }
+
+    function delta(cur, prev, invert) {
+      if (!isNum(cur) || !isNum(prev) || prev === 0) return '';
+      var d = (cur - prev) / prev, up = d >= 0;
+      var good = invert ? !up : up;
+      return '<span class="' + (good ? 'delta-up' : 'delta-down') + '">' + (up ? '▲ ' : '▼ ') + Math.abs(d * 100).toFixed(0) + '%</span> vs prior week';
+    }
+
+    function kpi(label, value, sub, missing) {
+      return '<div class="card kpi"><div class="label">' + esc(label) + '</div><div class="value' + (missing ? ' missing' : '') + '">' + value + '</div><div class="sub">' + (sub || '') + '</div></div>';
+    }
+
+    function render(i) {
+      var weeks = state.data.weeks, w = weeks[i], p = weeks[i - 1] || null;
+      var spend = spendOf(w), leads = leadsOf(w), visits = visitsOf(w), phone = get(w, 'ga.phoneClicks');
+      var genuine = genuineOf(w), internal = get(w, 'forms.internal');
+      var cpl = isNum(spend) && isNum(genuine) && genuine > 0 ? spend / genuine : null;
+      var metaMissing = w.meta == null;
+      var pcpl = p && isNum(spendOf(p)) && genuineOf(p) > 0 ? spendOf(p) / genuineOf(p) : null;
+      var leadSub = p ? delta(genuine, genuineOf(p)) : '';
+
+      $('kpis').innerHTML = [
+        kpi('Ad spend', money(spend), metaMissing ? '<span class="tag warn">Meta not included</span>' : delta(spend, p && spendOf(p), true), !isNum(spend)),
+        kpi('Site visits', n(visits), p ? delta(visits, visitsOf(p)) : (isNum(get(w, 'ga.users')) ? n(w.ga.users) + ' users' : ''), !isNum(visits)),
+        kpi('Genuine leads', n(genuine), leadSub, !isNum(genuine)),
+        kpi('Cost per genuine lead', money(cpl), metaMissing && isNum(cpl) ? 'Google Ads spend only' : delta(cpl, pcpl, true), !isNum(cpl)),
+        kpi('Phone clicks', n(phone), isNum(phone) ? (p ? delta(phone, get(p, 'ga.phoneClicks')) : '') : 'Not tracked yet', !isNum(phone))
+      ].join('');
+
+      renderAds(w);
+      renderChannels(w);
+      renderPages(w);
+      renderLeads(w);
+      renderNotes(w);
+    }
+
+    function renderAds(w) {
+      var g = w.googleAds;
+      if (!g) { $('gads').innerHTML = '<h2>Google Ads</h2><div class="empty">No Google Ads report for this week.</div>'; }
+      else {
+        var cpc = isNum(g.spend) && g.clicks ? g.spend / g.clicks : null;
+        var ctr = g.impressions ? g.clicks / g.impressions : null;
+        var rows = (g.campaigns || []).map(function (c) {
+          return '<tr><td>' + esc(c.name) + '<br><span style="font-size:12px;color:var(--ink-3)">' + esc(c.status || '') + '</span></td><td class="num">' + money(c.spend) + '</td><td class="num">' + n(c.clicks) + '</td><td class="num">' + n(c.conversions) + '</td></tr>';
+        }).join('');
+        $('gads').innerHTML = '<div class="src-head"><h2>Google Ads</h2><span class="big">' + money(g.spend) + '</span></div>' +
+          '<div class="stats">' +
+          '<div><span>Impressions</span><b>' + n(g.impressions) + '</b></div>' +
+          '<div><span>Clicks</span><b>' + n(g.clicks) + '</b></div>' +
+          '<div><span>Click rate</span><b>' + pct(ctr) + '</b></div>' +
+          '<div><span>Cost per click</span><b>' + money(cpc) + '</b></div>' +
+          '<div><span>Conversions</span><b>' + n(g.conversions) + '</b></div>' +
+          '<div><span>Lost to budget</span><b>' + pct(g.lostImpressionShareBudget, 0) + '</b></div>' +
+          '</div>' +
+          (rows ? '<table><thead><tr><th>Campaign</th><th class="num">Spend</th><th class="num">Clicks</th><th class="num">Conv.</th></tr></thead><tbody>' + rows + '</tbody></table>' : '');
+      }
+
+      var m = w.meta;
+      if (!m) {
+        var ps = get(w, 'ga.channels.Paid Social');
+        $('meta').innerHTML = '<h2>Meta Ads (Facebook &amp; Instagram)</h2><div class="empty">No Meta report for this week.' +
+          (isNum(ps) ? ' GA recorded <b>' + n(ps) + '</b> Paid Social sessions.' : '') + '</div>';
+      } else {
+        var fb = fbClicksOf(w);
+        var mcpc = isNum(m.spend) && fb.v ? m.spend / fb.v : null;
+        var mcpl = isNum(m.spend) && m.leads ? m.spend / m.leads : null;
+        var mrows = (m.campaigns || []).map(function (c) {
+          return '<tr><td>' + esc(c.name) + '</td><td class="num">' + money(c.spend) + '</td><td class="num">' + n(c.linkClicks) + '</td><td class="num">' + n(c.leads) + '</td></tr>';
+        }).join('');
+        $('meta').innerHTML = '<div class="src-head"><h2>Meta Ads (Facebook &amp; Instagram)</h2><span class="big">' + money(m.spend) + '</span></div>' +
+          '<div class="stats">' +
+          '<div><span>Reach</span><b>' + n(m.reach) + '</b></div>' +
+          '<div><span>Impressions</span><b>' + n(m.impressions) + '</b></div>' +
+          '<div><span>' + (fb.proxy ? 'Visits from ads*' : 'Link clicks') + '</span><b>' + n(fb.v) + '</b></div>' +
+          '<div><span>Cost per click</span><b>' + money(mcpc) + '</b></div>' +
+          '<div><span>Pixel leads</span><b>' + n(m.leads) + '</b></div>' +
+          '<div><span>Cost per pixel lead</span><b>' + money(mcpl) + '</b></div>' +
+          '</div>' +
+          (mrows ? '<table><thead><tr><th>Campaign</th><th class="num">Spend</th><th class="num">Clicks</th><th class="num">Leads</th></tr></thead><tbody>' + mrows + '</tbody></table>' : '') +
+          (m.note ? '<p class="footnote">' + esc(m.note) + '</p>' : '') +
+          (fb.proxy ? '<p class="footnote">* The Meta export has no clicks column, so this shows Google Analytics Paid Social sessions. Add "Link clicks" to the Meta scheduled report to get the real number.</p>' : '');
+      }
+    }
+
+    function renderChannels(w) {
+      var ch = get(w, 'ga.channels');
+      if (!ch) { $('channels').innerHTML = '<div class="empty">No Google Analytics report for this week.</div>'; return; }
+      var list = Object.keys(ch).map(function (k) { return [k, ch[k]]; }).sort(function (a, b) { return b[1] - a[1]; });
+      var max = list.length ? list[0][1] : 1, total = list.reduce(function (s, x) { return s + x[1]; }, 0);
+      $('channels').innerHTML = '<div class="hbars">' + list.map(function (x) {
+        var share = total ? (x[1] / total * 100).toFixed(1) : 0;
+        return '<div class="hbar" title="' + esc(x[0]) + ': ' + n(x[1]) + ' sessions (' + share + '%)"><span>' + esc(x[0]) + '</span><div class="track"><div class="fill" style="width:' + (x[1] / max * 100) + '%"></div></div><span class="n">' + n(x[1]) + '</span></div>';
+      }).join('') + '</div>' +
+      '<div class="stats" style="margin:14px 0 0"><div><span>Engaged sessions</span><b>' + n(get(w, 'ga.engagedSessions')) + '</b></div><div><span>Engagement rate</span><b>' + pct(get(w, 'ga.engagementRate')) + '</b></div><div><span>Avg. engagement</span><b>' + secs(get(w, 'ga.avgEngagementSec')) + '</b></div></div>';
+    }
+
+    function renderPages(w) {
+      var pages = get(w, 'ga.topPages');
+      if (!pages || !pages.length) { $('pages').innerHTML = '<div class="empty">No page data for this week.</div>'; return; }
+      $('pages').innerHTML = '<table><thead><tr><th>Page</th><th class="num">Views</th><th class="num">Users</th><th class="num">Avg. engagement</th></tr></thead><tbody>' +
+        pages.map(function (p) { return '<tr><td>' + esc(p.path) + '</td><td class="num">' + n(p.views) + '</td><td class="num">' + n(p.users) + '</td><td class="num">' + secs(p.avgEngagementSec) + '</td></tr>'; }).join('') +
+        '</tbody></table>';
+    }
+
+    function renderLeads(w) {
+      if (!w.forms) { $('leads').innerHTML = '<div class="empty">No form data for this week.</div>'; return; }
+      var list = genuineLeads(w), by = {};
+      list.forEach(function (l) { by[l.type] = (by[l.type] || 0) + 1; });
+      var summary = Object.keys(by).map(function (k) { return esc(k) + ': <b>' + n(by[k]) + '</b>'; }).join(' · ');
+      var rows = list.map(function (l) {
+        return '<tr><td>' + esc(fmtDate(l.date)) + '</td><td>' + esc(l.type) + '</td><td>' + esc(l.company || '') + '</td><td>' + esc(l.pallets || '') + '</td></tr>';
+      }).join('');
+      $('leads').innerHTML = rows
+        ? '<p style="margin:0 0 10px">' + summary + '</p><table><thead><tr><th>Date</th><th>Form</th><th>Company</th><th>Need</th></tr></thead><tbody>' + rows + '</tbody></table>'
+        : '<div class="empty">No genuine leads this week.</div>';
+    }
+
+    function renderNotes(w) {
+      var notes = w.notes || [];
+      $('notes').innerHTML = notes.length ? '<ul class="notes" style="margin:0;padding-left:18px">' + notes.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' : '<div class="empty">No notes for this week.</div>';
+      var lf = state.data.liveForms;
+      $('live').innerHTML = lf ? '<h2 style="margin-top:18px">Live form count</h2><p style="margin:0">Last 7 days: <b>' + n(lf.total7) + '</b> · Last 30 days: <b>' + n(lf.total30) + '</b></p>' : '';
+    }
+
+    function columns(el, weeks, vals, fmt, cur) {
+      var max = Math.max.apply(null, vals.filter(isNum).concat([1]));
+      el.innerHTML = '<div class="cols">' + weeks.map(function (w, i) {
+        var v = vals[i];
+        return '<div class="col" title="' + esc(weekLabel(w)) + ': ' + (isNum(v) ? fmt(v) : 'no data') + '"><span class="v">' + (isNum(v) ? fmt(v) : '—') + '</span><div class="bar-v" style="height:' + (isNum(v) ? v / max * 100 : 0) + '%' + (i === cur ? ';background:var(--orange)' : '') + '"></div></div>';
+      }).join('') + '</div><div class="col-labels">' + weeks.map(function (w, i) {
+        var d = new Date(w.start + 'T12:00:00'), prev = i ? new Date(weeks[i - 1].start + 'T12:00:00') : null;
+        var label = !prev || prev.getMonth() !== d.getMonth() ? fmtDate(w.start) : String(d.getDate());
+        return '<span title="' + esc(weekLabel(w)) + '">' + esc(label) + '</span>';
+      }).join('') + '</div>';
+    }
+
+    function renderTrends(weeks, cur) {
+      var recent = weeks.slice(-12), off = weeks.length - recent.length, c = cur - off;
+      if (!recent.length) return;
+      $('wk-range').textContent = weekLabel({ start: recent[0].start, end: recent[recent.length - 1].end });
+      var fb = recent.map(fbClicksOf), anyProxy = fb.some(function (x) { return x.proxy; });
+      var metrics = [
+        { t: 'Site visits', src: 'Google Analytics sessions', vals: recent.map(visitsOf) },
+        { t: 'Google Ads clicks', src: 'Google Ads', vals: recent.map(gClicksOf) },
+        { t: 'Facebook / Instagram ad clicks', src: anyProxy ? 'Visits from Meta ads (GA)*' : 'Meta link clicks', vals: fb.map(function (x) { return x.v; }) },
+        { t: 'Genuine leads', src: 'Website forms, excluding tests and internal entries', vals: recent.map(genuineOf) }
+      ];
+      var fmtN = function (v) { return v.toLocaleString('en-CA'); };
+      $('multiples').innerHTML = metrics.map(function (m, i) {
+        var last = m.vals[c];
+        return '<div class="card mult"><div class="src-head"><div><h3>' + esc(m.t) + '</h3><p class="src">' + esc(m.src) + '</p></div><span class="big">' + (isNum(last) ? n(last) : '—') + '</span></div><div id="mult-' + i + '"></div></div>';
+      }).join('');
+      metrics.forEach(function (m, i) { columns($('mult-' + i), recent, m.vals, fmtN, c); });
+
+      var rows = [
+        ['Site visits', recent.map(visitsOf), fmtN],
+        ['Google Ads clicks', recent.map(gClicksOf), fmtN],
+        ['Facebook / Instagram ad clicks' + (anyProxy ? '*' : ''), fb.map(function (x) { return x.v; }), fmtN],
+        ['Genuine leads', recent.map(genuineOf), fmtN],
+        ['Google Ads spend', recent.map(function (w) { return get(w, 'googleAds.spend'); }), function (v) { return money(v); }],
+        ['Meta Ads spend', recent.map(function (w) { return get(w, 'meta.spend'); }), function (v) { return money(v); }],
+        ['Meta pixel leads', recent.map(function (w) { return get(w, 'meta.leads'); }), fmtN]
+      ];
+      var head = '<thead><tr><th>Metric</th>' + recent.map(function (w, i) { return '<th class="num' + (i === c ? ' cur' : '') + '">' + esc(fmtDate(w.start)) + '–' + esc(fmtDate(w.end, { day: 'numeric' })) + '</th>'; }).join('') + '</tr></thead>';
+      var body = '<tbody>' + rows.map(function (r) {
+        return '<tr><td>' + esc(r[0]) + '</td>' + r[1].map(function (v, i) { return '<td class="num' + (i === c ? ' cur' : '') + '">' + (isNum(v) ? r[2](v) : '—') + '</td>'; }).join('') + '</tr>';
+      }).join('') + '</tbody>';
+      $('wk-table').innerHTML = head + body;
+      $('wk-foot').textContent = (anyProxy ? '* Meta exports have no clicks column, so Facebook / Instagram clicks show Google Analytics Paid Social sessions (people who reached the site from a Meta ad). ' : '') + 'The orange bar is the week selected above.';
+    }
+
+    start(savedPw());
+  })();
+  </script>
+</body>
+</html>
