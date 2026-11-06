@@ -2629,24 +2629,23 @@ textarea { min-height: 120px; font-weight: 400; }
 
 @media (min-width: 1200px) {
   .hero-calc {
-    display: flex;
     position: absolute;
     z-index: 3;
     right: var(--space-5);
     bottom: var(--space-5);
-    width: 320px;
+    display: flex;
+    flex-direction: column;
+    width: 340px;
     background: var(--navy-dark);
     color: var(--white);
-    border-radius: 8px;
-    border: 2px solid var(--orange-accent);
-    padding: var(--space-4);
-    flex-direction: column;
-    gap: var(--space-3);
+    border: 1px solid #737880;
+    overflow: hidden;
   }
-  /* Eyebrow reuses the hero HACCP pill (.hero-badge); spacing comes from the card's gap */
-  .hero-calc > *, .hero-calc .hero-badge { margin: 0; }
-  .hero-calc h2 { font-size: 26px; line-height: 1.2; color: var(--white); }
-  .hero-calc p { font-size: 15px; color: var(--cream); }
+  .hero-calc-body { flex: 1; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: var(--space-3); padding: var(--space-4); }
+  .hero-calc h2 { font-family: var(--font-serif); font-weight: 300; font-size: 28px; line-height: 1.2; color: var(--white); margin: 0; }
+  .hero-calc p { font-weight: 300; font-size: 16px; line-height: 1.5; color: var(--white); margin: 0; }
+  .hero-calc-btn { display: inline-flex; align-items: center; justify-content: center; padding: 12px 20px; background: var(--peach); color: var(--navy-dark); font-size: 16px; font-weight: 500; line-height: 1.2; text-decoration: none; }
+  .hero-calc-btn:hover { background: #ffa878; }
 }
 
 @media (max-width: 1199px) {
