@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-06",
+  "updated": "2026-11-13",
   "_about": "Weekly marketing numbers for the admin dashboard (/admin/dashboard). Served only through netlify/functions/marketing-data.js; the /netlify/* path is blocked from public download. Append one object to 'weeks' per week (oldest first). Use null for anything not available so the dashboard shows it as missing rather than zero.",
   "weeks": [
     {
@@ -468,6 +468,145 @@
         "Meta reported 6 pixel leads for CA$202.22, but only 2 genuine first-month-free forms arrived. The pixel is likely counting other form submissions too.",
         "Google Ads traffic engages far better (58% engaged, about 43s) but loses 27% of impressions to budget and is flagged for missing keywords.",
         "Phone clicks and form completions are not tracked in GA yet."
+      ]
+    },
+    {
+      "start": "2026-11-06",
+      "end": "2026-11-12",
+      "ga": {
+        "users": 178,
+        "newUsers": null,
+        "sessions": 214,
+        "engagedSessions": 81,
+        "engagementRate": 0.3785,
+        "avgEngagementSec": 15,
+        "formStarts": null,
+        "leadEvents": 7,
+        "phoneClicks": null,
+        "channels": {
+          "Paid Social": 100,
+          "Direct": 41,
+          "Paid Search": 28,
+          "Organic Search": 27,
+          "Referral": 14,
+          "Cross-network": 2,
+          "AI Assistant": 1,
+          "Organic Social": 1
+        },
+        "topPages": [
+          {
+            "path": "/first-month-free/",
+            "views": 137,
+            "users": 96,
+            "avgEngagementSec": 2
+          },
+          {
+            "path": "/",
+            "views": 92,
+            "users": 50,
+            "avgEngagementSec": 19
+          },
+          {
+            "path": "/3pl-warehousing/",
+            "views": 27,
+            "users": 19,
+            "avgEngagementSec": 39
+          },
+          {
+            "path": "/contact/",
+            "views": 19,
+            "users": 9,
+            "avgEngagementSec": 71
+          },
+          {
+            "path": "/blog/",
+            "views": 6,
+            "users": 2,
+            "avgEngagementSec": 38
+          }
+        ]
+      },
+      "googleAds": {
+        "spend": 141.28,
+        "impressions": 332,
+        "clicks": 23,
+        "conversions": 2,
+        "lostImpressionShareBudget": null,
+        "campaigns": [
+          {
+            "name": "October 26",
+            "status": "Search",
+            "budgetPerDay": 15,
+            "spend": 141.28,
+            "impressions": 332,
+            "clicks": 23,
+            "conversions": 2
+          },
+          {
+            "name": "August Campaign",
+            "status": "Paused",
+            "spend": 0,
+            "impressions": 0,
+            "clicks": 0,
+            "conversions": 0
+          }
+        ]
+      },
+      "meta": null,
+      "googleBusinessProfile": null,
+      "forms": {
+        "total": 6,
+        "internal": 1,
+        "testsExcluded": 6,
+        "byType": {
+          "Rate calculator": 2,
+          "Contact": 3
+        },
+        "leads": [
+          {
+            "date": "2026-11-07",
+            "type": "First month free",
+            "company": "poppins inc",
+            "pallets": "1 to 10",
+            "flag": "Internal"
+          },
+          {
+            "date": "2026-11-08",
+            "type": "Rate calculator",
+            "company": "Valuehub Solutions",
+            "pallets": "11 regular"
+          },
+          {
+            "date": "2026-11-10",
+            "type": "Rate calculator",
+            "company": "Miranoble Inc.",
+            "pallets": "14 regular"
+          },
+          {
+            "date": "2026-11-11",
+            "type": "Contact",
+            "company": "FridgeWize",
+            "pallets": "11 pallets, moving from Armstrong (3PL)"
+          },
+          {
+            "date": "2026-11-12",
+            "type": "Contact",
+            "company": "North Gut Nutrition (Oats Ritual)",
+            "pallets": "Pallet storage, overnight oats brand"
+          },
+          {
+            "date": "2026-11-12",
+            "type": "Contact",
+            "company": "Pouch Makers Canada Inc.",
+            "pallets": "Move all inventory to a 3PL"
+          }
+        ]
+      },
+      "notes": [
+        "Best week for genuine leads in 5 weeks: 5, including 3 direct enquiries from brands looking to move inventory (FridgeWize, Oats Ritual, Pouch Makers).",
+        "Google Ads produced 2 conversions from 23 clicks (CA$70.64 per conversion) and Paid Search sessions were the most engaged (68%).",
+        "Meta numbers missing this week: no Meta report arrived by email. Paid Social still sent 100 sessions, averaging about 1 second.",
+        "Google Analytics now records key events on /contact/ (7 this week), so form completions are being tracked."
       ]
     }
   ],
