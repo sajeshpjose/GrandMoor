@@ -135,7 +135,7 @@
         "spend": 133.86,
         "impressions": 6668,
         "reach": 3596,
-        "linkClicks": null,
+        "linkClicks": 143,
         "leads": 7,
         "campaigns": [
           {
@@ -143,18 +143,18 @@
             "spend": 133.86,
             "impressions": 6668,
             "reach": 3596,
-            "linkClicks": null,
+            "linkClicks": 143,
             "leads": 7
           }
         ]
       },
       "googleBusinessProfile": null,
       "forms": {
-        "total": 6,
+        "total": 7,
         "internal": 0,
         "testsExcluded": 13,
         "byType": {
-          "First month free": 4,
+          "First month free": 5,
           "Contact": 2
         },
         "leads": [
@@ -193,12 +193,20 @@
             "type": "First month free",
             "company": "Atlas Global Supply Inc.",
             "pallets": "11 to 25 (rice and tea)"
+          },
+          {
+            "date": "2026-10-21",
+            "type": "First month free",
+            "company": "Toja Grid",
+            "pallets": "More than 50 (pergola brackets, patio furniture; ships daily). Was in Netlify spam",
+            "source": "instagram"
           }
-        ]
+        ],
+        "recoveredFromSpam": 1
       },
       "notes": [
         "Meta first-month-free campaign launched: 7 pixel leads for CA$133.86, and 4 first-month-free forms arrived (2 tagged Instagram).",
-        "Best week for genuine leads so far: 6."
+        "Best week for genuine leads in the first month: 7 (one was caught by Netlify's spam filter)."
       ]
     },
     {
@@ -247,7 +255,7 @@
         "spend": 206.03,
         "impressions": 9361,
         "reach": 4504,
-        "linkClicks": null,
+        "linkClicks": 80,
         "leads": 0,
         "campaigns": [
           {
@@ -255,31 +263,38 @@
             "spend": 206.03,
             "impressions": 9361,
             "reach": 4504,
-            "linkClicks": null,
+            "linkClicks": 80,
             "leads": 0
           }
         ]
       },
       "googleBusinessProfile": null,
       "forms": {
-        "total": 1,
+        "total": 2,
         "internal": 0,
         "testsExcluded": 3,
         "byType": {
-          "Contact": 1
+          "Contact": 2
         },
         "leads": [
+          {
+            "date": "2026-10-27",
+            "type": "Contact",
+            "company": "Verax Trading Inc.",
+            "pallets": "About 60 pallets of building materials from Dec 1, plus GTA delivery. Was in Netlify spam"
+          },
           {
             "date": "2026-10-29",
             "type": "Contact",
             "company": "Fasting Nutrition",
             "pallets": "Order fulfillment, product launch"
           }
-        ]
+        ],
+        "recoveredFromSpam": 1
       },
       "notes": [
         "Meta spent CA$206.03 with 0 leads, the weakest week for paid social.",
-        "Only 1 genuine lead."
+        "2 genuine leads, including Verax Trading (about 60 pallets from Dec 1), which was caught by Netlify's spam filter."
       ]
     },
     {
@@ -370,7 +385,7 @@
         "spend": 202.22,
         "impressions": 16884,
         "reach": 6257,
-        "linkClicks": null,
+        "linkClicks": 556,
         "leads": 6,
         "campaigns": [
           {
@@ -378,7 +393,7 @@
             "spend": 202.22,
             "impressions": 16884,
             "reach": 6257,
-            "linkClicks": null,
+            "linkClicks": 556,
             "leads": 6
           }
         ]
@@ -552,14 +567,31 @@
           }
         ]
       },
-      "meta": null,
+      "meta": {
+        "spend": 71.25,
+        "impressions": 3084,
+        "reach": 1273,
+        "linkClicks": 91,
+        "leads": 1,
+        "campaigns": [
+          {
+            "name": "GM | First Month Free | Leads | Mississauga",
+            "spend": 71.25,
+            "impressions": 3084,
+            "reach": 1273,
+            "linkClicks": 91,
+            "leads": 1
+          }
+        ],
+        "note": "Campaign was switched off early in the week."
+      },
       "googleBusinessProfile": null,
       "forms": {
-        "total": 6,
+        "total": 7,
         "internal": 1,
         "testsExcluded": 6,
         "byType": {
-          "Rate calculator": 2,
+          "Rate calculator": 3,
           "Contact": 3
         },
         "leads": [
@@ -583,6 +615,12 @@
             "pallets": "14 regular"
           },
           {
+            "date": "2026-11-10",
+            "type": "Rate calculator",
+            "company": "Focus Anchored",
+            "pallets": "5 regular. Was in Netlify spam"
+          },
+          {
             "date": "2026-11-11",
             "type": "Contact",
             "company": "FridgeWize",
@@ -600,13 +638,15 @@
             "company": "Pouch Makers Canada Inc.",
             "pallets": "Move all inventory to a 3PL"
           }
-        ]
+        ],
+        "recoveredFromSpam": 1
       },
       "notes": [
-        "Best week for genuine leads in 5 weeks: 5, including 3 direct enquiries from brands looking to move inventory (FridgeWize, Oats Ritual, Pouch Makers).",
+        "Best week for genuine leads so far: 6, including 3 direct enquiries from brands looking to move inventory (FridgeWize, Oats Ritual, Pouch Makers).",
         "Google Ads produced 2 conversions from 23 clicks (CA$70.64 per conversion) and Paid Search sessions were the most engaged (68%).",
-        "Meta numbers missing this week: no Meta report arrived by email. Paid Social still sent 100 sessions, averaging about 1 second.",
-        "Google Analytics now records key events on /contact/ (7 this week), so form completions are being tracked."
+        "Meta campaign was switched off early in the week: CA$71.25 spent, 91 link clicks, 1 lead.",
+        "Google Analytics now records key events on /contact/ (7 this week), so form completions are being tracked.",
+        "Netlify's spam filter is catching real leads (Toja Grid, Verax Trading, Focus Anchored). Check the spam folder weekly and mark real ones as verified."
       ]
     }
   ],
