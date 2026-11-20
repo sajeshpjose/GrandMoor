@@ -87,6 +87,20 @@
     .err { color: #b3261e; font-size: 13px; min-height: 18px; margin-top: 8px; }
     .hidden { display: none !important; }
     footer { color: var(--ink-3); font-size: 12px; text-align: center; padding: 8px 0 32px; }
+    .print-only { display: none; }
+    @media print {
+      @page { size: A4 landscape; margin: 10mm; }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      body { background: var(--white); font-size: 12px; }
+      header nav, #pdf-btn, #week, label[for=week], footer, #login { display: none !important; }
+      header { border-bottom-width: 3px; }
+      main { max-width: none; padding: 12px 0 0; }
+      .print-only { display: block; margin: 0 0 10px; color: var(--ink-2); font-size: 12px; }
+      .card { break-inside: avoid; page-break-inside: avoid; }
+      .grid { break-inside: avoid; }
+      .cols { height: 110px; }
+      .mult .cols { height: 120px; }
+    }
   </style>
 </head>
 <body>
@@ -122,7 +136,9 @@
         <label for="week" class="meta">Week</label>
         <select id="week"></select>
         <span class="meta" id="updated"></span>
+        <button type="button" id="pdf-btn" class="ghost" title="Opens your browser's print dialog. Choose &quot;Save as PDF&quot;.">Download PDF</button>
       </div>
+      <p class="print-only" id="print-week"></p>
 
       <div class="grid kpis" id="kpis"></div>
 
@@ -207,6 +223,18 @@
     }
 
     $('pw-form').addEventListener('submit', function (e) { e.preventDefault(); start($('pw').value); });
+
+    // Download PDF: use the browser's print dialog ("Save as PDF"), with print styles above.
+    // The page title becomes the suggested file name, so name it after the selected week.
+    var origTitle = document.title;
+    function weekText() { var o = $('week').options[$('week').selectedIndex]; return o ? o.text : ''; }
+    window.addEventListener('beforeprint', function () {
+      var wk = weekText();
+      document.title = 'GrandMoor Marketing Report - ' + wk;
+      $('print-week').textContent = 'Marketing report for ' + wk + ' (' + ($('updated').textContent || '') + ')';
+    });
+    window.addEventListener('afterprint', function () { document.title = origTitle; });
+    $('pdf-btn').addEventListener('click', function () { window.print(); });
 
     function initWeeks() {
       var weeks = state.data.weeks || [];
