@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-13",
+  "updated": "2026-11-20",
   "_about": "Weekly marketing numbers for the admin dashboard (/admin/dashboard). Served only through netlify/functions/marketing-data.js; the /netlify/* path is blocked from public download. Append one object to 'weeks' per week (oldest first). Use null for anything not available so the dashboard shows it as missing rather than zero.",
   "weeks": [
     {
@@ -647,6 +647,133 @@
         "Meta campaign was switched off early in the week: CA$71.25 spent, 91 link clicks, 1 lead.",
         "Google Analytics now records key events on /contact/ (7 this week), so form completions are being tracked.",
         "Netlify's spam filter is catching real leads (Toja Grid, Verax Trading, Focus Anchored). Check the spam folder weekly and mark real ones as verified."
+      ]
+    },
+    {
+      "start": "2026-11-13",
+      "end": "2026-11-19",
+      "ga": {
+        "users": null,
+        "newUsers": null,
+        "sessions": 98,
+        "engagedSessions": 48,
+        "engagementRate": 0.4898,
+        "avgEngagementSec": 31,
+        "formStarts": null,
+        "leadEvents": 2,
+        "phoneClicks": null,
+        "channels": {
+          "Paid Search": 34,
+          "Direct": 32,
+          "Organic Search": 22,
+          "Referral": 4,
+          "Organic Social": 3,
+          "Paid Social": 2,
+          "AI Assistant": 1
+        },
+        "topPages": [
+          {
+            "path": "/",
+            "views": 61,
+            "users": 43,
+            "avgEngagementSec": 17
+          },
+          {
+            "path": "/3pl-warehousing/",
+            "views": 41,
+            "users": 34,
+            "avgEngagementSec": 18
+          },
+          {
+            "path": "/contact/",
+            "views": 16,
+            "users": 10,
+            "avgEngagementSec": 26
+          },
+          {
+            "path": "/facility/",
+            "views": 10,
+            "users": 7,
+            "avgEngagementSec": 33
+          },
+          {
+            "path": "/pallet-storage/",
+            "views": 6,
+            "users": 5,
+            "avgEngagementSec": 51
+          }
+        ]
+      },
+      "googleAds": {
+        "spend": 187.53,
+        "impressions": 538,
+        "clicks": 31,
+        "conversions": 1,
+        "lostImpressionShareBudget": 0.1561,
+        "campaigns": [
+          {
+            "name": "October 26",
+            "status": "Search, Eligible",
+            "budgetPerDay": 33.89,
+            "spend": 187.53,
+            "impressions": 538,
+            "clicks": 31,
+            "conversions": 1
+          },
+          {
+            "name": "August Campaign",
+            "status": "Paused",
+            "budgetPerDay": 7.32,
+            "spend": 0,
+            "impressions": 0,
+            "clicks": 0,
+            "conversions": 0
+          }
+        ]
+      },
+      "meta": {
+        "spend": 0,
+        "impressions": 0,
+        "reach": 0,
+        "linkClicks": 0,
+        "leads": 0,
+        "campaigns": [],
+        "note": "No delivery. The First Month Free campaign is Off (end date Nov 16)."
+      },
+      "googleBusinessProfile": null,
+      "forms": {
+        "total": 2,
+        "internal": 0,
+        "testsExcluded": 1,
+        "byType": {
+          "Rate calculator": 0,
+          "First month free": 0,
+          "Qualify": 0,
+          "Contact": 2
+        },
+        "leads": [
+          {
+            "date": "2026-11-18",
+            "type": "Contact",
+            "company": "Govanhill Coffee Limited (UK)",
+            "pallets": "1 pallet, 1-3 days, import from Netherlands (submitted twice, counted once)"
+          },
+          {
+            "date": "2026-11-19",
+            "type": "Contact",
+            "company": "Medcan",
+            "pallets": "Inventory management, warehouse and shipping"
+          }
+        ]
+      },
+      "notes": [
+        "Quietest traffic week since launch (98 sessions) because Meta is off, but quality is the best so far: 49% engaged and 31s average, with Paid Search the biggest channel.",
+        "Google Ads spent CA$187.53 (the highest weekly spend) for 31 clicks and 1 conversion, about CA$6 per click. Budget loss is down to 16% after the raise to CA$33.89/day, so watch cost per lead.",
+        "Medcan is a real inbound lead. Govanhill Coffee is a one-pallet, 1-3 day UK import, low fit. It was submitted twice, so it is counted once.",
+        "Both GA key events this week were on /contact/ (1 Paid Search, 1 AI Assistant), so Contact is the page that converts.",
+        "One test submission (#121, Nov 19) excluded.",
+        "Netlify's spam folder was not checked for this week (no access). Real leads have been landing there, so check Forms > Spam and mark real ones as verified.",
+        "Phone clicks and form completions are still not tracked in GA."
       ]
     }
   ],
