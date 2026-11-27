@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-20",
+  "updated": "2026-11-27",
   "_about": "Weekly marketing numbers for the admin dashboard (/admin/dashboard). Served only through netlify/functions/marketing-data.js; the /netlify/* path is blocked from public download. Append one object to 'weeks' per week (oldest first). Use null for anything not available so the dashboard shows it as missing rather than zero.",
   "weeks": [
     {
@@ -774,6 +774,126 @@
         "One test submission (#121, Nov 19) excluded.",
         "Netlify's spam folder was not checked for this week (no access). Real leads have been landing there, so check Forms > Spam and mark real ones as verified.",
         "Phone clicks and form completions are still not tracked in GA."
+      ]
+    },
+    {
+      "start": "2026-11-20",
+      "end": "2026-11-26",
+      "ga": {
+        "users": null,
+        "newUsers": null,
+        "sessions": 127,
+        "engagedSessions": 60,
+        "engagementRate": 0.4724,
+        "avgEngagementSec": 22,
+        "formStarts": null,
+        "leadEvents": 1,
+        "phoneClicks": null,
+        "channels": {
+          "Direct": 42,
+          "Paid Search": 37,
+          "Organic Search": 30,
+          "Organic Social": 7,
+          "Referral": 7,
+          "Cross-network": 4,
+          "Unassigned": 1
+        },
+        "topPages": [
+          {
+            "path": "/",
+            "views": 74,
+            "users": 58,
+            "avgEngagementSec": 12
+          },
+          {
+            "path": "/3pl-warehousing/",
+            "views": 45,
+            "users": 37,
+            "avgEngagementSec": 27
+          },
+          {
+            "path": "/contact/",
+            "views": 19,
+            "users": 17,
+            "avgEngagementSec": 28
+          },
+          {
+            "path": "/services/",
+            "views": 12,
+            "users": 5,
+            "avgEngagementSec": 16
+          },
+          {
+            "path": "/rate-calculator/",
+            "views": 8,
+            "users": 6,
+            "avgEngagementSec": 38
+          }
+        ]
+      },
+      "googleAds": {
+        "spend": 231.09,
+        "impressions": 923,
+        "clicks": 38,
+        "conversions": 0,
+        "lostImpressionShareBudget": 0.3589,
+        "campaigns": [
+          {
+            "name": "October 26",
+            "status": "Search, Eligible",
+            "budgetPerDay": 33.89,
+            "spend": 231.09,
+            "impressions": 923,
+            "clicks": 38,
+            "conversions": 0
+          },
+          {
+            "name": "August Campaign",
+            "status": "Paused",
+            "budgetPerDay": 7.32,
+            "spend": 0,
+            "impressions": 0,
+            "clicks": 0,
+            "conversions": 0
+          }
+        ]
+      },
+      "meta": {
+        "spend": 0,
+        "impressions": 0,
+        "reach": 0,
+        "linkClicks": 0,
+        "leads": 0,
+        "campaigns": [],
+        "note": "No delivery. The First Month Free campaign remains Off (ended Nov 16)."
+      },
+      "googleBusinessProfile": null,
+      "forms": {
+        "total": 1,
+        "internal": 0,
+        "testsExcluded": 2,
+        "byType": {
+          "Rate calculator": 1,
+          "First month free": 0,
+          "Qualify": 0,
+          "Contact": 0
+        },
+        "leads": [
+          {
+            "date": "2026-11-20",
+            "type": "Rate calculator",
+            "company": "2499095 Ontario Inc",
+            "pallets": "10 regular pallets, quoted $28/pallet/month (~$280/month estimate)"
+          }
+        ]
+      },
+      "notes": [
+        "Sessions rose to 127 (from 98) but engagement cooled: 47% engaged sessions (vs 49%) and 22s average engagement (vs 31s). Direct and Paid Search are the two biggest channels.",
+        "Google Ads spent CA$231.09 for 38 clicks (about CA$6.08/click) but had zero conversions this week, down from 1 last week despite the higher spend. Budget lost impression share jumped to 36% (from 16%), meaning the Search campaign is now losing more traffic to its own budget cap.",
+        "Meta Ads had no delivery again this week. The First Month Free campaign remains off (ended Nov 16), so there is no Meta spend or leads to report.",
+        "One real lead this week: 2499095 Ontario Inc requested a rate calculator quote for 10 pallets (about CA$280/month estimated storage). Worth a follow-up call.",
+        "Two test/internal submissions were excluded: a team test on Nov 24 and an 'ignore' test from a team test address (baludraj@gmail.com) on Nov 26.",
+        "Checked Netlify's spam folder for the week across all three forms: only an SEO-pitch spam message turned up (Nov 21), no genuine leads were found misclassified as spam."
       ]
     }
   ],
